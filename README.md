@@ -4,7 +4,8 @@ Cadastro de livros
 -----------------------------------------------------
 
 #Funcionalidades
-  #Segurança(Spring security?)
+
+#Segurança(Spring security?)
   Login
   Logout
   
