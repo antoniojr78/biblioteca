@@ -1,17 +1,17 @@
 # biblioteca
-Cadastro de livros 
-
 -----------------------------------------------------
 
 #Funcionalidades
-
-#Segurança(Spring security?)
+-----------------------------------------------------
+ #Segurança(Spring security?)
   Login
   Logout
   
   #Cadastros Básicos
   1) Cadastro de usuários 
+  
   2) Cadastro de Editora
+  
   3) Cadastro de Autor
   4) Cadastro de Coleção 
   5) Cadastro de Livro
