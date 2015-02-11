@@ -9,7 +9,7 @@ public class HelloController {
 
 	@RequestMapping("/hello")
 	public String ola(Model model){
-		model.addAttribute("name","Vinicius");
+		model.addAttribute("name","Vinicius Martins");
 		return "index";
 	}
 }
