@@ -5,7 +5,7 @@
   <artifactId>biblioteca</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>Biblioteca</name>
+  <name>biblioteca</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
@@ -44,7 +44,7 @@
     
   </dependencies>
   <build>
-    <finalName>Biblioteca</finalName> 
+    <finalName>biblioteca</finalName> 
 	<plugins>
 	<plugin>
             <groupId>org.apache.maven.plugins</groupId>
