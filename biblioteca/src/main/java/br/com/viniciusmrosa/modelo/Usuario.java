@@ -3,6 +3,8 @@ package br.com.viniciusmrosa.modelo;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 public class Usuario implements Serializable {
@@ -13,7 +15,9 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id ;
+	
 	@Column(length=100,nullable=false)
 	private String nome;
 	@Column(length=15,nullable=false)

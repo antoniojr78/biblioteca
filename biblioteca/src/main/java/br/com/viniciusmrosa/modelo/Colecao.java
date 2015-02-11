@@ -16,7 +16,7 @@ public class Colecao implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	@Column(nullable=false,length=100)
 	private String nome;
