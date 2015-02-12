@@ -3,7 +3,7 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 	
-	<definition name="main" template="/WEB-INF/views/templates/maintemp.jsp">
+	<definition name="main" template="/WEB-INF/views/templates/dashboardboot.jsp">
 		<put-attribute name="titulo" value="Spring Fórum"/>		
 	</definition>
 	
