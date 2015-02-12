@@ -22,7 +22,7 @@ public abstract class HBDAO<T> implements DAOBase<T> {
 	private SessionFactory sessionFactory;
 	
 	
-	public SessionFactory getSessionFactory() {
+	public SessionFactory getSessionFactory() {		
 		return sessionFactory;
 	}
 
@@ -35,27 +35,27 @@ public abstract class HBDAO<T> implements DAOBase<T> {
 	}
 	@Override
 	public void salva(T obj) {
-		// TODO Auto-generated method stub
+		
 		getSession().saveOrUpdate(obj);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> lista(int offset,int max) {
-		// TODO Auto-generated method stub
+		
 		return getSession().createCriteria(getClazz()).setFirstResult(offset).setMaxResults(max).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public T getById(long id) {
-		// TODO Auto-generated method stub
+		
 		return (T) getSession().get(getClazz(), id);
 	}
 
 	@Override
 	public void deleta(T obj) {
-		// TODO Auto-generated method stub
+		
 		getSession().delete(obj);
 	}
 

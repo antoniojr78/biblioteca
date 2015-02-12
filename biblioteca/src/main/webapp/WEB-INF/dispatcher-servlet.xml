@@ -10,6 +10,22 @@
  <mvc:annotation-driven />
  <context:component-scan base-package="br.com.viniciusmrosa.controller" />
  
+ 	<mvc:resources mapping="/static/**" 
+				   location="/static/"
+				   cache-period="120"/>
+			
+	<!--   Tiles view resolver -->		
+	<bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/tiles/tiles-config.xml</value>
+			</list>
+		</property>
+	</bean>	
+	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+			<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
+	</bean>
+	<!-- 				   
 	 <bean  class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		 <property name="prefix">
 		 <value>/WEB-INF/views/</value>
@@ -18,4 +34,5 @@
 		 <value>.jsp</value>
 		 </property>
 	 </bean>
+	  -->
 </beans>
