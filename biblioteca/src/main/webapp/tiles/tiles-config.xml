@@ -7,7 +7,9 @@
 		<put-attribute name="titulo" value="Spring Fórum"/>		
 	</definition>
 	
-	 
+    <definition name="cadUsuario"  extends="main" >
+    	<put-attribute name="conteudo" value="/WEB-INF/views/cadUsuario.jsp"/>
+    </definition>	 
     <definition name="index"  extends="main" >
     	<put-attribute name="conteudo" value="/WEB-INF/views/index.jsp"/>
     </definition>

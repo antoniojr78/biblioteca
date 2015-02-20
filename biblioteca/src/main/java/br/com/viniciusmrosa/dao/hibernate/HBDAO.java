@@ -48,9 +48,9 @@ public abstract class HBDAO<T> implements DAOBase<T> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public T getById(long id) {
+	public T getById(Long id) {
 		
-		return (T) getSession().get(getClazz(), id);
+		return (T) getSession().get(getClazz(),id); 
 	}
 
 	@Override

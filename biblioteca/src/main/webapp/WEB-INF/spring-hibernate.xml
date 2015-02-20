@@ -28,6 +28,9 @@
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.show_sql">true</prop>	
+				<prop key="hibernate.connection.characterEncoding">cp1251</prop> 		
 			</props>
 		</property>
 
@@ -54,8 +57,7 @@
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>
-		<aop:advisor advice-ref="txAdvice"
-			pointcut="execution(* br.com.viniciusmrosa.dao.hibernate.HB*.*(..))" />
+	  <aop:advisor advice-ref="txAdvice" pointcut="execution(* br.com.viniciusmrosa.dao.hibernate.HB*.*(..))" /> 
 	</aop:config>
 	
 	<!-- O DataSource da aplicação. Neste caso, este só deve ser usado em ambiente 
