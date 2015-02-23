@@ -36,4 +36,10 @@ public class HBUsuario extends HBDAO<Usuario> implements DAOUsuario {
 		return (Usuario) query.uniqueResult();
 	}
 
+	@Override
+	public boolean usuarioExistente(String login) {
+		// TODO Auto-generated method stub
+		return buscaPorLogin(login)!=null;
+	}
+
 }

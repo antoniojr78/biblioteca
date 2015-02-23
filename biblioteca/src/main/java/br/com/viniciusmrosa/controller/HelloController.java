@@ -25,10 +25,5 @@ public class HelloController {
 		
 		return "index";
 	}
-	@RequestMapping("/cadUsuario")
-	public String usuario(Model model){
 		
-		
-		return "cadUsuario";
-	}	
 }

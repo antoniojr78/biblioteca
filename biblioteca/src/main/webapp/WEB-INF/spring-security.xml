@@ -16,6 +16,8 @@
 		
 		<intercept-url pattern="/login" access ="isAnonymous()"/>
 		<intercept-url pattern="/**" access="isAuthenticated()"/>
+		<logout delete-cookies="JSESSIONID" />
+		<remember-me key="uniqueAndSecret" token-validity-seconds="120"/>
 	</http>
 	<bean:bean id="bAuthenticationProvider" 
 		  autowire="byType"
