@@ -38,7 +38,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<c:url value="/"/>">Biblioteca</a>
+          <a class="navbar-brand" href="<c:url value="/apresentacao"/>">Biblioteca</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">     
@@ -70,16 +70,15 @@
                   </ul>
                 </li>
             </ul>
-       
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
-          </ul>
-          <form class="navbar-form navbar-right">
+       	  <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">
           </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="<c:url value="/j_spring_security_logout"/>"> <span class="glyphicon glyphicon-off " style="color:#9d9d9d" aria-hidden="true"></span></a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+          	<li style="color:#9d9d9d;margin-top:15px;"> Olá Vinicius Martins Rosa</li>
+          </ul>
         </div>
       </div>
     </nav>

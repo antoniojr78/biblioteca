@@ -13,11 +13,15 @@ public class HelloController {
 
 	@Autowired
 	private DAOUsuario daoUsuario;
-	@RequestMapping("/")
+	
+	@RequestMapping("/login")
+	public String showLogin(){
+		return "login";
+	}
+	
+	@RequestMapping("/apresentacao")
 	public String ola(Model model){
 		
-		Usuario u = daoUsuario.getById(1L);
-		model.addAttribute("name",":" + u.getNome());
 		
 		return "index";
 	}

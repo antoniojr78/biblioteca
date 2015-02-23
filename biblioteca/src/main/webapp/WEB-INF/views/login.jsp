@@ -1,4 +1,5 @@
-
+<%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,20 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+  
+    <title>Login</title>
+  <link rel="stylesheet" href="<c:url value="/static/bootstrap/css/bootstrap.min.css"/>" >
+  <link rel="stylesheet" href="<c:url value="/static/bootstrap/form-signin.css"/>" >
 
-    <title>Signin Template for Bootstrap</title>
+   
+   
 
-    <!-- Bootstrap core CSS 
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">-->
-	<link href="C:\Users\Vinicius\Downloads\bootstrap-3.3.2-dist\bootstrap.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="form-signin.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="http://getbootstrap.com/assets/js/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -34,13 +29,13 @@
 
     <div class="container " >
 
-      <form class="form-signin" action="testeboot.html" >
+      <form class="form-signin" action="<c:url value="/j_spring_security_check"/>" method="post">
         <h2 class="form-signin-heading">Efetuar Login</h2>
         <hr size="1" style="border:0px; height:1px; color:#9e9e9e; background-color:#9e9e9e;">
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="E-mail" required autofocus>
+        <input type="email" id="inputEmail" name="j_username" class="form-control" placeholder="E-mail" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
+        <input type="password" name="j_password" id="inputPassword" class="form-control" placeholder="Senha" required>
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me
@@ -50,10 +45,6 @@
       </form>
 
     </div> <!-- /container -->
-
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 
 
   </body>

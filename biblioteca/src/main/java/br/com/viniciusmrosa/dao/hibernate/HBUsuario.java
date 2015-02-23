@@ -27,4 +27,13 @@ public class HBUsuario extends HBDAO<Usuario> implements DAOUsuario {
 		
 	}
 
+	@Override
+	public Usuario efetuarLogin(String login, String senha) {
+		// TODO Auto-generated method stub
+		Query query = getSession().createQuery("from Usuario usr where usr.login = :login and senha = :senha");
+		query.setString("login", login);
+		query.setString("senha", senha);
+		return (Usuario) query.uniqueResult();
+	}
+
 }
