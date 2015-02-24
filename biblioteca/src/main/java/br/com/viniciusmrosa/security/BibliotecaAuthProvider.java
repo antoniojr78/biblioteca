@@ -2,6 +2,7 @@ package br.com.viniciusmrosa.security;
 
 import java.util.ArrayList;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,8 +27,8 @@ public class BibliotecaAuthProvider implements AuthenticationProvider{
 		String senha    = token.getCredentials() != null ? token.getCredentials().toString() : null;
 		
 		
-		Usuario usuario = daoUsuario.efetuarLogin(username, senha);
-				
+		Usuario usuario = daoUsuario.efetuarLogin(username, DigestUtils.sha512Hex(senha));
+		
 		if (usuario == null) {
 			return null;
 		}

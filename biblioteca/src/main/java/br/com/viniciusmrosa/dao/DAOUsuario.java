@@ -7,4 +7,5 @@ public interface DAOUsuario extends DAOBase<Usuario> {
 	public Usuario buscaPorLogin(String login);
 	public Usuario efetuarLogin(String login,String senha);
 	public boolean usuarioExistente(String login);
+	public Long contaUsuarios();
 }

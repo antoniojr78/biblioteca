@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html lang="en"><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,6 +26,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
   </head>
 
   <body>
@@ -77,7 +79,11 @@
             <li><a href="<c:url value="/j_spring_security_logout"/>"> <span class="glyphicon glyphicon-off " style="color:#9d9d9d" aria-hidden="true"></span></a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-          	<li style="color:#9d9d9d;margin-top:15px;"> Olá Vinicius Martins Rosa</li>
+          	<li style="color:#9d9d9d;margin-top:15px;"> 
+          		<sec:authorize access="isAuthenticated()">
+  					Olá, <sec:authentication property="name"/>
+				</sec:authorize>
+			</li>
           </ul>
         </div>
       </div>

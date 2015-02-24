@@ -1,6 +1,7 @@
 package br.com.viniciusmrosa.dao.hibernate;
 
 import org.hibernate.Query;
+import org.hibernate.criterion.Projections;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,4 +43,11 @@ public class HBUsuario extends HBDAO<Usuario> implements DAOUsuario {
 		return buscaPorLogin(login)!=null;
 	}
 
+	@Override
+	public Long contaUsuarios() {
+		// TODO Auto-generated method stub
+		return (Long) getSession().createCriteria(getClazz()).setProjection(Projections.rowCount()).uniqueResult();
+	}
+	
+	
 }

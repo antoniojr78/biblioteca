@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -25,11 +27,13 @@ public class Usuario implements Serializable {
 	private long id ;
 	
 	@Column(length=100,nullable=false)
-	@NotEmpty
+	@NotEmpty(message="{usuario.nome.vazio}")
 	private String nome;
-	@Column(length=15,nullable=false)
-	@NotEmpty
+	
+	@Column(length=150,nullable=false)
+	@NotEmpty 
 	private String senha;
+	
 	@Column(length=100,nullable=false)
 	@NotEmpty @Email
 	private String login;

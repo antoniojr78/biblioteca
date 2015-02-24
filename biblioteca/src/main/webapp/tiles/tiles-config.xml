@@ -9,7 +9,10 @@
 	
     <definition name="cadUsuario"  extends="main" >
     	<put-attribute name="conteudo" value="/WEB-INF/views/cadUsuario.jsp"/>
-    </definition>	 
+    </definition>	
+   <definition name="listaUsuarios"  extends="main" >
+    	<put-attribute name="conteudo" value="/WEB-INF/views/listaUsuarios.jsp"/>
+    </definition>    
     <definition name="index"  extends="main" >
     	<put-attribute name="conteudo" value="/WEB-INF/views/index.jsp"/>
     </definition>
