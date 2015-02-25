@@ -4,7 +4,8 @@
 
 <script type="text/javascript"> 
 	$(document).ready(function() {
-		$('#example').DataTable({
+		var selected = [];
+		var table =  $('#example').DataTable({
 		        "language": {
 		            "lengthMenu": "Exibir _MENU_ registros",
 		            "zeroRecords": "Nenhum registro encontrado",
@@ -19,8 +20,40 @@
 		                    "previous":   "Ant"
 		                }
 		        	},
-		        "lengthMenu": [5, 10, 20, 50]	
+		        "lengthMenu": [5, 10, 20, 50],
+		        "rowCallback": function( row, data ) {
+		            if ( $.inArray(data.DT_RowId, selected) !== -1 ) {
+		                $(row).addClass('selected');
+		            }
+		        },
+		        "columnDefs": [
+		                       {
+		                           "targets": [ 1 ],
+		                           "visible": false,
+		                           "searchable": false
+		                       },
+		                       {
+		                           "targets": [ 0 ],
+		                           "visible": true,
+		                           "searchable": false,
+		                           "orderable":false
+		                       }
+		                   ]
 		});
+	
+	
+		
+		 
+	    $('#example tbody').on( 'click', 'tr', function () {
+	        if ( $(this).hasClass('selected') ) {
+	            $(this).removeClass('selected');
+	        }
+	        else {
+	            table.$('tr.selected').removeClass('selected');
+	            $(this).addClass('selected');
+	        }	        
+	    } );
+		
 	} );
 	
 	function prox(){
@@ -45,17 +78,20 @@
 		<table id="example" class="table table-striped"> <!-- class="table table-striped" -->
 			<thead>
 				<tr>
+					<!-- tive que tirar o bg image na mão pois qnd carregava a primeira vez ele vinha mesmo não sendo orderable -->
+					<th style="background-image:none;text-align:center">Exc</th>
 					<th>Id</th>
 					<th>Login</th>
-					<th>Nome</th>
+					<th>Nome</th>					
 				</tr>
 			</thead>
 			<tbody>
 			<c:forEach var="usuario" items="${usuarios}">
 				<tr>
+					<td style="text-align:center"> <a href="/delusuario/${usuario.id}"><span class="glyphicon glyphicon-remove" style="color:red"></span></a> </td>
 					<td>${usuario.id}</td>
 					<td>${usuario.login}</td>
-					<td style="width:70%">${usuario.nome}</td>
+					<td style="width:70%">${usuario.nome}</td>					
 				</tr>
 			</c:forEach>	
 			</tbody>
