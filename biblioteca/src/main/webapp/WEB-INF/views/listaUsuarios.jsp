@@ -28,12 +28,12 @@
 		        },
 		        "columnDefs": [
 		                       {
-		                           "targets": [ 1 ],
+		                           "targets": [ 2 ],
 		                           "visible": false,
 		                           "searchable": false
 		                       },
 		                       {
-		                           "targets": [ 0 ],
+		                           "targets": [ 0,1 ],
 		                           "visible": true,
 		                           "searchable": false,
 		                           "orderable":false
@@ -79,7 +79,7 @@
 			<thead>
 				<tr>
 					<!-- tive que tirar o bg image na mão pois qnd carregava a primeira vez ele vinha mesmo não sendo orderable -->
-					<th style="background-image:none;text-align:center">Exc</th>
+					<th colspan="2" style="background-image:none;text-align:center">&nbsp</th>
 					<th>Id</th>
 					<th>Login</th>
 					<th>Nome</th>					
@@ -88,7 +88,8 @@
 			<tbody>
 			<c:forEach var="usuario" items="${usuarios}">
 				<tr>
-					<td style="text-align:center"> <a href="/delusuario/${usuario.id}"><span class="glyphicon glyphicon-remove" style="color:red"></span></a> </td>
+					<td style="text-align:center"> <a href="<c:url value="/delusuario/${usuario.id}"/>" ><span title="Excluir" class="glyphicon glyphicon-remove" style="color:red"></span></a> </td>
+					<td style="text-align:center" > <a href="<c:url value="/altusuario/${usuario.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </td>
 					<td>${usuario.id}</td>
 					<td>${usuario.login}</td>
 					<td style="width:70%">${usuario.nome}</td>					
