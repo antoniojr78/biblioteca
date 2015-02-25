@@ -47,7 +47,7 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cadastros <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                  <li><a href="<c:url value="/cadUsuario"/>">Usuário</a></li>
+                  <li><a href="<c:url value="/listaUsuario"/>">Usuário</a></li>
                   <li class="divider"></li>
                   <li><a href="#">Autor</a></li>
                   <li><a href="#">Coleção</a></li>

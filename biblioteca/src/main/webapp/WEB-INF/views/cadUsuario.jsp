@@ -10,7 +10,7 @@
 	<div class="alert alert-info"
 		style='display:${msg==null?"none":"line"}' role="alert">${msg }
 	</div>
-	
+
 	<sf:form modelAttribute="usuario" action="${linkAct}"
 		class="form-horizontal" role="form">
 		<sf:errors path="*" element="div" role="alert"
@@ -33,13 +33,21 @@
 			<label class="control-label col-sm-2" for="pwd">Senha:</label>
 			<div class="col-sm-10">
 				<sf:input path="senha" type="password" class="form-control" id="pwd"
-					placeholder="Senha" maxlength="10" />					
+					placeholder="Senha" maxlength="10" />
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-default">Salvar</button>
+				<button type="submit" class="btn btn-default">
+					<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Salvar
+				</button>
+				<a href="<c:url  value="/listaUsuario"/>">
+					<button type="button" class="btn btn-default btn-md">
+						<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Voltar
+					</button>
+				</a>
 			</div>
+
 		</div>
 	</sf:form>
 </div>

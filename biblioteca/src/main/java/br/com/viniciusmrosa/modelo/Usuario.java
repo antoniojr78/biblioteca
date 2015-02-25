@@ -31,11 +31,11 @@ public class Usuario implements Serializable {
 	private String nome;
 	
 	@Column(length=150,nullable=false)
-	@NotEmpty 
+	@NotEmpty(message="{usuario.senha.vazio}")
 	private String senha;
 	
 	@Column(length=100,nullable=false)
-	@NotEmpty @Email
+	@NotEmpty(message="{usuario.login.vazio}") @Email
 	private String login;
 	
 	public long getId() {
