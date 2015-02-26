@@ -7,5 +7,6 @@ public interface UsuarioService {
 
 	public abstract void inserirUsuario(Usuario u)
 			throws RegistroExistenteException;
-
+	
+	public void alterarUsuario(Usuario u);
 }

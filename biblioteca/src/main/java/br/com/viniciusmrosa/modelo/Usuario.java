@@ -34,6 +34,9 @@ public class Usuario implements Serializable {
 	@NotEmpty(message="{usuario.senha.vazio}")
 	private String senha;
 	
+	@Column(name="senha",updatable=false,insertable=false)
+	private String senhaHash;
+	
 	@Column(length=100,nullable=false)
 	@NotEmpty(message="{usuario.login.vazio}") @Email
 	private String login;
@@ -61,6 +64,13 @@ public class Usuario implements Serializable {
 	}
 	public void setLogin(String login) {
 		this.login = login;
+	}
+	
+	public String getSenhaHash() {
+		return senhaHash;
+	}
+	public void setSenhaHash(String senhaHash) {
+		this.senhaHash = senhaHash;
 	}
 	
 	@Override

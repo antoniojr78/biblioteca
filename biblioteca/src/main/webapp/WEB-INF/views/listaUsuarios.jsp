@@ -6,39 +6,35 @@
 	$(document).ready(function() {
 		var selected = [];
 		var table =  $('#example').DataTable({
-		        "language": {
-		            "lengthMenu": "Exibir _MENU_ registros",
-		            "zeroRecords": "Nenhum registro encontrado",
-		            "info": "Página _PAGE_ de _PAGES_",
-		            "infoEmpty": "Nenhum registro encontrado",
-		            "infoFiltered": "(filtered from _MAX_ total records)",
-		            "search":         "Pesquisar:",
-		            "paginate": {
-		                    "first":      "Primeira",
-		                    "last":       "Última",
-		                    "next":       "Próx",
-		                    "previous":   "Ant"
-		                }
-		        	},
-		        "lengthMenu": [5, 10, 20, 50],
-		        "rowCallback": function( row, data ) {
-		            if ( $.inArray(data.DT_RowId, selected) !== -1 ) {
-		                $(row).addClass('selected');
-		            }
-		        },
-		        "columnDefs": [
-		                       {
-		                           "targets": [ 2 ],
-		                           "visible": false,
-		                           "searchable": false
-		                       },
-		                       {
-		                           "targets": [ 0,1 ],
-		                           "visible": true,
-		                           "searchable": false,
-		                           "orderable":false
-		                       }
-		                   ]
+			
+			"language": {
+	            "lengthMenu": "Exibir _MENU_ registros",
+	            "zeroRecords": "Nenhum registro encontrado",
+	            "info": "Página _PAGE_ de _PAGES_",
+	            "infoEmpty": "Nenhum registro encontrado",
+	            "infoFiltered": "(filtered from _MAX_ total records)",
+	            "search":         "Pesquisar:",
+	            "paginate": {
+	                    "first":      "Primeira",
+	                    "last":       "Última",
+	                    "next":       "Próx",
+	                    "previous":   "Ant"
+	                }
+	        	},
+	        	"lengthMenu": [5, 10, 20, 50],
+	        	 "columnDefs": [
+			                       {
+			                           "targets": [ 2 ],
+			                           "visible": false,
+			                           "searchable": false
+			                       },
+			                       {
+			                           "targets": [ 0,1 ],
+			                           "visible": true,
+			                           "searchable": false,
+			                           "orderable":false
+			                       }
+			                   ]
 		});
 	
 	
@@ -64,7 +60,11 @@
  </script> 
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.5/css/jquery.dataTables.css" >
 	<script type="text/javascript" src="https://cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script> 
+	<!-- 
+		<link rel="stylesheet" href="<c:url  value="/static/datatables/css/jquery.dataTables.css"/>" >
+	<script type="text/javascript" src="<c:url  value="/static/datatables/js/jquery.dataTables.min.js"/>"></script> 
 	
+	 -->
 <h2 class="sub-header">Usuários</h2>
 
 <a href="<c:url  value="/cadUsuario"/>">
@@ -89,7 +89,7 @@
 			<c:forEach var="usuario" items="${usuarios}">
 				<tr>
 					<td style="text-align:center"> <a href="<c:url value="/delusuario/${usuario.id}"/>" ><span title="Excluir" class="glyphicon glyphicon-remove" style="color:red"></span></a> </td>
-					<td style="text-align:center" > <a href="<c:url value="/altusuario/${usuario.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </td>
+					<td style="text-align:center" > <a href="<c:url value="/editUsuario/${usuario.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </td>
 					<td>${usuario.id}</td>
 					<td>${usuario.login}</td>
 					<td style="width:70%">${usuario.nome}</td>					
