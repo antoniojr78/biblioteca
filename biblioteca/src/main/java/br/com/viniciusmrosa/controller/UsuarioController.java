@@ -39,7 +39,7 @@ public class UsuarioController {
 
 	@RequestMapping("/salvarUsuario")
 	public String salvaUsuario(@Valid Usuario usuario, BindingResult result,
-			Model model) {
+			Model model){
 
 		// Bean validation
 		if (result.hasErrors()) {
