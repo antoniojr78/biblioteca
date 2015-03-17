@@ -50,20 +50,9 @@
 		var selected = [];
 		var table =  $('#tabUsuarios').DataTable({
 			
-			"language": {
-	            "lengthMenu": "Exibir _MENU_ registros",
-	            "zeroRecords": "Nenhum registro encontrado",
-	            "info": "Página _PAGE_ de _PAGES_",
-	            "infoEmpty": "Nenhum registro encontrado",
-	            "infoFiltered": "(filtrados de _MAX_ registros)",
-	            "search":         "Pesquisar:",
-	            "paginate": {
-	                    "first":      "Primeira",
-	                    "last":       "Última",
-	                    "next":       "Próx",
-	                    "previous":   "Ant"
-	                }
-	        	},
+			//"language": {
+			//		"url" : "dataTables.portuguese-brasil.lang"
+	        //	},
 	        	
 	        	"lengthMenu": [5, 10, 20, 50],
 	        	"pageLength": 5,
