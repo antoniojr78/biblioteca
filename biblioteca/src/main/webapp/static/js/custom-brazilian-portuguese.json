@@ -1,0 +1,14 @@
+﻿{
+	"lengthMenu": "Exibir _MENU_ registros",
+	"zeroRecords": "Nenhum registro encontrado",
+	"info": "Página _PAGE_ de _PAGES_",
+	"infoEmpty": "Nenhum registro encontrado",
+	"infoFiltered": "(filtered from _MAX_ total records)",
+	"search":         "Pesquisar:",
+	"paginate": {
+			"first":      "Primeira",
+			"last":       "Última",
+			"next":       "Próx",
+			"previous":   "Ant"
+		}
+}
