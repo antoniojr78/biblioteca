@@ -37,7 +37,7 @@ public class BibliotecaAuthentication implements Authentication {
 			@Override
 			public String getAuthority() {
 				// TODO Auto-generated method stub
-				return "USUARIO";
+				return "ADMIN";
 			}
 		});
 		return permissoes;

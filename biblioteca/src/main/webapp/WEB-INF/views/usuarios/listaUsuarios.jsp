@@ -1,7 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <link rel="stylesheet" href="<c:url value="/static/datatables/css/jquery.dataTables.min.css"/>" >	 
 <h2 class="sub-header">Usuários</h2>
@@ -29,8 +29,10 @@
 			<tbody>
 			<c:forEach var="usuario" items="${usuarios}">
 				<tr>
-					<td style="text-align:center" > <a href="<c:url value="/editUsuario/${usuario.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </td>
-					<td style="text-align:center"> <a href="<c:url value="/delusuario/${usuario.id}"/>" ><span title="Excluir" class="glyphicon glyphicon-remove" style="color:red"></span></a> </td>
+					
+					<td style="text-align:center" ><sec:authorize ifAnyGranted="ROOT"> <a href="<c:url value="/editUsuario/${usuario.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </sec:authorize> </td>
+					<td style="text-align:center"> <sec:authorize ifAnyGranted="ROOT"><a href="<c:url value="/delusuario/${usuario.id}"/>" ><span title="Excluir" class="glyphicon glyphicon-remove" style="color:red"></span></a> </sec:authorize> </td>
+					
 					<td>${usuario.id}</td>
 					<td>${usuario.login}</td>
 					<td style="width:70%">${usuario.nome}</td>					
@@ -50,9 +52,9 @@
 		var selected = [];
 		var table =  $('#tabUsuarios').DataTable({
 			
-			//"language": {
-			//		"url" : "dataTables.portuguese-brasil.lang"
-	        //	},
+			"language": {
+					"url" : "/biblioteca/static/js/custom-brazilian-portuguese.json"
+	        	},
 	        	
 	        	"lengthMenu": [5, 10, 20, 50],
 	        	"pageLength": 5,

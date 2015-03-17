@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.viniciusmrosa.dao.DAOBase;
+import br.com.viniciusmrosa.security.SecurityUtils;
 
 /*
  * Essa classe abstrata será utilizada para ser extendida pelas classes de implementação dos DAOs para o Hibernate
@@ -21,6 +22,8 @@ public abstract class HBDAO<T> implements DAOBase<T> {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	@Autowired
+	private SecurityUtils securityUtils ;
 	
 	public SessionFactory getSessionFactory() {		
 		return sessionFactory;

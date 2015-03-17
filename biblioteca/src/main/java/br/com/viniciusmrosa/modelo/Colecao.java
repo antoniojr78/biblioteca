@@ -3,23 +3,26 @@ package br.com.viniciusmrosa.modelo;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Colecao implements Serializable {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	@Column(nullable=false,length=100)
-	private String nome;
+	private String nome;	
+	@Embedded
+	private LogCriacao logCriacao;
+	
 	public long getId() {
 		return id;
 	}
@@ -31,6 +34,12 @@ public class Colecao implements Serializable {
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	public LogCriacao getLogCriacao() {
+		return logCriacao;
+	}
+	public void setLogCriacao(LogCriacao logCriacao) {
+		this.logCriacao = logCriacao;
 	}
 	@Override
 	public int hashCode() {

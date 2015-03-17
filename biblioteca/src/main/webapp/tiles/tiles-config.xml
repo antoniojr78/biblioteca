@@ -8,14 +8,14 @@
 	</definition>
 	
     <definition name="cadUsuario"  extends="main" >
-    	<put-attribute name="conteudo" value="/WEB-INF/views/cadUsuario.jsp"/>
+    	<put-attribute name="conteudo" value="/WEB-INF/views/usuarios/cadUsuario.jsp"/>
     </definition>
     <definition name="editUsuario"  extends="main" >
-    	<put-attribute name="conteudo" value="/WEB-INF/views/editUsuario.jsp"/>
+    	<put-attribute name="conteudo" value="/WEB-INF/views/usuarios/editUsuario.jsp"/>
     </definition>    
     	
    <definition name="listaUsuarios"  extends="main" >
-    	<put-attribute name="conteudo" value="/WEB-INF/views/listaUsuarios.jsp"/>
+    	<put-attribute name="conteudo" value="/WEB-INF/views/usuarios/listaUsuarios.jsp"/>
     </definition>   
     
  

@@ -7,12 +7,14 @@ import org.springframework.stereotype.Service;
 import br.com.viniciusmrosa.dao.DAOUsuario;
 import br.com.viniciusmrosa.exception.RegistroExistenteException;
 import br.com.viniciusmrosa.modelo.Usuario;
+import br.com.viniciusmrosa.security.SecurityUtils;
 
 @Service(value = "usuarioService")
-public class UsuarioServiceImpl implements UsuarioService {
+public class UsuarioServiceImpl extends AppDefaultService implements UsuarioService {
 
 	@Autowired
 	private DAOUsuario daoUsuario;
+
 
 	/*
 	 * (non-Javadoc)
@@ -27,6 +29,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 			throw new RegistroExistenteException("O login informado já existe");
 		
 		u.setSenha(DigestUtils.sha512Hex(u.getSenha()));
+		u.setLogCriacao(super.getLogCriacao());
 		daoUsuario.salva(u);
 		
 	}
@@ -42,4 +45,5 @@ public class UsuarioServiceImpl implements UsuarioService {
 		}
 		daoUsuario.salva(u);
 	}
+
 }

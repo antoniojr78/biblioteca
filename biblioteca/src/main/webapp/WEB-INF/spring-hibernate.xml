@@ -41,6 +41,7 @@
 				<value>br.com.viniciusmrosa.modelo.Autor</value>
 				<value>br.com.viniciusmrosa.modelo.Editora</value>
 				<value>br.com.viniciusmrosa.modelo.Livro</value>
+				<value>br.com.viniciusmrosa.modelo.LogCriacao</value>
 			</array>
 		</property>
 

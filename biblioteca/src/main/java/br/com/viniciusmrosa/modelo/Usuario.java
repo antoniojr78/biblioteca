@@ -3,10 +3,13 @@ package br.com.viniciusmrosa.modelo;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Max;
 
 import org.hibernate.validator.constraints.Email;
@@ -17,9 +20,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class Usuario implements Serializable {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -38,8 +39,12 @@ public class Usuario implements Serializable {
 	private String senhaHash;
 	
 	@Column(length=100,nullable=false)
-	@NotEmpty(message="{usuario.login.vazio}") @Email
+	@NotEmpty(message="{usuario.login.vazio}") 
+	@Email
 	private String login;
+	
+	@Embedded
+	private LogCriacao logCriacao;
 	
 	public long getId() {
 		return id;
@@ -72,7 +77,13 @@ public class Usuario implements Serializable {
 	public void setSenhaHash(String senhaHash) {
 		this.senhaHash = senhaHash;
 	}
-	
+		
+	public LogCriacao getLogCriacao() {
+		return logCriacao;
+	}
+	public void setLogCriacao(LogCriacao logCriacao) {
+		this.logCriacao = logCriacao;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -93,6 +104,7 @@ public class Usuario implements Serializable {
 			return false;
 		return true;
 	}
+
 	
 	
 	

@@ -48,6 +48,8 @@ public class HBUsuario extends HBDAO<Usuario> implements DAOUsuario {
 		// TODO Auto-generated method stub
 		return (Long) getSession().createCriteria(getClazz()).setProjection(Projections.rowCount()).uniqueResult();
 	}
+
+
 	
 	
 }
