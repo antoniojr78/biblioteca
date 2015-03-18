@@ -6,6 +6,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.viniciusmrosa.dao.DAOUsuario;
 import br.com.viniciusmrosa.exception.RegistroExistenteException;
 import br.com.viniciusmrosa.modelo.Usuario;
+import br.com.viniciusmrosa.security.AlteracaoUsuarioSecurityService;
 import br.com.viniciusmrosa.services.UsuarioService;
 import br.com.viniciusmrosa.web.PaginacaoTabela;
 
@@ -31,6 +34,9 @@ public class UsuarioController {
 	@Autowired
 	private DAOUsuario daoUsuario;
 
+	@Autowired
+	private AlteracaoUsuarioSecurityService alteracaoUsuarioSecurityService ;
+	
 	@RequestMapping("/cadUsuario")
 	public String usuario(Model model) {
 		model.addAttribute("usuario", new Usuario());
@@ -67,12 +73,15 @@ public class UsuarioController {
 		return "listaUsuarios";
 	}
 
-	@RequestMapping(value = "/editUsuario/{id}")
+	
+	@RequestMapping(value = "/editUsuario/{id}")	
 	public ModelAndView preparaAltUsuario(@PathVariable(value = "id") Long id) {
 
+		
 		Usuario u = daoUsuario.getById(id);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject(u);
+		mav.addObject("podeAlterar",alteracaoUsuarioSecurityService.podeAlterar(u));
 		mav.setViewName("editUsuario");
 		// model.addAttribute(u);
 		// return "editUsuario";

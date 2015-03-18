@@ -30,13 +30,14 @@
 			<c:forEach var="usuario" items="${usuarios}">
 				<tr>
 					
-					<td style="text-align:center" ><sec:authorize ifAnyGranted="ROOT"> <a href="<c:url value="/editUsuario/${usuario.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </sec:authorize> </td>
+					<td style="text-align:center" ><sec:authorize access="@AlteracaoUsuarioSecurityService.podeAlterar(#usuario)"> <a href="<c:url value="/editUsuario/${usuario.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </sec:authorize> </td>
 					<td style="text-align:center"> <sec:authorize ifAnyGranted="ROOT"><a href="<c:url value="/delusuario/${usuario.id}"/>" ><span title="Excluir" class="glyphicon glyphicon-remove" style="color:red"></span></a> </sec:authorize> </td>
 					
 					<td>${usuario.id}</td>
 					<td>${usuario.login}</td>
 					<td style="width:70%">${usuario.nome}</td>					
 				</tr>
+				
 			</c:forEach>
 			</tbody>
 		</table>

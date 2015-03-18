@@ -14,8 +14,11 @@ public class AlteracaoUsuarioSecurityService {
 	
 	public boolean podeAlterar(Usuario usuario){
 		
-		return true ;//securityUtils.buscaUsuarioLogado().getId() == id;
+		return usuario.equals(securityUtils.buscaUsuarioLogado())
+				|| usuario.getUsuarioCriacao().equals(securityUtils.buscaUsuarioLogado()) ;
+				
 		
 	}
+
 
 }

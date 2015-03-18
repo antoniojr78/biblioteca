@@ -125,6 +125,13 @@
 			<artifactId>commons-codec</artifactId>
 			<version>1.10</version>
 		</dependency>
+		
+		<!-- JCE -->
+		<dependency>
+			<groupId>javax.security</groupId>
+			<artifactId>local_policy</artifactId>
+			<version>1.8</version>
+		</dependency>		
 	</dependencies>
 	<build>
 		<finalName>biblioteca</finalName>

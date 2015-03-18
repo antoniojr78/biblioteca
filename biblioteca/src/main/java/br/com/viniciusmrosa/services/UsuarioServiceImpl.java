@@ -7,21 +7,18 @@ import org.springframework.stereotype.Service;
 import br.com.viniciusmrosa.dao.DAOUsuario;
 import br.com.viniciusmrosa.exception.RegistroExistenteException;
 import br.com.viniciusmrosa.modelo.Usuario;
-import br.com.viniciusmrosa.security.SecurityUtils;
 
 @Service(value = "usuarioService")
-public class UsuarioServiceImpl extends AppDefaultService implements UsuarioService {
+public class UsuarioServiceImpl  implements UsuarioService {
 
 	@Autowired
 	private DAOUsuario daoUsuario;
 
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see br.com.viniciusmrosa.services.UsuarioService#inserirUsuario(br.com.
-	 * viniciusmrosa.modelo.Usuario)
-	 */
+	@Autowired
+	private LogCriacaoService logCriacaoService;
+	
+	private Usuario usuarioAlteracao;
+	
 	@Override
 	public void inserirUsuario(Usuario u) throws RegistroExistenteException{
 		
@@ -29,21 +26,20 @@ public class UsuarioServiceImpl extends AppDefaultService implements UsuarioServ
 			throw new RegistroExistenteException("O login informado já existe");
 		
 		u.setSenha(DigestUtils.sha512Hex(u.getSenha()));
-		u.setLogCriacao(super.getLogCriacao());
+		u.setLogCriacao(logCriacaoService.getLogCriacao());		
 		daoUsuario.salva(u);
 		
 	}
 
 	public void alterarUsuario(Usuario u) {
-		// Se a senha for alterada, eu devo converter novamente em um hash
-		System.out.println("Senha informada:" + u.getSenha());
-		System.out.println("Senha banco:" + u.getSenhaHash());
+		
+		usuarioAlteracao = daoUsuario.getById(u.getId());
+		usuarioAlteracao.setNome(u.getNome());
+		// Se a senha for alterada, eu devo converter novamente em um hash		
 		if (!u.getSenha().equals(u.getSenhaHash())) {
-
-			u.setSenha(DigestUtils.sha512Hex(u.getSenha()));
-
+			usuarioAlteracao.setSenha(DigestUtils.sha512Hex(u.getSenha()));
 		}
-		daoUsuario.salva(u);
+		daoUsuario.salva(usuarioAlteracao);
 	}
 
 }
