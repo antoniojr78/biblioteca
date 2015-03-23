@@ -1,5 +1,7 @@
 package br.com.viniciusmrosa.security;
 
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,12 +22,12 @@ public class ControleAlteracaoRegistroInterceptor extends
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
 		
-		
+		System.out.println("ID:"+ request.getParameter("id"));
 		HandlerMethod method = (HandlerMethod) handler;
-		for(MethodParameter param :  method.getMethodParameters()){
-		System.out.println("method name " + param.getParameterName());
+		for (MethodParameter param :method.getMethodParameters()){
+			System.out.println("Param:" +  param.getParameterName());
 		}
-		System.out.println("Pre handleei a bagaça " +handler.getClass());
+
 		return super.preHandle(request, response, handler);
 	}
 	
@@ -34,6 +36,11 @@ public class ControleAlteracaoRegistroInterceptor extends
 	public void postHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
+		HandlerMethod method = (HandlerMethod) handler;
+		for (MethodParameter param :method.getMethodParameters()){
+			System.out.println("Param:" +  param.getParameterName());
+		}
+		
 		System.out.println("post handleei a bagacita");
 		modelAndView.addObject("MyObject","Sou fodaaaa");
 		super.postHandle(request, response, handler, modelAndView);

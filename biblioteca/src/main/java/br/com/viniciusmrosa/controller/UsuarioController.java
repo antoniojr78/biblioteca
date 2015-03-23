@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.viniciusmrosa.dao.DAOUsuario;
 import br.com.viniciusmrosa.exception.RegistroExistenteException;
+import br.com.viniciusmrosa.modelo.BaseEntity;
 import br.com.viniciusmrosa.modelo.Usuario;
 import br.com.viniciusmrosa.security.AlteracaoUsuarioSecurityService;
 import br.com.viniciusmrosa.services.UsuarioService;
@@ -83,8 +85,6 @@ public class UsuarioController {
 		mav.addObject(u);
 		mav.addObject("podeAlterar",alteracaoUsuarioSecurityService.podeAlterar(u));
 		mav.setViewName("editUsuario");
-		// model.addAttribute(u);
-		// return "editUsuario";
 		return mav;
 	}
 
@@ -97,6 +97,33 @@ public class UsuarioController {
 			return "editUsuario";
 		}
 		usuarioService.alterarUsuario(usuario);
+		return "redirect:/listaUsuario";
+	}
+	
+	
+	@RequestMapping("/delusuario/{id}")
+	public String deletarusuario(@PathVariable(value="id") Long id, Model model){
+		
+
+		Usuario u = daoUsuario.getById(id);
+		if(u==null){
+			model.addAttribute("msg", "Registro não encontrado");
+			return "proibidodeletar";
+		}
+		if(!alteracaoUsuarioSecurityService.podeAlterar(u)){
+			model.addAttribute("msg", "Você não tem permissão para deletar esse registro");
+			return "proibidodeletar";
+		}
+		try{
+			daoUsuario.deleta(u);
+		}catch(DataIntegrityViolationException e){
+			model.addAttribute("msg", "Não é possível deletar o registro pois há informações relacionadas utilizadas no sistema");
+			return "proibidodeletar";
+		}catch(Exception e){
+			model.addAttribute("msg", "Ocorreu um erro ao deletar o registro");
+			return "proibidodeletar";
+		}
+		
 		return "redirect:/listaUsuario";
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -57,7 +58,7 @@ public abstract class HBDAO<T> implements DAOBase<T> {
 	}
 
 	@Override
-	public void deleta(T obj) {
+	public void deleta(T obj) throws DataIntegrityViolationException {
 		
 		getSession().delete(obj);
 	}

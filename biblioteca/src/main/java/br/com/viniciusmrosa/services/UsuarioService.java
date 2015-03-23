@@ -9,4 +9,5 @@ public interface UsuarioService  {
 			throws RegistroExistenteException;
 	
 	public void alterarUsuario(Usuario u);
+	public void excluiUsuario(Usuario u) throws Exception;
 }

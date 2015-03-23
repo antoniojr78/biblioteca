@@ -1,5 +1,7 @@
 package br.com.viniciusmrosa.services;
 
+import java.sql.SQLException;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +42,14 @@ public class UsuarioServiceImpl  implements UsuarioService {
 			usuarioAlteracao.setSenha(DigestUtils.sha512Hex(u.getSenha()));
 		}
 		daoUsuario.salva(usuarioAlteracao);
+	}
+
+	@Override
+	public void excluiUsuario(Usuario u) throws Exception {
+		
+		daoUsuario.deleta(u);
+		
+		
 	}
 
 }

@@ -12,7 +12,8 @@
     </definition>
     <definition name="editUsuario"  extends="main" >
     	<put-attribute name="conteudo" value="/WEB-INF/views/usuarios/editUsuario.jsp"/>
-    </definition>    
+    </definition>
+    
     	
    <definition name="listaUsuarios"  extends="main" >
     	<put-attribute name="conteudo" value="/WEB-INF/views/usuarios/listaUsuarios.jsp"/>
@@ -47,5 +48,8 @@
     	<put-attribute name="conteudo" value="/views/loginFalho.jsp"/>
     </definition>
 	 -->
+	<definition name="proibidodeletar" extends="main">
+		<put-attribute name="conteudo" value="/WEB-INF/views/proibidodeletar.jsp" />
+	</definition>      
 
 </tiles-definitions>
