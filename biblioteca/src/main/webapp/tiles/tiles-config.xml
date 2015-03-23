@@ -48,8 +48,8 @@
     	<put-attribute name="conteudo" value="/views/loginFalho.jsp"/>
     </definition>
 	 -->
-	<definition name="proibidodeletar" extends="main">
-		<put-attribute name="conteudo" value="/WEB-INF/views/proibidodeletar.jsp" />
+	<definition name="errogenerico" extends="main">
+		<put-attribute name="conteudo" value="/WEB-INF/views/errogenerico.jsp" />
 	</definition>      
 
 </tiles-definitions>

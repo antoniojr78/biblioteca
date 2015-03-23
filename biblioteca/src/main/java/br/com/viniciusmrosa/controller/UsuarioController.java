@@ -108,20 +108,20 @@ public class UsuarioController {
 		Usuario u = daoUsuario.getById(id);
 		if(u==null){
 			model.addAttribute("msg", "Registro não encontrado");
-			return "proibidodeletar";
+			return "errogenerico";
 		}
 		if(!alteracaoUsuarioSecurityService.podeAlterar(u)){
 			model.addAttribute("msg", "Você não tem permissão para deletar esse registro");
-			return "proibidodeletar";
+			return "errogenerico";
 		}
 		try{
 			daoUsuario.deleta(u);
 		}catch(DataIntegrityViolationException e){
 			model.addAttribute("msg", "Não é possível deletar o registro pois há informações relacionadas utilizadas no sistema");
-			return "proibidodeletar";
+			return "errogenerico";
 		}catch(Exception e){
 			model.addAttribute("msg", "Ocorreu um erro ao deletar o registro");
-			return "proibidodeletar";
+			return "errogenerico";
 		}
 		
 		return "redirect:/listaUsuario";
