@@ -4,38 +4,36 @@
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <link rel="stylesheet" href="<c:url value="/static/datatables/css/jquery.dataTables.min.css"/>" >	 
-<h2 class="sub-header">Usuários</h2>
+<h2 class="sub-header">Autores</h2>
 
-<a href="<c:url  value="/cadUsuario"/>">
+<a href="<c:url  value="/cadAutor"/>">
 <button type="button" class="btn btn-default btn-md" >
   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
 </button>
 </a>
 
-<c:if test="${not empty usuarios }" >
+<c:if test="${not empty autores }" >
 	<div class="table-responsive" style="margin-top:20px;">  
-		<table id="tabUsuarios" class="table table-striped"> 
+		<table id="tabautores" class="table table-striped"> 
 			<thead>
 				<tr>
 					<!-- tive que tirar o bg image na mão pois qnd carregava a primeira vez ele vinha mesmo não sendo orderable -->
-					<th style="background-image:none;text-align:center">Alt</th>
-					<th style="background-image:none;text-align:center">Exc</th>
-					<th>Id</th>
-					<th>Login</th>
+					<th style="background-image:none;text-align:center;width:10px;">Alt</th>
+					<th style="background-image:none;text-align:center;width:10px;">Exc</th>
+					<th>Id</th>					
 					<th>Nome</th>					
 				</tr>
 			</thead>
 		
 			<tbody>
-			<c:forEach var="usuario" items="${usuarios}">
+			<c:forEach var="autor" items="${autores}">
 				<tr>
 					
-					<td style="text-align:center" ><sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#usuario)"> <a href="<c:url value="/editUsuario/${usuario.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </sec:authorize> </td>
-					<td style="text-align:center"> <sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#usuario)"><a href="<c:url value="/delusuario/${usuario.id}"/>" ><span title="Excluir" class="glyphicon glyphicon-remove" style="color:red"></span></a> </sec:authorize> </td>
+					<td style="text-align:center; width:10px;" ><sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#autor)"> <a href="<c:url value="/editAutor/${autor.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </sec:authorize> </td>
+					<td style="text-align:center; width:10px;"> <sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#autor)"><a href="<c:url value="/delAutor/${autor.id}"/>" ><span title="Excluir" class="glyphicon glyphicon-remove" style="color:red"></span></a> </sec:authorize> </td>
 					
-					<td>${usuario.id}</td>
-					<td>${usuario.login}</td>
-					<td style="width:70%">${usuario.nome}</td>					
+					<td>${autor.id}</td>					
+					<td style="width:90%">${autor.nome}</td>					
 				</tr>
 				
 			</c:forEach>
@@ -51,7 +49,7 @@
 <script type="text/javascript"> 
 	$(document).ready(function() {
 		var selected = [];
-		var table =  $('#tabUsuarios').DataTable({
+		var table =  $('#tabautores').DataTable({
 			
 			"language": {
 					"url" : "/biblioteca/static/js/custom-brazilian-portuguese.json"
@@ -63,7 +61,7 @@
 			                       {
 			                           "targets": [ 2 ],
 			                           "visible": false,
-			                           "searchable": false
+			                           "searchable": true
 			                       },
 			                       {
 			                           "targets": [ 0,1 ],
@@ -76,7 +74,7 @@
 		
 		
 		 
-	    $('#tabUsuarios tbody').on( 'click', 'tr', function () {
+	    $('#tabautores tbody').on( 'click', 'tr', function () {
 	        if ( $(this).hasClass('selected') ) {
 	            $(this).removeClass('selected');
 	        }

@@ -23,7 +23,7 @@ import br.com.viniciusmrosa.dao.DAOUsuario;
 import br.com.viniciusmrosa.exception.RegistroExistenteException;
 import br.com.viniciusmrosa.modelo.BaseEntity;
 import br.com.viniciusmrosa.modelo.Usuario;
-import br.com.viniciusmrosa.security.AlteracaoUsuarioSecurityService;
+import br.com.viniciusmrosa.security.AlteracaoRegistroSecurityService;
 import br.com.viniciusmrosa.services.UsuarioService;
 import br.com.viniciusmrosa.web.PaginacaoTabela;
 
@@ -37,7 +37,7 @@ public class UsuarioController {
 	private DAOUsuario daoUsuario;
 
 	@Autowired
-	private AlteracaoUsuarioSecurityService alteracaoUsuarioSecurityService ;
+	private AlteracaoRegistroSecurityService alteracaoUsuarioSecurityService ;
 	
 	@RequestMapping("/cadUsuario")
 	public String usuario(Model model) {
@@ -70,7 +70,7 @@ public class UsuarioController {
 	@RequestMapping("/listaUsuario")
 	public String listausuarios(Model model) {
 
-		List<Usuario> usuarios = daoUsuario.lista(0, 1000);
+		List<Usuario> usuarios = daoUsuario.lista(0, 0);
 		model.addAttribute("usuarios", usuarios);
 		return "listaUsuarios";
 	}
@@ -79,9 +79,14 @@ public class UsuarioController {
 	@RequestMapping(value = "/editUsuario/{id}")	
 	public ModelAndView preparaAltUsuario(@PathVariable(value = "id") Long id) {
 
-		
-		Usuario u = daoUsuario.getById(id);
 		ModelAndView mav = new ModelAndView();
+		Usuario u = daoUsuario.getById(id);
+		if(u==null){
+			mav.addObject("msg", "Registro não encontrado");
+			mav.setViewName("errogenerico");
+			return mav;
+		}
+		
 		mav.addObject(u);
 		mav.addObject("podeAlterar",alteracaoUsuarioSecurityService.podeAlterar(u));
 		mav.setViewName("editUsuario");

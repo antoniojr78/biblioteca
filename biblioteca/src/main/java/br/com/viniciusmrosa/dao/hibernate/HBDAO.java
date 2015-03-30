@@ -2,6 +2,7 @@ package br.com.viniciusmrosa.dao.hibernate;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,12 @@ public abstract class HBDAO<T> implements DAOBase<T> {
 	@Override
 	public List<T> lista(int offset,int max) {
 		
-		return getSession().createCriteria(getClazz()).setFirstResult(offset).setMaxResults(max).list();
+		Criteria criteria = getSession().createCriteria(getClazz());
+		criteria.setFirstResult(offset);
+		if(max > 0){
+			criteria.setMaxResults(max);
+		}
+		return criteria.list();
 	}
 
 	@SuppressWarnings("unchecked")

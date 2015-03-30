@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 import br.com.viniciusmrosa.modelo.BaseEntity;
 import br.com.viniciusmrosa.modelo.Usuario;
 
-@Component("AlteracaoUsuarioSecurityService")
-public class AlteracaoUsuarioSecurityService {
+@Component("AlteracaoRegistroSecurityService")
+public class AlteracaoRegistroSecurityService {
 		
 	@Autowired
 	SecurityUtils securityUtils;

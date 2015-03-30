@@ -15,16 +15,16 @@ import javax.persistence.Transient;
 
 @MappedSuperclass
 public abstract class BaseEntity {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id ;
-	
-	@JoinColumn(name="usuario_id",nullable=false,updatable=false,referencedColumnName="id")
-	@OneToOne(targetEntity=Usuario.class)
-	private Usuario usuarioCriacao ;
-	
-	@Column(nullable=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+
+	@JoinColumn(name = "usuario_id", nullable = false, updatable = false, referencedColumnName = "id")
+	@OneToOne(targetEntity = Usuario.class)
+	private Usuario usuarioCriacao;
+
+	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date dataCriacao;
 
@@ -53,16 +53,18 @@ public abstract class BaseEntity {
 	}
 
 	@Transient
-	public LogCriacao getLogCriacao(){
+	public LogCriacao getLogCriacao() {
 		return new LogCriacao(this.usuarioCriacao, this.dataCriacao);
 	}
 
 	@Transient
-	public void setLogCriacao( LogCriacao log){
+	public void setLogCriacao(LogCriacao log) {
+
 		this.dataCriacao = log.getDataCriacao();
 		this.usuarioCriacao = log.getUsuarioCriacao();
+
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -85,7 +87,4 @@ public abstract class BaseEntity {
 		return true;
 	}
 
-	
-
-	
 }

@@ -49,7 +49,7 @@
                   <ul class="dropdown-menu" role="menu">
                   <li><a href="<c:url value="/listaUsuario"/>">Usuário</a></li>
                   <li class="divider"></li>
-                  <li><a href="#">Autor</a></li>
+                  <li><a href="<c:url value="/listaAutores"/>">Autor</a></li>
                   <li><a href="#">Coleção</a></li>
                   <li><a href="#">Editora</a></li>
                   <li class="divider"></li>

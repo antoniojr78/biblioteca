@@ -2,15 +2,15 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<h2 class="sub-header">Edição de Usuário</h2>
+<h2 class="sub-header">Edição de Autor</h2>
 <div class="col-sm-6">
-	<c:url value="/editarUsuario" var="linkAct" />
+	<c:url value="/alterarAutor" var="linkAct" />
 
 	<div class="alert alert-info"
 		style='display:${msg==null?"none":"line"}' role="alert">${msg }
 	</div>
 
-	<sf:form commandName="usuario" modelAttribute="usuario" action="${linkAct}"
+	<sf:form commandName="autor" modelAttribute="autor" action="${linkAct}"
 		class="form-horizontal" role="form" >
 		<sf:errors path="*" element="div" role="alert"
 			cssClass="alert alert-danger" />
@@ -18,29 +18,14 @@
 			<label class="control-label col-sm-2" for="email">Id:</label>
 			<div class="col-sm-10">
 				<sf:input path="id"  readonly="true" type="text" class="form-control"
-					id="inputEmail"  />
+					id="inputId"  />
 			</div>
 		</div>			
 		<div class="form-group">
-			<label class="control-label col-sm-2" for="email">Email:</label>
-			<div class="col-sm-10">
-				<sf:input path="login" type="text" class="form-control"
-					id="inputEmail" readonly="true" placeholder="E-mail" />
-			</div>
-		</div>
-		<div class="form-group">
 			<label class="control-label col-sm-2" for="email">Nome:</label>
 			<div class="col-sm-10">
-				<sf:input path="nome" type="text" class="form-control" id="email"
+				<sf:input path="nome" type="text" class="form-control" id="nome"
 					placeholder="Nome" readonly="${!podeAlterar}"  />
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="control-label col-sm-2" for="pwd">Senha:</label>
-			<div class="col-sm-10">
-				<sf:input path="senha" type="password" class="form-control" id="pwd"
-					placeholder="Senha" maxlength="10" />
-					<sf:hidden path="senhaHash"/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -48,7 +33,7 @@
 				<button type="submit" class="btn btn-default" ${podeAlterar == true?'':'disabled'}  >
 					<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Salvar
 				</button> 
-				<a href="<c:url  value="/listaUsuario"/>">
+				<a href="<c:url  value="/listaAutores"/>">
 					<button type="button" class="btn btn-default btn-md">
 						<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Voltar
 					</button>

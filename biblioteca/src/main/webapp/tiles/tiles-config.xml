@@ -25,6 +25,19 @@
     </definition>
     <definition name="login" template="/WEB-INF/views/login.jsp" />
     
+    
+    <!-- Autor -->
+      <definition name="cadAutor"  extends="main" >
+    	<put-attribute name="conteudo" value="/WEB-INF/views/autor/cadAutor.jsp"/>
+    </definition>
+    <definition name="editAutor"  extends="main" >
+    	<put-attribute name="conteudo" value="/WEB-INF/views/autor/editAutor.jsp"/>
+    </definition>
+    
+    	
+   <definition name="listaAutores"  extends="main" >
+    	<put-attribute name="conteudo" value="/WEB-INF/views/autor/listaAutores.jsp"/>
+    </definition>  
     <!--
     <definition name="registro" extends="main">
     	<put-attribute name="conteudo" value="/views/signup.jsp"/>
