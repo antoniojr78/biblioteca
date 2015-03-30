@@ -3,6 +3,7 @@ package br.com.viniciusmrosa.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.viniciusmrosa.dao.DAOAutor;
+import br.com.viniciusmrosa.exception.ErroOperacaoBDException;
 import br.com.viniciusmrosa.modelo.Autor;
 import br.com.viniciusmrosa.security.AlteracaoRegistroSecurityService;
 import br.com.viniciusmrosa.services.AutorService;
@@ -92,6 +94,8 @@ public class AutorController {
 		}
 		
 		daoAutor.deleta(a);
+
+		
 		mav.setViewName("redirect:/listaAutores");
 		return mav;
 	}

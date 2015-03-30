@@ -9,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.UniqueConstraint;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Colecao extends BaseEntity implements Serializable {
@@ -16,8 +19,9 @@ public class Colecao extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-
+	
 	@Column(nullable=false,length=100)
+	@NotEmpty(message="{entidades.nome.vazio}")
 	private String nome;	
 	
 	public String getNome() {

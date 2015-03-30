@@ -2,67 +2,67 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-	
-	<definition name="main" template="/WEB-INF/views/templates/dashboardboot.jsp">
-		<put-attribute name="titulo" value="Spring Fórum"/>		
+
+	<definition name="main"
+		template="/WEB-INF/views/templates/dashboardboot.jsp">
+		<put-attribute name="titulo" value="Spring Fórum" />
 	</definition>
-	
-    <definition name="cadUsuario"  extends="main" >
-    	<put-attribute name="conteudo" value="/WEB-INF/views/usuarios/cadUsuario.jsp"/>
-    </definition>
-    <definition name="editUsuario"  extends="main" >
-    	<put-attribute name="conteudo" value="/WEB-INF/views/usuarios/editUsuario.jsp"/>
-    </definition>
-    
-    	
-   <definition name="listaUsuarios"  extends="main" >
-    	<put-attribute name="conteudo" value="/WEB-INF/views/usuarios/listaUsuarios.jsp"/>
-    </definition>   
-    
- 
-    <definition name="index"  extends="main" >
-    	<put-attribute name="conteudo" value="/WEB-INF/views/index.jsp"/>
-    </definition>
-    <definition name="login" template="/WEB-INF/views/login.jsp" />
-    
-    
-    <!-- Autor -->
-      <definition name="cadAutor"  extends="main" >
-    	<put-attribute name="conteudo" value="/WEB-INF/views/autor/cadAutor.jsp"/>
-    </definition>
-    <definition name="editAutor"  extends="main" >
-    	<put-attribute name="conteudo" value="/WEB-INF/views/autor/editAutor.jsp"/>
-    </definition>
-    
-    	
-   <definition name="listaAutores"  extends="main" >
-    	<put-attribute name="conteudo" value="/WEB-INF/views/autor/listaAutores.jsp"/>
-    </definition>  
-    <!--
-    <definition name="registro" extends="main">
-    	<put-attribute name="conteudo" value="/views/signup.jsp"/>
-    	<put-attribute name="titulo" value="Bem vindo(a)!"/>
-    </definition>
-    
-    <definition name="usuario/show" extends="main">
-    	<put-attribute name="conteudo" value="/views/usuario/show.jsp"/>
-    	<put-attribute name="titulo" value="Detalhes do usuário"/>
-    </definition>
-    
-    <definition name="assunto/show" extends="main">
-    	<put-attribute name="conteudo" value="/views/assunto/show.jsp"/>
-    </definition>
-    
-    <definition name="usuario/posts" template="/views/usuario/postsUsuario.jsp"/>
-    	
-    
-    
-    <definition name="loginFalho" extends="main">
-    	<put-attribute name="conteudo" value="/views/loginFalho.jsp"/>
-    </definition>
-	 -->
+
+	<definition name="cadUsuario" extends="main">
+		<put-attribute name="conteudo"
+			value="/WEB-INF/views/usuarios/cadUsuario.jsp" />
+	</definition>
+	<definition name="editUsuario" extends="main">
+		<put-attribute name="conteudo"
+			value="/WEB-INF/views/usuarios/editUsuario.jsp" />
+	</definition>
+
+
+	<definition name="listaUsuarios" extends="main">
+		<put-attribute name="conteudo"
+			value="/WEB-INF/views/usuarios/listaUsuarios.jsp" />
+	</definition>
+
+
+	<definition name="index" extends="main">
+		<put-attribute name="conteudo" value="/WEB-INF/views/index.jsp" />
+	</definition>
+	<definition name="login" template="/WEB-INF/views/login.jsp" />
+
+
+	<!-- Autor -->
+	<definition name="cadAutor" extends="main">
+		<put-attribute name="conteudo" value="/WEB-INF/views/autor/cadAutor.jsp" />
+	</definition>
+	<definition name="editAutor" extends="main">
+		<put-attribute name="conteudo" value="/WEB-INF/views/autor/editAutor.jsp" />
+	</definition>
+
+
+	<definition name="listaAutores" extends="main">
+		<put-attribute name="conteudo"
+			value="/WEB-INF/views/autor/listaAutores.jsp" />
+	</definition>
+
+	<!-- Coleção -->
+	<definition name="cadColecao" extends="main">
+		<put-attribute name="conteudo"
+			value="/WEB-INF/views/colecao/cadColecao.jsp" />
+	</definition>
+	<definition name="editColecao" extends="main">
+		<put-attribute name="conteudo"
+			value="/WEB-INF/views/colecao/editColecao.jsp" />
+	</definition>
+
+
+	<definition name="listaColecao" extends="main">
+		<put-attribute name="conteudo"
+			value="/WEB-INF/views/colecao/listaColecao.jsp" />
+	</definition>
+
+
 	<definition name="errogenerico" extends="main">
 		<put-attribute name="conteudo" value="/WEB-INF/views/errogenerico.jsp" />
-	</definition>      
+	</definition>
 
 </tiles-definitions>

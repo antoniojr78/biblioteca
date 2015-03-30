@@ -119,16 +119,18 @@ public class UsuarioController {
 			model.addAttribute("msg", "Você não tem permissão para deletar esse registro");
 			return "errogenerico";
 		}
-		try{
+		
+		daoUsuario.deleta(u);
+/*		try{
 			daoUsuario.deleta(u);
 		}catch(DataIntegrityViolationException e){
-			model.addAttribute("msg", "Não é possível deletar o registro pois há informações relacionadas utilizadas no sistema");
+			model.addAttribute("msg", "Não é possível deletar o usuário pois há relações existentes no sistema");
 			return "errogenerico";
 		}catch(Exception e){
-			model.addAttribute("msg", "Ocorreu um erro ao deletar o registro");
+			model.addAttribute("msg", "Ocorreu um erro ao tentar deletar o registro");
 			return "errogenerico";
 		}
-		
+*/		
 		return "redirect:/listaUsuario";
 	}
 }

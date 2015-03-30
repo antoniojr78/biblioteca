@@ -2,15 +2,19 @@ package br.com.viniciusmrosa.dao.hibernate;
 
 import java.util.List;
 
+import javax.persistence.PersistenceException;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.viniciusmrosa.dao.DAOBase;
+import br.com.viniciusmrosa.exception.ErroOperacaoBDException;
 import br.com.viniciusmrosa.security.SecurityUtils;
 
 /*
@@ -64,9 +68,12 @@ public abstract class HBDAO<T> implements DAOBase<T> {
 	}
 
 	@Override
-	public void deleta(T obj) throws DataIntegrityViolationException {
-		
+	public void deleta(T obj) throws PersistenceException {
+
+
 		getSession().delete(obj);
+
+
 	}
 
 	protected abstract Class getClazz()  ;

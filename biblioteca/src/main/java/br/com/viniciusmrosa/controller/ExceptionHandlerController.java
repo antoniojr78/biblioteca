@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.viniciusmrosa.exception.RegistroExistenteException;
 
-//@ControllerAdvice
+@ControllerAdvice
 
 //Esse objeto a principio não será mais utilizado
 //Não consegui implementar algo parecido com o wrapper que vi em JSF
@@ -22,6 +23,14 @@ public class ExceptionHandlerController implements HandlerExceptionResolver {
 	HttpServletRequest req;
 	
 	
+@ExceptionHandler(DataIntegrityViolationException.class)
+public ModelAndView tratarIntegridadeDados(DataIntegrityViolationException e){
+	System.out.println("entrou no metodo");
+	ModelAndView mav = new ModelAndView();
+	mav.addObject("msg","Ocorreu um erro ao deletar o registro. O registro possui relação em outra parte do sistema");
+	mav.setViewName("errogenerico");
+	return mav;
+}
 /*	@ExceptionHandler(Exception.class)
 	public ModelAndView tratarExcecoes(Exception e){
 		
@@ -39,21 +48,22 @@ public class ExceptionHandlerController implements HandlerExceptionResolver {
 	@Override
 	public ModelAndView resolveException(HttpServletRequest request,
 			HttpServletResponse response, Object handler, Exception ex) {
-		System.out.println(request.getHeader("Referer"));
-		HandlerMethod handlermeth = (HandlerMethod) handler;
+		//System.out.println(request.getHeader("Referer"));
+		//HandlerMethod handlermeth = (HandlerMethod) handler;
 		//System.out.println(handlermeth.get);
 		
 		ModelAndView mav = new ModelAndView();
-		String view = null ;
+		/*String view = null ;
 		if(ex instanceof RegistroExistenteException){
 			 view = request.getHeader("Referer").split("/")[request.getHeader("Referer").split("/").length-1];
 			
 			 mav.addObject("errMsg",ex.getMessage());
 		}else{
-			 view = "erroGenerico";
-		}
-		 System.out.println("view:" +view);
-		mav.setViewName(view);
+			 view = "errogenerico";
+		} */
+
+
+		mav.setViewName("errogenerico");
 		return mav;
-	}
+	} 
 }
