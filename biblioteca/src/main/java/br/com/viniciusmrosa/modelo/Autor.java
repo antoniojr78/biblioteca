@@ -23,6 +23,8 @@ public class Autor extends BaseEntity implements Serializable {
 	@Column(length=100,nullable=false)
 	private String nome;
 	
+	
+
 	public String getNome() {
 		return nome;
 	}

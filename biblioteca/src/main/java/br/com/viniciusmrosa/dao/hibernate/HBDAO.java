@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.viniciusmrosa.dao.DAOBase;
 import br.com.viniciusmrosa.exception.ErroOperacaoBDException;
+import br.com.viniciusmrosa.modelo.BaseEntity;
 import br.com.viniciusmrosa.security.SecurityUtils;
 
 /*
@@ -44,7 +45,7 @@ public abstract class HBDAO<T> implements DAOBase<T> {
 	}
 	@Override
 	public void salva(T obj) {
-		
+		//System.out.println("HBDAO.salvar: isSaved?" + isSaved(obj));
 		getSession().saveOrUpdate(obj);
 	}
 
@@ -76,6 +77,8 @@ public abstract class HBDAO<T> implements DAOBase<T> {
 
 	}
 
+	
+	
 	protected abstract Class getClazz()  ;
 	
 }

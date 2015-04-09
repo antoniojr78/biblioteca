@@ -28,6 +28,8 @@ public abstract class BaseEntity {
 	@Temporal(TemporalType.DATE)
 	private Date dataCriacao;
 
+	
+
 	public long getId() {
 		return id;
 	}

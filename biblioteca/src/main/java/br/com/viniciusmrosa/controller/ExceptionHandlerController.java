@@ -62,7 +62,7 @@ public ModelAndView tratarIntegridadeDados(DataIntegrityViolationException e){
 			 view = "errogenerico";
 		} */
 
-
+		mav.addObject("msg","Ocorreu um erro:<br />" + ex.getMessage());
 		mav.setViewName("errogenerico");
 		return mav;
 	} 
