@@ -77,6 +77,9 @@ public class ColecaoController {
 		mav.setViewName("editColecao");
 		if(result.hasErrors()) return mav;
 		
+		Colecao colecaoAlterar = daoColecao.getById(c.getId());
+		colecaoAlterar.setNome(c.getNome());
+		daoColecao.salva(colecaoAlterar);
 		mav.setViewName("redirect:/listaColecao");
 		
 		return mav;
