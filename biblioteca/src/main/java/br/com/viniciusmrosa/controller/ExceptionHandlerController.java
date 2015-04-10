@@ -15,9 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.viniciusmrosa.exception.RegistroExistenteException;
 
 @ControllerAdvice
-
-//Esse objeto a principio não será mais utilizado
-//Não consegui implementar algo parecido com o wrapper que vi em JSF
 public class ExceptionHandlerController implements HandlerExceptionResolver {
 	@Autowired
 	HttpServletRequest req;

@@ -17,6 +17,7 @@ import br.com.viniciusmrosa.dao.DAOBase;
 import br.com.viniciusmrosa.exception.ErroOperacaoBDException;
 import br.com.viniciusmrosa.modelo.BaseEntity;
 import br.com.viniciusmrosa.security.SecurityUtils;
+import br.com.viniciusmrosa.services.LogCriacaoService;
 
 /*
  * Essa classe abstrata será utilizada para ser extendida pelas classes de implementação dos DAOs para o Hibernate
@@ -24,10 +25,13 @@ import br.com.viniciusmrosa.security.SecurityUtils;
  * 
  * */
 @Transactional(propagation=Propagation.SUPPORTS)
-public abstract class HBDAO<T> implements DAOBase<T> {
+public abstract class HBDAO<T extends BaseEntity> implements DAOBase<T> {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	@Autowired
+	private LogCriacaoService logCriacaoService;
 	
 	@Autowired
 	private SecurityUtils securityUtils ;
@@ -45,7 +49,9 @@ public abstract class HBDAO<T> implements DAOBase<T> {
 	}
 	@Override
 	public void salva(T obj) {
-		//System.out.println("HBDAO.salvar: isSaved?" + isSaved(obj));
+		if(!this.isSaved(obj)){
+			obj.setLogCriacao(logCriacaoService.getLogCriacao());
+		}
 		getSession().saveOrUpdate(obj);
 	}
 
@@ -77,7 +83,11 @@ public abstract class HBDAO<T> implements DAOBase<T> {
 
 	}
 
-	
+	@Override
+	public boolean isSaved(T obj) {
+		// TODO Auto-generated method stub
+		return obj.getId() !=null;
+	}
 	
 	protected abstract Class getClazz()  ;
 	

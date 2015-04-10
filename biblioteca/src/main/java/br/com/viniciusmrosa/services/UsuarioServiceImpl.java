@@ -14,9 +14,6 @@ public class UsuarioServiceImpl  implements UsuarioService {
 	@Autowired
 	private DAOUsuario daoUsuario;
 
-	@Autowired
-	private LogCriacaoService logCriacaoService;
-	
 	private Usuario usuarioAlteracao;
 	
 	@Override
@@ -25,8 +22,7 @@ public class UsuarioServiceImpl  implements UsuarioService {
 		if(daoUsuario.usuarioExistente(u.getLogin()))
 			throw new RegistroExistenteException("O login informado já existe");
 		
-		u.setSenha(DigestUtils.sha512Hex(u.getSenha()));
-		u.setLogCriacao(logCriacaoService.getLogCriacao());		
+	
 		daoUsuario.salva(u);
 		
 	}

@@ -26,6 +26,7 @@ public class BibliotecaAuthProvider implements AuthenticationProvider{
 		String username = token.getName();
 		String senha    = token.getCredentials() != null ? token.getCredentials().toString() : null;
 		
+		System.out.println("BibliotecaAuthProvider:HasSenha=" + DigestUtils.sha512Hex(senha));
 		
 		Usuario usuario = daoUsuario.efetuarLogin(username, DigestUtils.sha512Hex(senha));
 		

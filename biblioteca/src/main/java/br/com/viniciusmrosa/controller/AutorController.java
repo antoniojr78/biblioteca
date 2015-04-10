@@ -46,11 +46,11 @@ public class AutorController {
 	
 	@RequestMapping("/salvarAutor")
 	public String salvarAutor(Model model,@Valid Autor autor,BindingResult result){
-		System.out.println("AutorController:Entrando salvarAutor");
+		
 		if(result.hasErrors()) return "cadAutor";
-		System.out.println("AutorController:Passou validação");
+	
 		autorService.inserirAutor(autor);
-		System.out.println("AutorController:Inseriu");
+		
 		model.addAttribute("msg","Autor cadastrado com sucesso");
 		return "cadAutor";		
 	}

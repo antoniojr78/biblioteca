@@ -18,5 +18,5 @@ public interface DAOBase<T> {
 	public List<T> lista(int offset,int max);
 	public T getById(Long id);
 	public void deleta(T obj) ;
-	//public boolean isSaved(T obj);
+	public boolean isSaved(T obj);
 }
