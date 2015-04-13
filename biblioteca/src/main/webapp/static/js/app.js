@@ -6,13 +6,20 @@ function removePorId(index,obj,url,elmsg){
 		var id = obj.row(linha).data()[index];
 		
 		//Chamar a rotina de deleção via ajax
-		$.post(url,{'id':id},function(data,status){
+		$.post(url,{'id':id})
 		
-			if(data=='OK'){
-				linha.remove();
-			}else{ 
-				showGlobalMsg('erro',data);
-				}
+		.done(function(data,status){
+			
+			linha.remove();
+
+		})
+		.error(function(xhr, textStatus, errorThrown){
+			var msg="Ocorreu um erro ao deletar o registro"
+			if(xhr.status==403){
+				msg="Ocorreu um erro ao deletar o registro. O registro possui relação em outra parte do sistema";
+				showGlobalMsg('erro',msg);
+			}
+	
 		});
 		
 	});

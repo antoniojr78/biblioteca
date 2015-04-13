@@ -10,8 +10,7 @@
 <button type="button" class="btn btn-default btn-md" >
   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
 </button>
-</a><br>
-<a href="#" onclick="showGlobalMsg('info','testando msgs')">clique aqui</a>
+</a>
 
 <c:if test="${not empty colecoes }" >
 	<div class="table-responsive" style="margin-top:20px;">  

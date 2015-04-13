@@ -42,11 +42,15 @@ public class ColecaoController {
 		return mav;
 	}
 	
+	private void novo(ModelAndView mav){
+		mav.addObject(new Colecao());
+	}
 	
 	@RequestMapping("/formColecao")
 	public ModelAndView formColecao(ModelAndView mav){
 		
-		mav.addObject(new Colecao());
+		//mav.addObject(new Colecao());
+		novo(mav);
 		mav.setViewName("cadColecao");
 		return mav;
 	}
@@ -58,8 +62,8 @@ public class ColecaoController {
 		if(result.hasErrors()) return mav;
 		
 		colecaoService.inserir(c);
-		
-		mav.addObject("msg","Cole��o cadastrada com sucesso");
+		novo(mav);
+		mav.addObject("msg","Coleção cadastrada com sucesso");
 		return mav;
 	}	
 	
@@ -70,7 +74,7 @@ public class ColecaoController {
 		Colecao c = daoColecao.getById(id);
 		mav.setViewName("errogenerico");
 		if(c==null){
-			mav.addObject("msg","Registro n�o encontrado");
+			mav.addObject("msg","Registro não encontrado");
 			return mav;
 		}
 		
@@ -98,13 +102,13 @@ public class ColecaoController {
 	public String delColecao(Long id) throws IOException{
 		Colecao c = daoColecao.getById(id);
 		String retorno  = "OK";
-		try {
+		//try {
 			daoColecao.deleta(c);			
-		} catch (DataIntegrityViolationException e) {
+		//} catch (DataIntegrityViolationException e) {
 			// TODO: handle exception
-			retorno = "Ocorreu um erro ao deletar o registro. O registro possui relação em outra parte do sistema";
+		//	retorno = "Ocorreu um erro ao deletar o registro. O registro possui relação em outra parte do sistema";
 			//response.getWriter().write("Ocorreu um erro ao deletar o registro. O registro possui relação em outra parte do sistema");			
-		}
+		//}
 		response.setStatus(200);
 		return retorno;
 	}
@@ -114,11 +118,11 @@ public class ColecaoController {
 		Colecao c  = daoColecao.getById(id);
 		mav.setViewName("errogenerico");
 		if(c==null){
-			mav.addObject("msg", "Registro n�o encontrado");
+			mav.addObject("msg", "Registro não encontrado");
 			return mav;
 		}
 		if(!alteracaoRegistroSecurityService.podeAlterar(c)){
-			mav.addObject("msg","Voc� n�o tem permiss�o para deletar esse registro");
+			mav.addObject("msg","Você não tem permissão para deletar esse registro");
 			return mav;
 		}
 		
