@@ -22,7 +22,7 @@ public class ExceptionHandlerController implements HandlerExceptionResolver {
 	
 @ExceptionHandler(DataIntegrityViolationException.class)
 public ModelAndView tratarIntegridadeDados(DataIntegrityViolationException e){
-	System.out.println("entrou no metodo");
+	
 	ModelAndView mav = new ModelAndView();
 	mav.addObject("msg","Ocorreu um erro ao deletar o registro. O registro possui relação em outra parte do sistema");
 	mav.setViewName("errogenerico");

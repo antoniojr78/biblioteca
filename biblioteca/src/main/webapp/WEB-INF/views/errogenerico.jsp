@@ -5,6 +5,7 @@
 
 
 <div class="col-sm-6">
+	<!-- Erro genérico -->
 	<div class="alert alert-danger"
 		style='display:${msg==null?"none":"line"}' role="alert">${msg }
 	</div>

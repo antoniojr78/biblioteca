@@ -1,12 +1,18 @@
 package br.com.viniciusmrosa.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.viniciusmrosa.dao.DAOColecao;
@@ -22,6 +28,9 @@ public class ColecaoController {
 	
 	@Autowired
 	private ColecaoService  colecaoService;
+	
+	@Autowired
+	private HttpServletResponse response;
 	
 	@Autowired
 	private AlteracaoRegistroSecurityService alteracaoRegistroSecurityService ;
@@ -50,7 +59,7 @@ public class ColecaoController {
 		
 		colecaoService.inserir(c);
 		
-		mav.addObject("msg","Coleção cadastrada com sucesso");
+		mav.addObject("msg","Coleï¿½ï¿½o cadastrada com sucesso");
 		return mav;
 	}	
 	
@@ -61,7 +70,7 @@ public class ColecaoController {
 		Colecao c = daoColecao.getById(id);
 		mav.setViewName("errogenerico");
 		if(c==null){
-			mav.addObject("msg","Registro não encontrado");
+			mav.addObject("msg","Registro nï¿½o encontrado");
 			return mav;
 		}
 		
@@ -84,19 +93,32 @@ public class ColecaoController {
 		
 		return mav;
 	}
-	
-	
-	@RequestMapping("delColecao/{id}")
+	@RequestMapping(value="/delColecao",method=RequestMethod.POST)
+	@ResponseBody
+	public String delColecao(Long id) throws IOException{
+		Colecao c = daoColecao.getById(id);
+		String retorno  = "OK";
+		try {
+			daoColecao.deleta(c);			
+		} catch (DataIntegrityViolationException e) {
+			// TODO: handle exception
+			retorno = "Ocorreu um erro ao deletar o registro. O registro possui relaÃ§Ã£o em outra parte do sistema";
+			//response.getWriter().write("Ocorreu um erro ao deletar o registro. O registro possui relaÃ§Ã£o em outra parte do sistema");			
+		}
+		response.setStatus(200);
+		return retorno;
+	}
+	@RequestMapping(value="delColecao/{id}",method=RequestMethod.GET)
 	public ModelAndView delColecao(@PathVariable("id") Long id,ModelAndView mav){
 		
 		Colecao c  = daoColecao.getById(id);
 		mav.setViewName("errogenerico");
 		if(c==null){
-			mav.addObject("msg", "Registro não encontrado");
+			mav.addObject("msg", "Registro nï¿½o encontrado");
 			return mav;
 		}
 		if(!alteracaoRegistroSecurityService.podeAlterar(c)){
-			mav.addObject("msg", "Você não tem permissão para deletar esse registro");
+			mav.addObject("msg","Vocï¿½ nï¿½o tem permissï¿½o para deletar esse registro");
 			return mav;
 		}
 		

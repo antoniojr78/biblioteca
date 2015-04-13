@@ -10,7 +10,8 @@
 <button type="button" class="btn btn-default btn-md" >
   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
 </button>
-</a>
+</a><br>
+<a href="#" onclick="showGlobalMsg('info','testando msgs')">clique aqui</a>
 
 <c:if test="${not empty colecoes }" >
 	<div class="table-responsive" style="margin-top:20px;">  
@@ -49,21 +50,9 @@
 <script type="text/javascript"> 
 
 	$(document).ready(function() {
-		function pegaValorId(selector,index){
-			
-			$("#"+selector+" tbody tr").click(function() { alert('cliquei');
-			
-				var column_data = oTable.row(this).data()[index];
-				alert(column_data);
-			});
-		}
 		var selected = [];
 		
-		$('#tabcolecoes tbody tr').click(function () {
-			
-            var aPos =$(this).closest("tr").get(0);
-            alert(aPos);
-        });
+
 		var table =  $('#tabcolecoes').DataTable({
 			
 			"language": {
@@ -72,7 +61,7 @@
 	        	
 	        	"lengthMenu": [5, 10, 20, 50],
 	        	"pageLength": 5,
-	        	"fnDrawCallback": pegaValorId('#tabcolecoes',0),
+	        	//"fnDrawCallback": removePorId(2,table,'url'),
 	        	 "columnDefs": [
 			                       {
 			                           "targets": [ 2 ],
@@ -88,21 +77,14 @@
 			                   ]
 		});
 	    
-		
-		 /*
-	    $('#tabcolecoes tbody').on( 'click', 'tr', function () {
-	    	 var row = table.row( $(this).parents('tr') );
-	    	 
-	    	alert('teste');
-	        if ( $(this).hasClass('selected') ) {
-	            $(this).removeClass('selected');
-	        }
-	        else {
-	            table.$('tr.selected').removeClass('selected');
-	            $(this).addClass('selected');
-	        }	        
-	    } ); */
-	    
+    	///////////
+    	
+    	table.on('draw', function () {
+    		removePorId(2,table,'delColecao');
+		});
+		    	
+    	////////////
+    	
 	} );
 	
  </script> 

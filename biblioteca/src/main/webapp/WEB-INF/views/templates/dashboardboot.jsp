@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html lang="en"><head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -15,6 +15,7 @@
     <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="<c:url value="/static/bootstrap/css/bootstrap.min.css"/>" >
   <script type="text/javascript" src="<c:url value="/static/js/jquery-2.1.3.js"/>"></script>
+    <script type="text/javascript" charset="utf-8" src="<c:url value="/static/js/app.js"/>"></script>
     <!-- Custom styles for this template -->
     <link href="<c:url value="/static/bootstrap/dashboard.css"/>" rel="stylesheet">
 
@@ -30,6 +31,16 @@
   </head>
 
   <body>
+
+	<!-- global Modal -->
+	<div id="myModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-sm ">
+	    <div  class="modal-content">
+		     Modal COntent
+		    
+	    </div>
+	  </div>
+	</div>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
@@ -108,6 +119,7 @@
 
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        	  	<div id="globalAlert" class="alert Alertoculto" role="alert">msg</div>
 		 	<tiles:insertAttribute name="conteudo"/>	
         <!--   <div class="row placeholders">
             <div class="col-xs-6 col-sm-3 placeholder">
