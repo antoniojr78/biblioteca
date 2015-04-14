@@ -30,7 +30,7 @@
 				<tr>
 					<!-- /delColecao/${colecao.id} -->
 					<td style="text-align:center; width:10px;" ><sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#colecao)"> <a href="<c:url value="/editColecao/${colecao.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </sec:authorize> </td>
-					<td  style="text-align:center; width:10px;"> <sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#colecao)"><a href="<c:url value="#"/>" ><span title="Excluir" id="icon-delete" class="glyphicon glyphicon-remove" style="color:red"></span></a> </sec:authorize> </td>
+					<td  style="text-align:center; width:10px;"> <sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#colecao)"><span title="Excluir" id="icon-delete" class="glyphicon glyphicon-remove" style="color:red"></span> </sec:authorize> </td>
 					
 					<td>${colecao.id}</td>					
 					<td style="width:90%">${colecao.nome}</td>					

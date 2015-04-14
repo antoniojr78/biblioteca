@@ -1,5 +1,6 @@
 package br.com.viniciusmrosa.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -7,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -17,11 +19,17 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.viniciusmrosa.dao.DAOUsuario;
+import br.com.viniciusmrosa.exception.ErroOperacaoBDException;
+import br.com.viniciusmrosa.exception.NegocioException;
 import br.com.viniciusmrosa.exception.RegistroExistenteException;
+import br.com.viniciusmrosa.exception.SistemaException;
 import br.com.viniciusmrosa.modelo.BaseEntity;
+import br.com.viniciusmrosa.modelo.Colecao;
 import br.com.viniciusmrosa.modelo.Usuario;
 import br.com.viniciusmrosa.security.AlteracaoRegistroSecurityService;
 import br.com.viniciusmrosa.services.UsuarioService;
@@ -62,7 +70,7 @@ public class UsuarioController {
 			return "cadUsuario";
 		}
 
-		model.addAttribute("msg", "Usuário adicionado com sucesso");
+		model.addAttribute("msg", "UsuÃ¡rio adicionado com sucesso");
 		model.addAttribute("usuario", new Usuario());
 		return "cadUsuario";
 	}
@@ -81,8 +89,9 @@ public class UsuarioController {
 
 		ModelAndView mav = new ModelAndView();
 		Usuario u = daoUsuario.getById(id);
+		
 		if(u==null){
-			mav.addObject("msg", "Registro não encontrado");
+			mav.addObject("msg", "Registro nÃ£o encontrado");
 			mav.setViewName("errogenerico");
 			return mav;
 		}
@@ -101,36 +110,37 @@ public class UsuarioController {
 		if (result.hasErrors()) {
 			return "editUsuario";
 		}
-		usuarioService.alterarUsuario(usuario);
+		try {
+			usuarioService.alterarUsuario(usuario);
+		} catch (Exception e) {
+			model.addAttribute("msg",e.getMessage());
+			return "editUsuario";
+		}
 		return "redirect:/listaUsuario";
 	}
 	
+	@RequestMapping(value="/delUsuario",method=RequestMethod.POST)
+	@ResponseBody
+	public String delUsuario(Long id) {
+		
+		try {
+			usuarioService.excluiUsuario(id);
+		} catch (SistemaException e) {
+			return e.getMessage();
+		}
 	
-	@RequestMapping("/delusuario/{id}")
+		return "OK";
+	}
+	
+	@RequestMapping(value="/delusuario/{id}",method=RequestMethod.GET)
 	public String deletarusuario(@PathVariable(value="id") Long id, Model model){
 		
-
-		Usuario u = daoUsuario.getById(id);
-		if(u==null){
-			model.addAttribute("msg", "Registro não encontrado");
+		try {
+			usuarioService.excluiUsuario(id);
+		} catch (SistemaException e) {			
+			model.addAttribute("msg",e.getMessage());
 			return "errogenerico";
-		}
-		if(!alteracaoUsuarioSecurityService.podeAlterar(u)){
-			model.addAttribute("msg", "Você não tem permissão para deletar esse registro");
-			return "errogenerico";
-		}
-		
-		daoUsuario.deleta(u);
-/*		try{
-			daoUsuario.deleta(u);
-		}catch(DataIntegrityViolationException e){
-			model.addAttribute("msg", "Não é possível deletar o usuário pois há relações existentes no sistema");
-			return "errogenerico";
-		}catch(Exception e){
-			model.addAttribute("msg", "Ocorreu um erro ao tentar deletar o registro");
-			return "errogenerico";
-		}
-*/		
+		} 
 		return "redirect:/listaUsuario";
 	}
 }

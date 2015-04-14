@@ -1,6 +1,6 @@
 package br.com.viniciusmrosa.exception;
 
-public class RegistroExistenteException extends Exception {
+public class RegistroExistenteException extends ErroOperacaoBDException {
 
 	/**
 	 * 

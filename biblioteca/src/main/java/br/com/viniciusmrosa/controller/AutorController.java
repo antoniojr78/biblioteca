@@ -9,10 +9,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.viniciusmrosa.dao.DAOAutor;
 import br.com.viniciusmrosa.exception.ErroOperacaoBDException;
+import br.com.viniciusmrosa.exception.NegocioException;
+import br.com.viniciusmrosa.exception.SistemaException;
 import br.com.viniciusmrosa.modelo.Autor;
 import br.com.viniciusmrosa.security.AlteracaoRegistroSecurityService;
 import br.com.viniciusmrosa.services.AutorService;
@@ -49,7 +53,7 @@ public class AutorController {
 		
 		if(result.hasErrors()) return "cadAutor";
 	
-		autorService.inserirAutor(autor);
+		autorService.inserir(autor);
 		
 		model.addAttribute("msg","Autor cadastrado com sucesso");
 		return "cadAutor";		
@@ -60,10 +64,14 @@ public class AutorController {
 	public ModelAndView edit(@PathVariable("id") Long id,ModelAndView mav){
 		
 		Autor a = daoAutor.getById(id);
-		
+		if(a==null){
+			mav.addObject("msg","Registro nÃ£o encontrado");
+			mav.setViewName("errogenerico");
+			return mav;
+		}
 		mav.addObject(a);
-		mav.addObject("podeAlterar",alteracaoUsuarioSecurityService.podeAlterar(a));
 		mav.setViewName("editAutor");
+		mav.addObject("podeAlterar",alteracaoUsuarioSecurityService.podeAlterar(a));
 		return mav;
 	}
 	
@@ -72,31 +80,39 @@ public class AutorController {
 		
 		if(result.hasErrors()) return "editAutor";
 		
-		Autor autorBanco = daoAutor.getById(autor.getId());
-		autorBanco.setNome(autor.getNome());
-		daoAutor.salva(autorBanco);
+		try {
+			autorService.alterar(autor);
+		} catch (SistemaException e) {
+			mav.addObject("msg",e.getMessage());
+			return "editAutor";
+		} 
+		
 		
 		return "redirect:/listaAutores";		
 	}
 	
+	@RequestMapping(value="delAutor",method=RequestMethod.POST)
+	@ResponseBody
+	public String delAutor(Long id){
+		
+		try {
+			autorService.excluir(id);
+		} catch (SistemaException e) {
+			return e.getMessage();
+		}
+		
+		return "OK";
+	}
 	
-	@RequestMapping("delAutor/{id}")
+	@RequestMapping(value="delAutor/{id}",method=RequestMethod.GET)
 	public ModelAndView delUsuario(@PathVariable("id") Long id,ModelAndView mav){
 		mav.setViewName("errogenerico");
-		Autor a = daoAutor.getById(id);
-		if(a==null){
-			mav.addObject("msg","Registro não encontrado");
-			return mav;
+	
+		try {
+			autorService.excluir(id);
+		} catch (SistemaException e) {
+			mav.addObject("msg",e.getMessage());
 		}
-		
-		if(!alteracaoUsuarioSecurityService.podeAlterar(a)){
-			mav.addObject("msg","Você não tem permissão para deletar esse registro");
-			return mav;
-		}
-		
-		daoAutor.deleta(a);
-
-		
 		mav.setViewName("redirect:/listaAutores");
 		return mav;
 	}

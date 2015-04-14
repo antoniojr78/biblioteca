@@ -1,10 +1,11 @@
 package br.com.viniciusmrosa.exception;
 
-public class ErroOperacaoBDException extends SistemaException {
+public class NegocioException extends SistemaException {
 
 	private static final long serialVersionUID = 1L;
 
-	public ErroOperacaoBDException(String msg){
+	
+	public NegocioException(String msg){
 		super(msg);
 	}
 }

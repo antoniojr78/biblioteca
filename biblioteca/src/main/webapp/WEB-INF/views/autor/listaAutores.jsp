@@ -30,7 +30,7 @@
 				<tr>
 					
 					<td style="text-align:center; width:10px;" ><sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#autor)"> <a href="<c:url value="/editAutor/${autor.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </sec:authorize> </td>
-					<td style="text-align:center; width:10px;"> <sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#autor)"><a href="<c:url value="/delAutor/${autor.id}"/>" ><span title="Excluir" class="glyphicon glyphicon-remove" style="color:red"></span></a> </sec:authorize> </td>
+					<td style="text-align:center; width:10px;"> <sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#autor)"><span id="icon-delete" title="Excluir" class="glyphicon glyphicon-remove" style="color:red"></span> </sec:authorize> </td>
 					
 					<td>${autor.id}</td>					
 					<td style="width:90%">${autor.nome}</td>					
@@ -72,17 +72,9 @@
 			                   ]
 		});
 		
-		
-		 
-	    $('#tabautores tbody').on( 'click', 'tr', function () {
-	        if ( $(this).hasClass('selected') ) {
-	            $(this).removeClass('selected');
-	        }
-	        else {
-	            table.$('tr.selected').removeClass('selected');
-	            $(this).addClass('selected');
-	        }	        
-	    } );
+		table.on('draw', function () {
+    		removePorId(2,table,'delAutor');
+		});
 	   
 	} );
 	

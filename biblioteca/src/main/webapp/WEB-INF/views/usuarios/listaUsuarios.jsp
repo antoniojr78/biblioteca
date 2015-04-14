@@ -31,7 +31,7 @@
 				<tr>
 					
 					<td style="text-align:center" ><sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#usuario)"> <a href="<c:url value="/editUsuario/${usuario.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </sec:authorize> </td>
-					<td style="text-align:center"> <sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#usuario)"><a href="<c:url value="/delusuario/${usuario.id}"/>" ><span title="Excluir" class="glyphicon glyphicon-remove" style="color:red"></span></a> </sec:authorize> </td>
+					<td style="text-align:center"> <sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#usuario)"><span title="Excluir" id="icon-delete" class="glyphicon glyphicon-remove" style="color:red"></span> </sec:authorize> </td>
 					
 					<td>${usuario.id}</td>
 					<td>${usuario.login}</td>
@@ -75,16 +75,9 @@
 		});
 		
 		
-		 
-	    $('#tabUsuarios tbody').on( 'click', 'tr', function () {
-	        if ( $(this).hasClass('selected') ) {
-	            $(this).removeClass('selected');
-	        }
-	        else {
-	            table.$('tr.selected').removeClass('selected');
-	            $(this).addClass('selected');
-	        }	        
-	    } );
+		table.on('draw', function () {
+    		removePorId(2,table,'delUsuario');
+		});
 	   
 	} );
 	
