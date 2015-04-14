@@ -24,4 +24,8 @@ public abstract class AbstractService  {
 		}
 	}
 	
+	protected void regrasBasicas(BaseEntity obj) throws RegistroNaoEncontradoException, PermissaoAlteracaoNegadaException{
+		checaExistente(obj);
+		checaPermissoes(obj);
+	}
 }

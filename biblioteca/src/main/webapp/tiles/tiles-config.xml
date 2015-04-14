@@ -60,6 +60,20 @@
 			value="/WEB-INF/views/colecao/listaColecao.jsp" />
 	</definition>
 
+	<!-- Editora -->
+	<definition name="cadEditora" extends="main">
+		<put-attribute name="conteudo"
+			value="/WEB-INF/views/editora/cadEditora.jsp" />
+	</definition>
+	<definition name="editColecao" extends="main">
+		<put-attribute name="conteudo"
+			value="/WEB-INF/views/editora/editEditora.jsp" />
+	</definition>
+	<definition name="listaColecao" extends="main">
+		<put-attribute name="conteudo"
+			value="/WEB-INF/views/editora/listaEditora.jsp" />
+	</definition>
+
 
 	<definition name="errogenerico" extends="main">
 		<put-attribute name="conteudo" value="/WEB-INF/views/errogenerico.jsp" />
