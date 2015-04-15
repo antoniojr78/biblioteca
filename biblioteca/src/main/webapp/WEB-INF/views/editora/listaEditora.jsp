@@ -50,14 +50,14 @@
 
 	$(document).ready(function() {
 	
-		var table =  $('#tabcolecoes').DataTable({
+		var table =  $('#tabeditoras').DataTable({
 			
 			"language": {
 					"url" : "/biblioteca/static/js/custom-brazilian-portuguese.json"
 	        	},
 	        	
 	        	"lengthMenu": [5, 10, 20, 50],
-	        	"pageLength": 5,
+	        	"pageLength": 10,
 	        	//"fnDrawCallback": removePorId(2,table,'url'),
 	        	 "columnDefs": [
 			                       {
@@ -74,13 +74,9 @@
 			                   ]
 		});
 	    
-    	///////////
-    	
-    	table.on('draw', function () {
-    		removePorId(2,table,'delEditora');
+		$("table tbody tr #icon-delete").click(function() { 		
+			removePorId(2,table,'delEditora',this);
 		});
-		    	
-    	////////////
     	
 	} );
 	

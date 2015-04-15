@@ -65,11 +65,11 @@
 		<put-attribute name="conteudo"
 			value="/WEB-INF/views/editora/cadEditora.jsp" />
 	</definition>
-	<definition name="editColecao" extends="main">
+	<definition name="editEditora" extends="main">
 		<put-attribute name="conteudo"
 			value="/WEB-INF/views/editora/editEditora.jsp" />
 	</definition>
-	<definition name="listaColecao" extends="main">
+	<definition name="listaEditora" extends="main">
 		<put-attribute name="conteudo"
 			value="/WEB-INF/views/editora/listaEditora.jsp" />
 	</definition>

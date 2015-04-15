@@ -15,7 +15,7 @@
     <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="<c:url value="/static/bootstrap/css/bootstrap.min.css"/>" >
   <script type="text/javascript" src="<c:url value="/static/js/jquery-2.1.3.js"/>"></script>
-    <script type="text/javascript" charset="utf-8" src="<c:url value="/static/js/app.js"/>"></script>
+    <script type="text/javascript" charset="utf-8" src="<c:url value="/static/js/app.js"/>"></script> 
     <!-- Custom styles for this template -->
     <link href="<c:url value="/static/bootstrap/dashboard.css"/>" rel="stylesheet">
 

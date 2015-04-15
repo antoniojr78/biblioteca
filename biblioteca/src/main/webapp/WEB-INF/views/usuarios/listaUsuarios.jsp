@@ -75,8 +75,8 @@
 		});
 		
 		
-		table.on('draw', function () {
-    		removePorId(2,table,'delUsuario');
+		$("table tbody tr #icon-delete").click(function() { 		
+			removePorId(2,table,'delUsuario',this);
 		});
 	   
 	} );

@@ -78,8 +78,8 @@
 	    
     	///////////
     	
-    	table.on('draw', function () {
-    		removePorId(2,table,'delColecao');
+    	$("table tbody tr #icon-delete").click(function() { 		
+			removePorId(2,table,'delColecao',this);
 		});
 		    	
     	////////////

@@ -8,10 +8,12 @@ import br.com.viniciusmrosa.exception.ErroOperacaoBDException;
 import br.com.viniciusmrosa.exception.NegocioException;
 import br.com.viniciusmrosa.modelo.Editora;
 
-@Service
+@Service("editoraService")
 public class EditoraServiceImpl extends AbstractService implements
 		EditoraService {
 
+	private Editora editoraAlteracao;
+	
 	@Autowired
 	private DAOEditora daoEditora;
 
@@ -23,17 +25,18 @@ public class EditoraServiceImpl extends AbstractService implements
 	@Override
 	public void alterar(Editora editora) throws NegocioException,
 			ErroOperacaoBDException {
-		editora = daoEditora.getById(editora.getId());
-		regrasBasicas(editora);		
-		daoEditora.salva(editora);
+		editoraAlteracao = daoEditora.getById(editora.getId());
+		regrasBasicas(editoraAlteracao);	
+		editoraAlteracao.setNome(editora.getNome());
+		daoEditora.salva(editoraAlteracao);
 	}
 
 	@Override
 	public void excluir(Long id) throws NegocioException,
 			ErroOperacaoBDException {
-		Editora editora = daoEditora.getById(id);
-		regrasBasicas(editora);		
-		daoEditora.salva(editora);
+		editoraAlteracao = daoEditora.getById(id);
+		regrasBasicas(editoraAlteracao);		
+		daoEditora.deleta(editoraAlteracao);
 
 	}
 
