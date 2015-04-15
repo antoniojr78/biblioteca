@@ -96,7 +96,7 @@ public class EditoraControler {
 	@RequestMapping(value="delEditora",method=RequestMethod.POST)
 	@ResponseBody
 	public String delEditora(Long id){
-		System.out.println("excluir editora" + id);
+
 		try {
 			editoraService.excluir(id);
 		} catch (SistemaException e) {
