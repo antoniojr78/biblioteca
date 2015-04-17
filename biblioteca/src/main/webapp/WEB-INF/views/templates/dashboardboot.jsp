@@ -64,7 +64,7 @@
                   <li><a href="<c:url value="/listaColecao"/>">Coleção</a></li>
                   <li><a href="<c:url value="/listaEditora"/>">Editora</a></li>
                   <li class="divider"></li>
-                  <li><a href="#">Livro</a></li>                 
+                  <li><a href="<c:url value="/listaLivro"/>">Livro</a></li>                 
                   </ul>
                 </li>
             </ul>

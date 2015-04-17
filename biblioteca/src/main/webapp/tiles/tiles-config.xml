@@ -73,7 +73,20 @@
 		<put-attribute name="conteudo"
 			value="/WEB-INF/views/editora/listaEditora.jsp" />
 	</definition>
-
+	
+	<!-- Livro -->
+	<definition name="cadLivro" extends="main">
+		<put-attribute name="conteudo"
+			value="/WEB-INF/views/livro/cadLivro.jsp" />
+	</definition>
+	<definition name="editLivro" extends="main">
+		<put-attribute name="conteudo"
+			value="/WEB-INF/views/livro/editLivro.jsp" />
+	</definition>
+	<definition name="listaLivro" extends="main">
+		<put-attribute name="conteudo"
+			value="/WEB-INF/views/livro/listaLivro.jsp" />
+	</definition>
 
 	<definition name="errogenerico" extends="main">
 		<put-attribute name="conteudo" value="/WEB-INF/views/errogenerico.jsp" />

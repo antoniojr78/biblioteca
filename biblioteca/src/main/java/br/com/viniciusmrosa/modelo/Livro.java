@@ -11,17 +11,12 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Livro implements Serializable {
+public class Livro extends BaseEntity implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
-	@Column(length=20)
+
+	@Column(length=13)
 	private String isbn;
 	@Column(length=100,nullable=false)
 	private String titulo;
@@ -40,12 +35,7 @@ public class Livro implements Serializable {
 	@Column
 	private boolean listaDesejo;
 	
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
+	
 	public String getIsbn() {
 		return isbn;
 	}
@@ -102,27 +92,8 @@ public class Livro implements Serializable {
 		this.listaDesejo = listaDesejo;
 	}
 	
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Livro other = (Livro) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
+
+
 	
 	
 	

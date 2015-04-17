@@ -4,23 +4,20 @@ import java.util.List;
 
 import javax.persistence.PersistenceException;
 
-import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.viniciusmrosa.dao.DAOBase;
-import br.com.viniciusmrosa.exception.ErroOperacaoBDException;
 import br.com.viniciusmrosa.modelo.BaseEntity;
 import br.com.viniciusmrosa.security.SecurityUtils;
 import br.com.viniciusmrosa.services.LogCriacaoService;
 
 /*
- * Essa classe abstrata será utilizada para ser extendida pelas classes de implementação dos DAOs para o Hibernate
+ * Essa classe abstrata serï¿½ utilizada para ser extendida pelas classes de implementaï¿½ï¿½o dos DAOs para o Hibernate
  * 
  * 
  * */
@@ -58,13 +55,20 @@ public abstract class HBDAO<T extends BaseEntity> implements DAOBase<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> lista(int offset,int max) {
-		
+		Query query = 
+		 getSession().createQuery("select o from " + getClazz().getName() +  " o JOIN o.usuarioCriacao u" )
+		.setFirstResult(offset);
+		if(max > 0){
+			query.setMaxResults(max);
+		}
+		/*
 		Criteria criteria = getSession().createCriteria(getClazz());
 		criteria.setFirstResult(offset);
 		if(max > 0){
 			criteria.setMaxResults(max);
 		}
-		return criteria.list();
+		*/
+		return query.list();
 	}
 
 	@SuppressWarnings("unchecked")
