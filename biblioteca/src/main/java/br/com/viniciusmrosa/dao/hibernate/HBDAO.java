@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.PersistenceException;
 
-import org.hibernate.Query;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,20 +55,15 @@ public abstract class HBDAO<T extends BaseEntity> implements DAOBase<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> lista(int offset,int max) {
-		Query query = 
-		 getSession().createQuery("select o from " + getClazz().getName() +  " o JOIN o.usuarioCriacao u" )
-		.setFirstResult(offset);
-		if(max > 0){
-			query.setMaxResults(max);
-		}
-		/*
+	
+		
 		Criteria criteria = getSession().createCriteria(getClazz());
 		criteria.setFirstResult(offset);
 		if(max > 0){
 			criteria.setMaxResults(max);
 		}
-		*/
-		return query.list();
+		
+		return criteria.list();
 	}
 
 	@SuppressWarnings("unchecked")
