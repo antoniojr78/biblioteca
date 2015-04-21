@@ -60,6 +60,47 @@
 				
 			</div>
 		</div>	
+
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="inputEmprestado">Emprestado?</label>
+			<div class="col-sm-10">
+				<sf:checkbox path="emprestado" id="inputEmprestado"
+					/>
+			</div>
+
+		</div>
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="inputListaDesejo">Lista
+				Desejo?</label>
+			<div class="col-sm-10">
+				<sf:checkbox path="listaDesejo" id="inputListaDesejo"/>
+			</div>
+
+		</div>
+		<!-- Bootstrap Switch -->
+		<link href="<c:url value="/static/bootstrap/css/bootstrap-switch.min.css"/>" rel="stylesheet">
+		<script src="<c:url value="/static/bootstrap/js/bootstrap-switch.min.js"/>"></script>
+		<script>
+			$("#inputEmprestado").bootstrapSwitch({"onText":"Sim","offText":"Não"});
+			$("#inputListaDesejo").bootstrapSwitch({"onText":"Sim","offText":"Não"});
+		</script>
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="inputSinopse">Sinopse:</label>
+			<div class="col-sm-10">
+				
+				<sf:textarea path="sinopse" id="inputSinopse" />
+			</div>
+
+		</div>
+		
+		
+		<script src="<c:url value="/static/ckeditor/ckeditor.js"/>"></script>
+			
+		<script type="text/javascript">
+			CKEDITOR.replace( 'inputSinopse' );
+		</script>		
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<button type="submit" class="btn btn-default" ${podeAlterar == true?'':'disabled'}  >
