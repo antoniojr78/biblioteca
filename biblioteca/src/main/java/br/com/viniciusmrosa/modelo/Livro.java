@@ -9,24 +9,37 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.SelectBeforeUpdate;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import br.com.viniciusmrosa.validators.ISBN;
 
 @Entity
 public class Livro extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-
+	@ISBN(message="{livro.isbn.invalido}")
+	@NotEmpty(message="{livro.isbn.vazio}")
 	@Column(length=13)
 	private String isbn;
+	
+	@NotEmpty(message="{livro.titulo.vazio}")
 	@Column(length=100,nullable=false)
 	private String titulo;
 	@Lob
 	private String sinopse;
-	@ManyToOne(optional=true)
+	@NotNull(message="{livro.autor.vazio}")
+	@ManyToOne(optional=false)
 	private Autor autor;
-	@ManyToOne(optional=true)
+	
+	@NotNull(message="{livro.editora.vazio}")
+	@ManyToOne(optional=false)
 	private Editora editora;
 	@ManyToOne(optional=true)
+	
 	private Colecao colecao;
 	@Lob
 	private byte[] foto;

@@ -21,7 +21,11 @@
 					<th style="background-image:none;text-align:center;width:10px;">Alt</th>
 					<th  style="background-image:none;text-align:center;width:10px;">Exc</th>
 					<th>Id</th>					
-					<th>ISBN</th>					
+					<th>ISBN</th>			
+					<th>Título</th>
+					<th>Autor</th>	
+					<th>Editora</th>
+					<th>Coleção</th>		
 				</tr>
 			</thead>
 		
@@ -33,7 +37,11 @@
 					<td  style="text-align:center; width:10px;"> <sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#livro)"><span title="Excluir" id="icon-delete" class="glyphicon glyphicon-remove" style="color:red"></span> </sec:authorize> </td>
 					
 					<td>${livro.id}</td>					
-					<td style="width:90%">${livro.isbn}</td>					
+					<td >${livro.isbn}</td>		
+					<td >${livro.titulo}</td>	
+					<td >${livro.autor.nome}</td>	
+					<td >${livro.editora.nome}</td>	
+					<td >${livro.colecao.nome}</td>				
 				</tr>
 				
 			</c:forEach>

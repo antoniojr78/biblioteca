@@ -32,11 +32,41 @@
 			</div>
 		</div>
 		<div class="form-group">
+			<label  class="control-label col-sm-2" for="inputAutor">Autor:</label>
+			<div class="col-sm-10">
+				<sf:select path="autor" class="form-control" id="inputAutor">
+					<sf:option Label="Selecione" value=""/>
+					<sf:options  items="${listaAutores}" itemValue="id" itemLabel="nome" />
+				</sf:select>
+				
+			</div>
+		</div>		
+		<div class="form-group">
+			<label  class="control-label col-sm-2" for="inputEditora">Editora:</label>
+			<div class="col-sm-10">
+				<sf:select path="editora" class="form-control" id="inputEditora">
+					<sf:option Label="Selecione" value=""/>
+					<sf:options  items="${listaEditoras}" itemValue="id" itemLabel="nome" />
+				</sf:select>
+				
+			</div>
+		</div>	
+		<div class="form-group">
+			<label  class="control-label col-sm-2" for="inputColecao">Coleção:</label>
+			<div class="col-sm-10">
+				<sf:select path="colecao" class="form-control" id="inputColecao">
+					<sf:option Label="Selecione" value=""/>
+					<sf:options  items="${listaColecoes}" itemValue="id" itemLabel="nome" />
+				</sf:select>
+				
+			</div>
+		</div>					
+		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<button type="submit" class="btn btn-default">
 					<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Salvar
 				</button>
-				<a href="<c:url  value="/listaColecao"/>">
+				<a href="<c:url  value="/listaLivro"/>">
 					<button type="button" class="btn btn-default btn-md">
 						<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Voltar
 					</button>

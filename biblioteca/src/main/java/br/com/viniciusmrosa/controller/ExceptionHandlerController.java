@@ -37,7 +37,7 @@ public ModelAndView tratarIntegridadeDados(DataIntegrityViolationException e){
 			HttpServletResponse response, Object handler, Exception ex) {
 
 		ModelAndView mav = new ModelAndView();
-
+		ex.printStackTrace();	
 		mav.addObject("msg","Ocorreu um erro:<br />" + ex.getMessage());
 		mav.setViewName("errogenerico");
 		return mav;
