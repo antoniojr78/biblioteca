@@ -22,7 +22,7 @@ public class Livro extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@ISBN(message="{livro.isbn.invalido}")
-	@NotEmpty(message="{livro.isbn.vazio}")
+	//@NotEmpty(message="{livro.isbn.vazio}")
 	@Column(length=13)
 	private String isbn;
 	

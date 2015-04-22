@@ -1,5 +1,6 @@
 package br.com.viniciusmrosa.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.viniciusmrosa.dao.DAOAutor;
@@ -56,11 +59,22 @@ public class LivroController {
 	
 	
 	@RequestMapping(value="/salvarLivro")
-	public ModelAndView salvarLivro(@Valid Livro livro,BindingResult result,ModelAndView mav){
+	public ModelAndView salvarLivro(@Valid Livro livro,BindingResult result,ModelAndView mav,@RequestPart(value="capa") MultipartFile foto){
 		initCombosForm(mav);
 		mav.setViewName("cadLivro");
 		if(result.hasErrors()){
 			return mav;
+		}
+		if(!foto.isEmpty()){
+			System.out.println("Name:" +  foto.getName());
+			System.out.println("Original Name:" +  foto.getOriginalFilename());
+			try {
+				livro.setFoto(foto.getBytes());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				mav.addObject("msg","Ocorreu um erro ao tentar salvar a foto de capa");
+				return mav;
+			}
 		}
 		daoLivro.salva(livro);
 		mav.addObject("msg","Livro cadastrado com sucesso");

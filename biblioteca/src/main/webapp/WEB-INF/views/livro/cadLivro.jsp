@@ -12,23 +12,23 @@
 	</div>
 
 	<sf:form modelAttribute="livro" action="${linkAct}"
-		class="form-horizontal" role="form">
+		class="form-horizontal" role="form" enctype="multipart/form-data">
 		<sf:errors path="*" element="div" role="alert"
 			cssClass="alert alert-danger" />
-		<div class="form-group">
-			<label class="control-label col-sm-2" for="inputISBN">ISBN:</label>
-			<div class="col-sm-6">
-
-				<sf:input path="isbn" type="text" class="form-control"
-					id="inputISBN" placeholder="ISBN" />
-			</div>
-		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="inputTitulo">Título:</label>
 			<div class="col-sm-6">
 
 				<sf:input path="titulo" type="text" class="form-control"
 					id="inputTitulo" placeholder="Título" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="inputISBN">ISBN:</label>
+			<div class="col-sm-6">
+
+				<sf:input path="isbn" type="text" class="form-control"
+					id="inputISBN" placeholder="ISBN" />
 			</div>
 		</div>
 		<div class="form-group">
@@ -105,6 +105,18 @@
 			CKEDITOR.replace( 'inputSinopse' );
 		</script>
 
+		<link href="<c:url value="/static/bootstrap/fileinput/css/fileinput.min.css"/>" rel="stylesheet">
+		<script src="<c:url value="/static/bootstrap/fileinput/js/fileinput.min.js"/>"></script>
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="inputSinopse">Capa:</label>
+			<div class="col-sm-8">
+				
+				 <input name="capa" accept="image/*" class="file" type="file" data-show-preview="false" data-show-upload="false" />
+				
+			</div>
+
+		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<button type="submit" class="btn btn-default">

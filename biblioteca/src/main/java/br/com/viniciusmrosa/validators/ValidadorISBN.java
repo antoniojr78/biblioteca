@@ -15,7 +15,7 @@ public class ValidadorISBN implements ConstraintValidator<ISBN, String> {
 
 	@Override
 	public boolean isValid(String value, ConstraintValidatorContext context) {
-		
+		if(value==null || value.isEmpty()) return true; //Aceitar vazios
 		ISBNValidator validador = ISBNValidator.getInstance();
 		
 		return validador.isValid(value);
