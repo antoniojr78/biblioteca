@@ -8,7 +8,7 @@
  http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
 
-	<mvc:annotation-driven conversion-service="conversionService" />
+	
 	<!-- Habilitando AspectJ com Annotations -->
 	<aop:aspectj-autoproxy />
 
@@ -62,7 +62,7 @@
 		<!-- one of the properties available; the maximum file size in bytes -->
 		<property name="maxUploadSize" value="2097152" /><!-- 2MB -->
 	</bean>
-	
+	<mvc:annotation-driven conversion-service="conversionService" />
 	<!-- <mvc:interceptors > <mvc:interceptor> <mvc:mapping path="/**"/> <mvc:exclude-mapping 
 		path="/static/**"/> <bean class="br.com.viniciusmrosa.security.ControleAlteracaoRegistroInterceptor" 
 		/> </mvc:interceptor> </mvc:interceptors> -->

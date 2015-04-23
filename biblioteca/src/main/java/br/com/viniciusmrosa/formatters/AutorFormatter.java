@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.viniciusmrosa.modelo.Autor;
 
-@Component
+@Component(value="autorFormatter")
 public class AutorFormatter implements Formatter<Autor>{
 
 	

@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -66,8 +67,6 @@ public class LivroController {
 			return mav;
 		}
 		if(!foto.isEmpty()){
-			System.out.println("Name:" +  foto.getName());
-			System.out.println("Original Name:" +  foto.getOriginalFilename());
 			try {
 				livro.setFoto(foto.getBytes());
 			} catch (IOException e) {
@@ -108,6 +107,15 @@ public class LivroController {
 		this.listaColecoes = daoColecao.lista(0, 0);
 		mav.addObject("listaColecoes",this.listaColecoes);		
 	}
+	
+	@RequestMapping("/livro/capa/{id}")
+	@ResponseBody
+	public byte[] retornaCapa(@PathVariable("id") Long id){
+		Livro livro = daoLivro.getById(id);
+		
+		return livro.getFoto();
+	}
+	
 	private Livro createNewLivro(){
 		return  new Livro();
 	}

@@ -28,16 +28,16 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+	
   </head>
 
   <body>
 
 	<!-- global Modal -->
-	<div id="myModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-	  <div class="modal-dialog modal-sm ">
-	    <div  class="modal-content">
-		     Modal COntent
-		    
+	<div id="globalModal"  class="modal fade bs-example-modal-sm tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-sm " >
+	    <div id="globalModalContent" class="modal-content">
+		    Gobal Content
 	    </div>
 	  </div>
 	</div>

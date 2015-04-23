@@ -5,16 +5,27 @@
 <h2 class="sub-header">Edição de Coleção</h2>
 <div class="col-sm-12">
 	<c:url value="/alteraLivro" var="linkAct" />
-
+	<c:url value="/livro/capa/${livro.id}" var="linkCapa" />
 	<div class="alert alert-info"
 		style='display:${msg==null?"none":"line"}' role="alert">${msg }
 	</div>
 
-	<sf:form  modelAttribute="livro" action="${linkAct}"
-		class="form-horizontal" role="form" >
+	<sf:form modelAttribute="livro" action="${linkAct}"
+		class="form-horizontal" role="form">
 		<sf:errors path="*" element="div" role="alert"
 			cssClass="alert alert-danger" />
-	<div class="form-group">
+
+		<div class="row">
+			<div class="col-sm-offset-2">
+				<div class="col-xs-6 col-md-2">
+					<a href="#" onclick="exibirCapaTamanhoReal('${linkCapa }');" class="thumbnail"> <img style="width:171px; height:180px;" src='${linkCapa }'/>
+					</a>
+				</div>
+			</div>
+		</div>
+		<sf:input path="id" type="text"
+					id="inputId"  style="display:none;"/>
+		<div class="form-group">
 			<label class="control-label col-sm-2" for="inputTitulo">Título:</label>
 			<div class="col-sm-6">
 
@@ -67,54 +78,79 @@
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="inputEmprestado">Emprestado?</label>
 			<div class="col-sm-6">
-				<sf:checkbox path="emprestado" id="inputEmprestado"
-					/>
+				<sf:checkbox path="emprestado" id="inputEmprestado" />
 			</div>
 
 		</div>
-		
+
 		<div class="form-group">
-			<label class="control-label col-sm-2" for="inputListaDesejo">Lista Desejo?</label>
+			<label class="control-label col-sm-2" for="inputListaDesejo">Lista
+				Desejo?</label>
 			<div class="col-sm-6">
-				<sf:checkbox path="listaDesejo" id="inputListaDesejo"/>
+				<sf:checkbox path="listaDesejo" id="inputListaDesejo" />
 			</div>
 
 		</div>
 		<!-- Bootstrap Switch -->
-		<link href="<c:url value="/static/bootstrap/css/bootstrap-switch.min.css"/>" rel="stylesheet">
-		<script src="<c:url value="/static/bootstrap/js/bootstrap-switch.min.js"/>"></script>
+		<link
+			href="<c:url value="/static/bootstrap/css/bootstrap-switch.min.css"/>"
+			rel="stylesheet">
+		<script
+			src="<c:url value="/static/bootstrap/js/bootstrap-switch.min.js"/>"></script>
 		<script>
-			$("#inputEmprestado").bootstrapSwitch({"onText":"Sim","offText":"Não"});
-			$("#inputListaDesejo").bootstrapSwitch({"onText":"Sim","offText":"Não"});
+			$("#inputEmprestado").bootstrapSwitch({
+				"onText" : "Sim",
+				"offText" : "Não"
+			});
+			$("#inputListaDesejo").bootstrapSwitch({
+				"onText" : "Sim",
+				"offText" : "Não"
+			});
 		</script>
-		
+
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="inputSinopse">Sinopse:</label>
 			<div class="col-sm-8">
 				<sf:textarea path="sinopse" id="inputSinopse" />
-				
+
 			</div>
 
 		</div>
-		
-		
+
+
 		<script src="<c:url value="/static/ckeditor/ckeditor.js"/>"></script>
-			
+
 		<script type="text/javascript">
-			CKEDITOR.replace( 'inputSinopse' );
+			CKEDITOR.replace('inputSinopse');
 		</script>
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-default" ${podeAlterar == true?'':'disabled'}  >
+				<button type="submit" class="btn btn-default"
+					${podeAlterar == true?'':'disabled'}>
 					<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Salvar
-				</button> 
+				</button>
 				<a href="<c:url  value="/listaLivro"/>">
 					<button type="button" class="btn btn-default btn-md">
-						<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Voltar
+						<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+						Voltar
 					</button>
 				</a>
 			</div>
 
 		</div>
 	</sf:form>
+	<!-- LightBox -->
+	<script src="<c:url value="/static/ckeditor/ckeditor.js"/>"></script>
+	
+	<link href="<c:url value="/static/bootstrap/css/bootstrap-switch.min.css"/>" rel="stylesheet">
+			
+	<script>
+		function exibirCapaTamanhoReal(url){
+			
+			//alert(document.getElementById('inputId').value);
+			var content = "<img src='"  + url + "'/>";
+			openModal(content);
+		}
+	
+	</script>
 </div>

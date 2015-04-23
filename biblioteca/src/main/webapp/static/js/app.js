@@ -78,6 +78,7 @@ function showGlobalMsg(tipo,msg){
 	
 }
 
-function openModal(){
-	$('#myModal').modal();
+function openModal(content){
+	$('#globalModalContent').html(content);
+	$('#globalModal').modal();
 }
