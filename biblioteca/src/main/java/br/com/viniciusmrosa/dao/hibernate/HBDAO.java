@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.PersistenceException;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,13 @@ public abstract class HBDAO<T extends BaseEntity> implements DAOBase<T> {
 			criteria.setMaxResults(max);
 		}
 		
+
+		/*
+		Query query = getSession().createQuery("select o from " + getClazz().getSimpleName() + " o join o.usuarioCriacao")
+				.setFirstResult(offset);
+		if(max > 0){
+			query.setMaxResults(max);
+		}*/
 		return criteria.list();
 	}
 

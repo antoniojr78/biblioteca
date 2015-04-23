@@ -14,8 +14,8 @@ import br.com.viniciusmrosa.modelo.Livro;
 @Repository(value="daoLivro")
 @Transactional(propagation=Propagation.SUPPORTS)
 public class HBLivro extends HBDAO<Livro> implements DAOLivro {
-
-	/*@Override
+	/*
+	@Override
 	public List<Livro> lista(int offset, int max) {
 		// sobrescrever o método para não trazer todos os relacionementos das entidades
 		Query query = getSession().createQuery("select l from Livro l JOIN "
@@ -26,8 +26,8 @@ public class HBLivro extends HBDAO<Livro> implements DAOLivro {
 		}
 		
 		return query.list();
-	}
-		*/
+	}*/
+		
 	@Override
 	protected Class getClazz() {
 		// TODO Auto-generated method stub

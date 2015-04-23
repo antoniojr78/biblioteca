@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -23,7 +24,7 @@ public abstract class BaseEntity {
 	
 	
 	@JoinColumn( name = "usuario_id", nullable = false, updatable = false, referencedColumnName = "id")
-	@OneToOne(targetEntity = Usuario.class)
+	@ManyToOne(targetEntity = Usuario.class )
 	private Usuario usuarioCriacao;
 
 	@Column(nullable = false)
