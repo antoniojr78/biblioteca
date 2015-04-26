@@ -19,11 +19,14 @@ import br.com.viniciusmrosa.dao.DAOAutor;
 import br.com.viniciusmrosa.dao.DAOColecao;
 import br.com.viniciusmrosa.dao.DAOEditora;
 import br.com.viniciusmrosa.dao.DAOLivro;
+import br.com.viniciusmrosa.exception.ErroOperacaoBDException;
+import br.com.viniciusmrosa.exception.NegocioException;
 import br.com.viniciusmrosa.modelo.Autor;
 import br.com.viniciusmrosa.modelo.Colecao;
 import br.com.viniciusmrosa.modelo.Editora;
 import br.com.viniciusmrosa.modelo.Livro;
 import br.com.viniciusmrosa.security.AlteracaoRegistroSecurityService;
+import br.com.viniciusmrosa.services.LivroService;
 
 @Controller
 public class LivroController {
@@ -38,6 +41,8 @@ public class LivroController {
 	private DAOColecao daoColecao;
 	@Autowired
 	private AlteracaoRegistroSecurityService alteracaoUsuarioSecurityService;
+	@Autowired
+	private LivroService livroService;
 	
 	private List<Editora> listaEditoras;
 	private List<Autor> listaAutores;
@@ -75,7 +80,7 @@ public class LivroController {
 				return mav;
 			}
 		}
-		daoLivro.salva(livro);
+		livroService.inserir(livro);
 		mav.addObject("msg","Livro cadastrado com sucesso");
 		
 		mav.addObject(createNewLivro());
@@ -95,6 +100,33 @@ public class LivroController {
 		mav.addObject(livro);
 		mav.setViewName("editLivro");
 		mav.addObject("podeAlterar",alteracaoUsuarioSecurityService.podeAlterar(livro));
+		return mav;
+	}
+	
+	@RequestMapping(value="/alterarLivro")
+	public ModelAndView alterarLivro(@Valid Livro livro,BindingResult result,ModelAndView mav,@RequestPart("capa") MultipartFile foto){
+		mav.setViewName("editLivro");
+		if(result.hasErrors()){
+			return mav;
+		}
+		
+		if(!foto.isEmpty()){
+			try {
+				livro.setFoto(foto.getBytes());
+			} catch (IOException e) {
+				mav.addObject("msg","Ocorreu um erro ao tentar salvar a foto de capa");
+				return mav;
+			}
+		}else{
+			livro.setFoto(null);
+		}
+		try {
+			livroService.alteracaoFormLivro(livro);
+		} catch (NegocioException | ErroOperacaoBDException e) {
+			mav.addObject("msg",e.getMessage());
+			return mav;
+		}
+		mav.setViewName("redirect:/listaLivro");
 		return mav;
 	}
 	private void initCombosForm(ModelAndView mav){

@@ -49,9 +49,9 @@
 
 		<property name="formatters">
 			<set>
-				<ref bean="autorFormatter" />
-				<ref bean="colecaoFormatter" />
-				<ref bean="editoraFormatter" />
+				<bean id="autorFormatter" class="br.com.viniciusmrosa.formatters.AutorFormatter" />
+				<bean id="colecaoFormatter" class="br.com.viniciusmrosa.formatters.ColecaoFormatter" />
+				<bean id="editoraFormatter" class="br.com.viniciusmrosa.formatters.EditoraFormatter" />
 			</set>
 		</property>
 

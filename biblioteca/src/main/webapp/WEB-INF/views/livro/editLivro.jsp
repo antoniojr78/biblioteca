@@ -4,14 +4,14 @@
 
 <h2 class="sub-header">Edição de Livro</h2>
 <div class="col-sm-12">
-	<c:url value="/alteraLivro" var="linkAct" />
+	<c:url value="/alterarLivro" var="linkAct" />
 	<c:url value="/livro/capa/${livro.id}" var="linkCapa" />
 	<div class="alert alert-info"
 		style='display:${msg==null?"none":"line"}' role="alert">${msg }
 	</div>
 
 	<sf:form modelAttribute="livro" action="${linkAct}"
-		class="form-horizontal" role="form">
+		class="form-horizontal" role="form"  enctype="multipart/form-data">
 		<sf:errors path="*" element="div" role="alert"
 			cssClass="alert alert-danger" />
 	<c:if test="${not empty livro.foto }" >
@@ -118,7 +118,18 @@
 
 		</div>
 
+		<link href="<c:url value="/static/bootstrap/fileinput/css/fileinput.min.css"/>" rel="stylesheet">
+		<script src="<c:url value="/static/bootstrap/fileinput/js/fileinput.min.js"/>"></script>
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="inputSinopse">Capa:</label>
+			<div class="col-sm-8">
+				
+				 <input name="capa" accept="image/*" class="file" type="file" data-show-preview="false" data-show-upload="false" />
+				
+			</div>
 
+		</div>
 		<script src="<c:url value="/static/ckeditor/ckeditor.js"/>"></script>
 
 		<script type="text/javascript">

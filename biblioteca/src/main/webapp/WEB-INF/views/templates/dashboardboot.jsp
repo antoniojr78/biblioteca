@@ -34,11 +34,21 @@
   <body>
 
 	<!-- global Modal -->
-	<div id="globalModal"  class="modal fade bs-example-modal-sm tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	<div id="globalModal"  class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-sm " >
 	    <div id="globalModalContent" class="modal-content">
 		    Gobal Content
 	    </div>
+	  </div>
+	</div>
+
+	<div id="confirm" class="modal fade bs-example-modal-sm" role="dialog" tabindex="-1">
+	  <div class="modal-dialog modal-sm">
+	   <span style="color:red" > Are you sure?</span>
+	  </div>
+	  <div class="modal-footer">
+	    <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete">Delete</button>
+	    <button type="button" data-dismiss="modal" class="btn">Cancel</button>
 	  </div>
 	</div>
 
