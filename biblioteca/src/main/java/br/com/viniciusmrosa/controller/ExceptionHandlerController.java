@@ -3,6 +3,9 @@ package br.com.viniciusmrosa.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpRequest;
@@ -22,11 +25,13 @@ public class ExceptionHandlerController implements HandlerExceptionResolver {
 	@Autowired
 	HttpServletRequest req;
 	
+	final static Logger logger = Logger.getLogger(ExceptionHandlerController.class);
 
 @ExceptionHandler(DataIntegrityViolationException.class)
 public ModelAndView tratarIntegridadeDados(DataIntegrityViolationException e){
 	ModelAndView mav = new ModelAndView();
-	mav.addObject("msg","Ocorreu um erro ao deletar o registro. O registro possui relação em outra parte do sistema");
+	//mav.addObject("msg","Ocorreu um erro ao deletar o registro. O registro possui relação em outra parte do sistema");
+	mav.addObject("msg","Erro inesperado: " + e.getMessage());
 	mav.setViewName("errogenerico");
 	return mav;
 }
@@ -40,6 +45,11 @@ public ModelAndView tratarIntegridadeDados(DataIntegrityViolationException e){
 		ex.printStackTrace();	
 		mav.addObject("msg","Ocorreu um erro:<br />" + ex.getMessage());
 		mav.setViewName("errogenerico");
+		
+		if(logger.isDebugEnabled())
+			logger.debug(ex.getMessage(), ex);
+			else logger.error(ex.getMessage(),ex);
+		
 		return mav;
 	} 
 }

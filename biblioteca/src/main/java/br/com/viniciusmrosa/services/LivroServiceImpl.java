@@ -1,10 +1,12 @@
 package br.com.viniciusmrosa.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import br.com.viniciusmrosa.dao.DAOLivro;
 import br.com.viniciusmrosa.exception.ErroOperacaoBDException;
+import br.com.viniciusmrosa.exception.ImpossivelApagarRegistroException;
 import br.com.viniciusmrosa.exception.NegocioException;
 import br.com.viniciusmrosa.exception.RegistroNaoEncontradoException;
 import br.com.viniciusmrosa.modelo.Livro;
@@ -24,14 +26,14 @@ public class LivroServiceImpl extends AbstractService implements LivroService {
 		
 	}
 
-	private Livro verificaRegras(Livro livroget)throws NegocioException, RegistroNaoEncontradoException {
-		livroAlterar = daoLivro.getById(livroget.getId());
+	private Livro verificaRegras(Long id)throws NegocioException, RegistroNaoEncontradoException {
+		livroAlterar = daoLivro.getById(id);
 		regrasBasicas(livroAlterar);
 		return livroAlterar;		
 	}
 	
 	public void alteracaoFormLivro(Livro livro) throws NegocioException, ErroOperacaoBDException{
-		livroAlterar = verificaRegras(livro);		
+		livroAlterar = verificaRegras(livro.getId());		
 		
 		//Alterar os campos passiveis de alteracao no form de livro
 		livroAlterar.setAutor(livro.getAutor());
@@ -53,6 +55,10 @@ public class LivroServiceImpl extends AbstractService implements LivroService {
 	public void excluir(Long id) throws NegocioException,
 			ErroOperacaoBDException {
 		
+	// Livro sofrerá uma deleção lógica	
+	livroAlterar = verificaRegras(id)	;
+	livroAlterar.setAtivo(false);
+	daoLivro.salva(livroAlterar);
 		
 	}
 

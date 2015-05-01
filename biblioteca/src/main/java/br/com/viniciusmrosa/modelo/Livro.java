@@ -47,7 +47,8 @@ public class Livro extends BaseEntity implements Serializable {
 	private boolean emprestado;
 	@Column
 	private boolean listaDesejo;
-	
+	@Column
+	private boolean ativo;
 	
 	public String getIsbn() {
 		return isbn;
@@ -103,6 +104,12 @@ public class Livro extends BaseEntity implements Serializable {
 	}
 	public void setListaDesejo(boolean listaDesejo) {
 		this.listaDesejo = listaDesejo;
+	}
+	public boolean isAtivo() {
+		return ativo;
+	}
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 	
 

@@ -1,10 +1,12 @@
 package br.com.viniciusmrosa.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import br.com.viniciusmrosa.dao.DAOColecao;
 import br.com.viniciusmrosa.exception.ErroOperacaoBDException;
+import br.com.viniciusmrosa.exception.ImpossivelApagarRegistroException;
 import br.com.viniciusmrosa.exception.NegocioException;
 import br.com.viniciusmrosa.exception.PermissaoAlteracaoNegadaException;
 import br.com.viniciusmrosa.exception.RegistroNaoEncontradoException;
@@ -37,7 +39,9 @@ public class ColecaoServiceImpl extends AbstractService implements ColecaoServic
 		checaExistente(colecaoAlterar);
 		checaPermissoes(colecaoAlterar);
 		colecaoAlterar.setNome(c.getNome());
-		daoColecao.salva(c);
+		daoColecao.salva(colecaoAlterar);
+
+		
 	}
 	private void checaPermissoes(Colecao c) throws NegocioException{
 		if(!alteracaoRegistroSecurityService.podeAlterar(c)){
@@ -53,9 +57,13 @@ public class ColecaoServiceImpl extends AbstractService implements ColecaoServic
 	public void excluir(Long id) throws NegocioException,
 			ErroOperacaoBDException {
 		colecaoAlterar = daoColecao.getById(id);
-		checaExistente(colecaoAlterar);
-		checaPermissoes(colecaoAlterar);
-		daoColecao.deleta(colecaoAlterar );
+		regrasBasicas(colecaoAlterar);
+		try {
+			
+			daoColecao.deleta(colecaoAlterar );
+		} catch (DataIntegrityViolationException e) {
+			throw new ImpossivelApagarRegistroException();
+		}
 		
 	}
 }

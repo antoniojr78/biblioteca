@@ -32,7 +32,7 @@ var globalAlertId = "globalAlert"
 	function removePorId(index,table,url,elem){
 	
 	
-		bootbox.confirm("Are you sure?", function(result) {
+		bootbox.confirm("Deseja realmente apagar o registro?", function(result) {
 		
 			
 			
