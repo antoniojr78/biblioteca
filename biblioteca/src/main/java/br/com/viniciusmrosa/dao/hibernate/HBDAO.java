@@ -64,13 +64,14 @@ public abstract class HBDAO<T extends BaseEntity> implements DAOBase<T> {
 			criteria.setMaxResults(max);
 		}
 		
-
 		/*
-		Query query = getSession().createQuery("select o from " + getClazz().getSimpleName() + " o join o.usuarioCriacao")
+		
+		Query query = getSession().createQuery("select o from " + getClazz().getSimpleName() + " o inner join fetch o.usuarioCriacao")
 				.setFirstResult(offset);
 		if(max > 0){
 			query.setMaxResults(max);
-		}*/
+		}
+		*/
 		return criteria.list();
 	}
 

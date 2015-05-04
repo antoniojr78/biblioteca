@@ -14,19 +14,20 @@ import br.com.viniciusmrosa.modelo.Livro;
 @Repository(value="daoLivro")
 @Transactional(propagation=Propagation.SUPPORTS)
 public class HBLivro extends HBDAO<Livro> implements DAOLivro {
-	/*
+	
 	@Override
 	public List<Livro> lista(int offset, int max) {
-		// sobrescrever o método para não trazer todos os relacionementos das entidades
-		Query query = getSession().createQuery("select l from Livro l JOIN "
-				+ " l.autor JOIN l.colecao JOIN l.editora JOIN l.usuarioCriacao")
+		// sobrescrever o método para não trazer todos os relacionementos de todas entidades
+		Query query = getSession().createQuery("select l from Livro l JOIN fetch"
+				+ " l.autor LEFT JOIN fetch l.colecao JOIN  fetch l.editora JOIN fetch l.usuarioCriacao"
+				+ " where ativo = true")
 				.setFirstResult(offset);
 		if(max>0){
 			query.setMaxResults(max);
 		}
 		
 		return query.list();
-	}*/
+	}
 		
 	@Override
 	protected Class getClazz() {

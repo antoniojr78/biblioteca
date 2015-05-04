@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -150,5 +151,17 @@ public class LivroController {
 	
 	private Livro createNewLivro(){
 		return  new Livro();
+	}
+	
+	@RequestMapping(value="/delLivro",method=RequestMethod.POST)
+	@ResponseBody
+	public String delLivro(Long id){
+		
+		try {
+			livroService.excluir(id);
+		} catch (NegocioException | ErroOperacaoBDException e) {
+			return e.getMessage();
+		}
+		return "OK";
 	}
 }

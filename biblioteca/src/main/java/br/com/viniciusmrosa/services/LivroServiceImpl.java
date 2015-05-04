@@ -21,7 +21,7 @@ public class LivroServiceImpl extends AbstractService implements LivroService {
 	
 	@Override
 	public void inserir(Livro livro) {
-
+		livro.setAtivo(true);
 		daoLivro.salva(livro);
 		
 	}
