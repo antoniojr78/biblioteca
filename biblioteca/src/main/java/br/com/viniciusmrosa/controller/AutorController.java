@@ -54,7 +54,7 @@ public class AutorController {
 		if(result.hasErrors()) return "cadAutor";
 	
 		autorService.inserir(autor);
-		
+		model.addAttribute("autor",new Autor());
 		model.addAttribute("msg","Autor cadastrado com sucesso");
 		return "cadAutor";		
 	}

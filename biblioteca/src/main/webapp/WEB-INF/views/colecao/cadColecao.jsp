@@ -10,7 +10,7 @@
 	<div class="alert alert-info"
 		style='display:${msg==null?"none":"line"}' role="alert">${msg }
 	</div>
-
+	
 	<sf:form modelAttribute="colecao" action="${linkAct}"
 		class="form-horizontal" role="form">
 		<sf:errors path="*" element="div" role="alert"

@@ -9,8 +9,5 @@ import org.springframework.stereotype.Component;
 @Component
 public class SegurancaRegistrosAspect {
 
-	/*@Before("execution(* br.com.viniciusmrosa.controller.*Controller.*(..))")
-	public void tratarAlteração(JoinPoint joinPoint) throws Throwable{
-		
-	}*/
+
 }

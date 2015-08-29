@@ -145,7 +145,18 @@
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 		</dependency>
-
+		<!-- Jasper Reports -->
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>5.1.2</version>
+		</dependency>
+		<!-- fontes -->
+		<dependency>
+			<groupId>br.com.viniciusmrosa.fonts</groupId>
+			<artifactId>fontes</artifactId>
+			<version>1.0</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>biblioteca</finalName>
