@@ -42,15 +42,6 @@
 	  </div>
 	</div>
 
-	<div id="confirm" class="modal fade bs-example-modal-sm" role="dialog" tabindex="-1">
-	  <div class="modal-dialog modal-sm">
-	   <span style="color:red" > Are you sure?</span>
-	  </div>
-	  <div class="modal-footer">
-	    <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete">Delete</button>
-	    <button type="button" data-dismiss="modal" class="btn">Cancel</button>
-	  </div>
-	</div>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
@@ -128,8 +119,11 @@
           </ul>
 
         </div>
+        <!-- Plugin que faz o alert de confirmação -->
+        <script type="text/javascript" src="<c:url value="/static/bootstrap/js/bootbox.min.js"/>"></script>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        	  	<div id="globalAlert" class="alert Alertoculto" role="alert">msg</div>
+        <div id="globalAlert" class="alert alert-danger Alertoculto"></div>
+        	  
 		 	<tiles:insertAttribute name="conteudo"/>	
         <!--   <div class="row placeholders">
             <div class="col-xs-6 col-sm-3 placeholder">
@@ -154,6 +148,7 @@
             </div>
           </div>
 			 -->
+		 	 
         </div>
       </div>
     </div>
