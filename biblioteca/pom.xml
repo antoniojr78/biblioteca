@@ -149,14 +149,20 @@
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
-			<version>5.1.2</version>
+			<version>6.1.0</version>
 		</dependency>
-		<!-- fontes -->
+
 		<dependency>
-			<groupId>br.com.viniciusmrosa.fonts</groupId>
-			<artifactId>fontes</artifactId>
-			<version>1.0</version>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.12</version>
+			<type>jar</type>
 		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.7.12</version>
+		</dependency>		
 	</dependencies>
 	<build>
 		<finalName>biblioteca</finalName>

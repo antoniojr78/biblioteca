@@ -87,7 +87,16 @@
 		<put-attribute name="conteudo"
 			value="/WEB-INF/views/livro/listaLivro.jsp" />
 	</definition>
-
+	
+	<!-- Form Relatórios -->
+	
+	<!-- Usuarios -->
+	<definition name="formRelUsuario" extends="main">
+		<put-attribute name="conteudo"
+			value="/WEB-INF/views/relatorios/usuarios/relUsuario.jsp" />
+	</definition>
+	
+	
 	<definition name="errogenerico" extends="main">
 		<put-attribute name="conteudo" value="/WEB-INF/views/errogenerico.jsp" />
 	</definition>
