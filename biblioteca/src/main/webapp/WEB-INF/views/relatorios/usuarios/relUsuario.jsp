@@ -11,7 +11,7 @@
 		style='display:${msg==null?"none":"line"}' role="alert">${msg }
 	</div>
 
-	<sf:form modelAttribute="filros" action="${linkAct}"
+	<sf:form modelAttribute="filros" target="_blank" action="${linkAct}"
 		class="form-horizontal" role="form">
 		<sf:errors path="*" element="div" role="alert"
 			cssClass="alert alert-danger" />
@@ -19,12 +19,13 @@
 			<label class="control-label col-sm-2" for="email">Nome:</label>
 			<div class="col-sm-10">
 				<sf:input path="parteNome" type="text" class="form-control" id="parteNome"
-					placeholder="Nome" />
+					placeholder="Insira o nome ou parte dele para pesquisar" />
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-default">
+				<!-- onclick="exibirRelatorio('${linkAct}',parteNome.value)" -->
+				<button type="submit" class="btn btn-default"  >
 					<span class="glyphicon glyphicon-print" aria-hidden="true"></span>&nbsp;Imprimir
 				</button>
 			</div>
