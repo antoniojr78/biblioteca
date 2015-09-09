@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.viniciusmrosa.exception.ErroRelatorioPDFException;
+import br.com.viniciusmrosa.report.TemplateRel;
 import br.com.viniciusmrosa.security.SecurityUtils;
 import net.sf.jasperreports.engine.JRParameter;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -51,14 +52,13 @@ public class RelatoriosServiceImpl implements RelatoriosService {
 		if(null==nomeArquivo) {
 			nomeArquivo = "Relatorio.pdf";
 			logger.warn("Parâmetro " + KEY_NOME_ARQUIVO_REL +  " não definido. Utilizando nome de aruqivo padrão");
-		}
-		
-		parametros.put("SUBREPORT_DIR", "/resources/reports/templates/");
+		}		
+		parametros.put("ARQUIVO_REL", arquivoJasper);
 		parametros.put(JRParameter.REPORT_LOCALE, request.getLocale());
 		parametros.put(KEY_USUARIO_LOGADO,securityUtils.buscaUsuarioLogado().getId());
 		try {
 			java.io.InputStream jasperStream = this.getClass()
-					.getResourceAsStream(arquivoJasper);
+					.getResourceAsStream(TemplateRel.TEMPLATE_PORTRAIT.getNomeArquivoTemplate());
 			JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
 			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, dataSource.getConnection());
 			//this.relatorioGerado = jasperPrint.getPages().size() > 0;

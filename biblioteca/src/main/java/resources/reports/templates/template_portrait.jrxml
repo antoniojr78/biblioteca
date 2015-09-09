@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="template_portrait" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a86c9039-8bc2-4ae0-89a6-69e589fabe5e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="NOME_REL" class="java.lang.String"/>
+	<parameter name="ARQUIVO_REL" class="java.lang.String">
+		<defaultValueExpression><![CDATA["rel_programas.jasper"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="QUERY_PARAMETERS" class="java.util.Map"/>
+	<parameter name="usuario_logado" class="java.lang.Long"/>
+	<queryString>
+		<![CDATA[select 1 ;]]>
+	</queryString>
+	<field name="1" class="java.lang.Long"/>
+	<title>
+		<band height="132" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="95" backcolor="#000000" uuid="5a949a27-8ed8-4824-8a50-1ef92c67352e"/>
+				<staticText>
+					<reportElement style="Title" x="0" y="0" width="555" height="66" uuid="10eecb37-f926-478e-af58-202d7588b7d9"/>
+					<textElement textAlignment="Center">
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Biblioteca]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="SubTitle" x="0" y="66" width="555" height="29" forecolor="#FFFFFF" uuid="af7b1306-5638-4d1c-b951-168ad0b38c3b"/>
+					<textElement textAlignment="Center">
+						<font size="22"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{NOME_REL}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="100" width="555" height="32" forecolor="#000000" backcolor="#428DC9" uuid="d6096aaf-acdc-4c59-a447-9d96836b51e9"/>
+				<textField pattern="EEEEE, dd &apos;de&apos; MMMMM &apos;de&apos; yyyy">
+					<reportElement x="306" y="12" width="247" height="20" forecolor="#FFFFFF" uuid="536bbc10-2a9f-4449-b52a-27bd79c3ceaa"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="67" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="67" uuid="964b6d56-c795-4cc8-a6b2-b78ba77aabce"/>
+				<parametersMapExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}]]></parametersMapExpression>
+				<subreportParameter name="QUERY_PARAMETERS">
+					<subreportParameterExpression><![CDATA[$P{QUERY_PARAMETERS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{ARQUIVO_REL}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#000000" uuid="a7adf2c2-1323-4641-bcae-63547157c87c"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="605fc3c6-462f-443a-9f24-b7cd88eaaeef"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="433" y="0" width="80" height="20" forecolor="#FFFFFF" uuid="8aef94a6-66bd-40ce-9273-1b0c54629c10"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+</jasperReport>

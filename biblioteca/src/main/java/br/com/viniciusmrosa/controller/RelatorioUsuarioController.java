@@ -35,9 +35,12 @@ public class RelatorioUsuarioController {
 			Map<String, Object> parametros = new HashMap<String, Object>();
 			System.out.println("RelatorioUsuarioController:" + filtros.getParteNome());
 			parametros.put("arquivo_jasper","/resources/reports/usuario/rel_usuarios.jasper");
-			parametros.put("nome_arquivo_rel","relatorioUsuarios.pdf");			
-			parametros.put("parteNome", filtros.getParteNome());
-			parametros.put("NomeRel", "Relatório de Usuários");
+			parametros.put("nome_arquivo_rel","relatorioUsuarios.pdf");						
+			parametros.put("NOME_REL", "Relatório de Usuários");
+			
+			Map<String,Object> queryParams = new HashMap<String,Object>();			
+			queryParams.put("parteNome", filtros.getParteNome());
+			parametros.put("QUERY_PARAMETERS", queryParams);
 			try {
 				relatorioService.gerarRelatorio(request, response, parametros);
 			} catch (ErroRelatorioPDFException e) {
