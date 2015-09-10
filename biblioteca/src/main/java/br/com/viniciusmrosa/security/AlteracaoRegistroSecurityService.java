@@ -31,5 +31,9 @@ public class AlteracaoRegistroSecurityService {
 		return entidade.getLogCriacao().getUsuarioCriacao().equals(securityUtils.buscaUsuarioLogado());
 		
 	}
+	
+	public boolean isMaster(Usuario u){
+		return securityUtils.buscaUsuarioLogado().isMaster();
+	}
 
 }

@@ -45,6 +45,8 @@ public class UsuarioServiceImpl extends AbstractService implements
 		checaExistente(usuarioAlteracao);
 		checaPermissoes(usuarioAlteracao);
 		usuarioAlteracao.setNome(u.getNome());
+		usuarioAlteracao.setMaster(u.isMaster());
+		
 		// Se a senha for alterada, eu devo converter novamente em um hash
 		if (!u.getSenha().equals(u.getSenhaHash())) {
 			usuarioAlteracao.setSenha(DigestUtils.sha512Hex(u.getSenha()));

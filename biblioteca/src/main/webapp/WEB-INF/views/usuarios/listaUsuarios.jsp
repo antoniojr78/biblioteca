@@ -5,7 +5,7 @@
 
 <link rel="stylesheet" href="<c:url value="/static/datatables/css/jquery.dataTables.min.css"/>" >	 
 <h2 class="sub-header">Usuários</h2>
-
+<!-- ${pageContext['request'].userPrincipal.details.master}  -->
 <a href="<c:url  value="/cadUsuario"/>">
 <button type="button" class="btn btn-default btn-md" >
   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo

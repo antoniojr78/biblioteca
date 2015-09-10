@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -36,6 +37,8 @@ public class Usuario extends BaseEntity implements Serializable {
 	@Email
 	private String login;
 	
+	@Column
+	private boolean master;
 
 	
 	public String getNome() {
@@ -62,6 +65,12 @@ public class Usuario extends BaseEntity implements Serializable {
 	}
 	public void setSenhaHash(String senhaHash) {
 		this.senhaHash = senhaHash;
+	}
+	public boolean isMaster() {
+		return master;
+	}
+	public void setMaster(boolean master) {
+		this.master = master;
 	}
 		
 		

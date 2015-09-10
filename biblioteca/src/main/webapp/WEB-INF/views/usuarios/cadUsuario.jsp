@@ -1,12 +1,12 @@
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <h2 class="sub-header">Cadastro de Usuários</h2>
 <div class="col-sm-6">
 	<c:url value="/salvarUsuario" var="linkAct" />
-
+	
 	<div class="alert alert-info"
 		style='display:${msg==null?"none":"line"}' role="alert">${msg }
 	</div>
@@ -29,6 +29,14 @@
 					placeholder="Nome" />
 			</div>
 		</div>
+		<sec:authorize access="@AlteracaoRegistroSecurityService.isMaster(#usuario)">
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="master">Master?</label>
+			<div class="col-sm-10">
+				<sf:checkbox path="master"  id="inputMaster"  />
+			</div>
+		</div>	
+		</sec:authorize>	
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="pwd">Senha:</label>
 			<div class="col-sm-10">
@@ -49,5 +57,12 @@
 			</div>
 
 		</div>
+		<!-- Bootstrap Switch -->
+		<link href="<c:url value="/static/bootstrap/css/bootstrap-switch.min.css"/>" rel="stylesheet">
+		<script src="<c:url value="/static/bootstrap/js/bootstrap-switch.min.js"/>"></script>
+		<script>
+			$("#inputMaster").bootstrapSwitch({"onText":"Sim","offText":"Não"});		
+		</script>
 	</sf:form>
+	
 </div>

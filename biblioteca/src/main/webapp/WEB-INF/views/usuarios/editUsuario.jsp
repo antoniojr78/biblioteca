@@ -1,6 +1,9 @@
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+<sec:authorize var="usuarioMaster" access="@AlteracaoRegistroSecurityService.isMaster(#usuario)" />
 
 <h2 class="sub-header">Edição de Usuário</h2>
 <div class="col-sm-6">
@@ -44,6 +47,12 @@
 			</div>
 		</div>
 		<div class="form-group">
+			<label class="control-label col-sm-2" for="master">Master?</label>
+			<div class="col-sm-10">  
+				<sf:checkbox path="master"  id="inputMaster" disabled="${!usuarioMaster}" />
+			</div>
+		</div>			
+		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<button type="submit" class="btn btn-default" ${podeAlterar == true?'':'disabled'}  >
 					<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Salvar
@@ -56,5 +65,11 @@
 			</div>
 
 		</div>
+		<!-- Bootstrap Switch -->
+		<link href="<c:url value="/static/bootstrap/css/bootstrap-switch.min.css"/>" rel="stylesheet">
+		<script src="<c:url value="/static/bootstrap/js/bootstrap-switch.min.js"/>"></script>
+		<script>
+			$("#inputMaster").bootstrapSwitch({"onText":"Sim","offText":"Não"});		
+		</script>		
 	</sf:form>
 </div>
