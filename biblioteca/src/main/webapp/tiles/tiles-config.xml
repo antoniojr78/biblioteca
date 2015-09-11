@@ -73,30 +73,41 @@
 		<put-attribute name="conteudo"
 			value="/WEB-INF/views/editora/listaEditora.jsp" />
 	</definition>
-	
+
 	<!-- Livro -->
 	<definition name="cadLivro" extends="main">
-		<put-attribute name="conteudo"
-			value="/WEB-INF/views/livro/cadLivro.jsp" />
+		<put-attribute name="conteudo" value="/WEB-INF/views/livro/cadLivro.jsp" />
 	</definition>
 	<definition name="editLivro" extends="main">
-		<put-attribute name="conteudo"
-			value="/WEB-INF/views/livro/editLivro.jsp" />
+		<put-attribute name="conteudo" value="/WEB-INF/views/livro/editLivro.jsp" />
 	</definition>
 	<definition name="listaLivro" extends="main">
 		<put-attribute name="conteudo"
 			value="/WEB-INF/views/livro/listaLivro.jsp" />
 	</definition>
-	
+
 	<!-- Form Relatórios -->
-	
+
 	<!-- Usuarios -->
 	<definition name="formRelUsuario" extends="main">
 		<put-attribute name="conteudo"
 			value="/WEB-INF/views/relatorios/usuarios/relUsuario.jsp" />
 	</definition>
-	
-	
+	<!-- Autores -->
+	<definition name="formRelAutores" extends="main">
+		<put-attribute name="conteudo"
+			value="/WEB-INF/views/relatorios/autores/relAutor.jsp" />
+	</definition>
+	<!-- Editoras -->
+	<definition name="formRelEditoras" extends="main">
+		<put-attribute name="conteudo"
+			value="/WEB-INF/views/relatorios/editora/relEditora.jsp" />
+	</definition>
+	<!-- Coleções -->
+	<definition name="formRelColecoes" extends="main">
+		<put-attribute name="conteudo"
+			value="/WEB-INF/views/relatorios/colecao/relColecao.jsp" />
+	</definition>
 	<definition name="errogenerico" extends="main">
 		<put-attribute name="conteudo" value="/WEB-INF/views/errogenerico.jsp" />
 	</definition>

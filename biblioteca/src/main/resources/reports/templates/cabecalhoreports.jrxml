@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cabecalhoreports" pageWidth="595" pageHeight="132" whenNoDataType="AllSectionsNoDetail" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="ea2ebd26-680f-44de-a2a9-e1e03c1102b9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="Nomerelatorio" class="java.lang.String"/>
+	<group name="Group1">
+		<groupExpression><![CDATA[(int)($V{REPORT_COUNT}/15)]]></groupExpression>
+	</group>
+	<group name="Group2">
+		<groupExpression><![CDATA[(int)($V{REPORT_COUNT}/5)]]></groupExpression>
+	</group>
+	<title>
+		<band height="132" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-1" y="0" width="555" height="95" backcolor="#000000" uuid="f0648eb0-f4b1-4e1e-9afa-ba370e073044"/>
+				<staticText>
+					<reportElement style="Title" x="0" y="1" width="555" height="66" uuid="2c277d49-13ce-4a99-bc63-5dde7e68e03c"/>
+					<textElement textAlignment="Center">
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Biblioteca]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="SubTitle" x="0" y="67" width="555" height="25" forecolor="#FFFFFF" uuid="a6e8e92d-b3ed-4d0c-81b4-294f28963264"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$P{Nomerelatorio}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="100" width="555" height="32" forecolor="#000000" backcolor="#428DC9" uuid="ae4a601f-2e46-4264-bbaf-5dbbbc30cfd0"/>
+				<textField pattern="EEEEE, dd &apos;de&apos;  MMMMM &apos;de&apos; yyyy">
+					<reportElement x="280" y="12" width="268" height="20" forecolor="#FFFFFF" uuid="5c5cb6b6-235b-4339-abeb-8171e8c73a20"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+</jasperReport>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rel_colecoes" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="20" bottomMargin="20" uuid="d94dcdeb-367d-4189-add2-4a73686fa1cf">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="QUERY_PARAMETERS" class="java.util.Map"/>
+	<parameter name="usuario_logado" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get("usuario_logado")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="parteNome" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[$P{QUERY_PARAMETERS}.get("parteNome")]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select nome
+from Colecao
+Where(usuario_id = $P{usuario_logado} OR $P{usuario_logado} IS NULL )
+AND (nome like concat($P{parteNome},'%') or $P{parteNome} is null)]]>
+	</queryString>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="c3e32334-7058-4ec9-9661-b8f09211ab99"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="19" width="555" height="1" uuid="8a224e76-6aa3-4044-a343-3f94187775e6"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="477" height="20" uuid="c3994d5c-3936-40c0-a71a-1e6f24849c76"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<noData>
+		<band height="50">
+			<staticText>
+				<reportElement x="143" y="15" width="268" height="20" uuid="dee33f5e-eb09-4f28-a09d-03904903d496"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="16"/>
+				</textElement>
+				<text><![CDATA[Nenhum registro encontrado]]></text>
+			</staticText>
+		</band>
+	</noData>
+</jasperReport>

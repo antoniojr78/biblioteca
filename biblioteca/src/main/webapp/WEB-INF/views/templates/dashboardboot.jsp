@@ -75,9 +75,9 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Relatórios <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                   <li><a href="<c:url value="/relatorios/formRelUsuarios"/>">Usuários</a></li>                  
-                  <li><a href="#">Autores</a></li>
-                  <li><a href="#">Coleções</a></li>
-                  <li><a href="#">Editoras</a></li>                  
+                  <li><a href="<c:url value="/relatorios/formRelAutores"/>">Autores</a></li>
+                  <li><a href="<c:url value="/relatorios/formRelColecoes"/>">Coleções</a></li>
+                  <li><a href="<c:url value="/relatorios/formRelEditoras"/>">Editoras</a></li>                  
                   <li><a href="#">Livros</a></li>
                   <li><a href="#">Livros Emprestados</a></li>
                   <li><a href="#">Lista de Desejo</a></li>                 

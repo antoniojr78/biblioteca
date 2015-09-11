@@ -3,15 +3,15 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<h2 class="sub-header">Relatório Usuários</h2>
+<h2 class="sub-header">Relatório Editoras</h2>
 <div class="col-sm-6">
-	<c:url value="/relatorios/usuarios2" var="linkAct" />
+	<c:url value="/relatorios/editoras" var="linkAct" />
 
 	<div class="alert alert-info"
 		style='display:${msg==null?"none":"line"}' role="alert">${msg }
 	</div>
 
-	<sf:form modelAttribute="filros" target="_blank" action="${linkAct}"
+	<sf:form modelAttribute="filtros" target="_blank" action="${linkAct}"
 		class="form-horizontal" role="form">
 		<sf:errors path="*" element="div" role="alert"
 			cssClass="alert alert-danger" />

@@ -3,7 +3,7 @@ package br.com.viniciusmrosa.report;
 public enum TemplateRel {
 	
 	
-	TEMPLATE_PORTRAIT("template_portrait.jasper"),TEMPLATE_LANDSCAPE("template)landscape.jasper");
+	TEMPLATE_PORTRAIT("template_portrait.jrxml"),TEMPLATE_LANDSCAPE("template)landscape.jasper");
 	private String nomeArquivoTemplate;
 	
 	
@@ -13,7 +13,8 @@ public enum TemplateRel {
 
 
 	public String getNomeArquivoTemplate() {
-		return "/resources/reports/templates/"+ nomeArquivoTemplate;
+		return "classpath:reports/templates/"+ nomeArquivoTemplate;
+		
 	}
 	
 	

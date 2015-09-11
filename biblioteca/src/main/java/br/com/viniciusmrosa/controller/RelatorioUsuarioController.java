@@ -12,10 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView;
 
 import br.com.viniciusmrosa.exception.ErroRelatorioPDFException;
 import br.com.viniciusmrosa.filtrosrel.FiltroRelEntidadeBase;
-import br.com.viniciusmrosa.security.SecurityUtils;
 import br.com.viniciusmrosa.services.RelatoriosService;
 
 
@@ -29,11 +29,10 @@ public class RelatorioUsuarioController {
 	
 	@RequestMapping("/usuarios")
 	@ResponseBody
-	public void relUsuarios(HttpServletRequest request, HttpServletResponse response, FiltroRelEntidadeBase filtros){
+	public void relUsuarios(HttpServletRequest request, HttpServletResponse response, FiltroRelEntidadeBase filtros) throws ErroRelatorioPDFException{
 		
 			
 			Map<String, Object> parametros = new HashMap<String, Object>();
-			System.out.println("RelatorioUsuarioController:" + filtros.getParteNome());
 			parametros.put("arquivo_jasper","/resources/reports/usuario/rel_usuarios.jasper");
 			parametros.put("nome_arquivo_rel","relatorioUsuarios.pdf");						
 			parametros.put("NOME_REL", "Relatório de Usuários");
@@ -41,14 +40,9 @@ public class RelatorioUsuarioController {
 			Map<String,Object> queryParams = new HashMap<String,Object>();			
 			queryParams.put("parteNome", filtros.getParteNome());
 			parametros.put("QUERY_PARAMETERS", queryParams);
-			try {
-				relatorioService.gerarRelatorio(request, response, parametros);
-			} catch (ErroRelatorioPDFException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			
-		
+			relatorioService.gerarRelatorio(request, response, parametros);
+
 	}
 	
 	@RequestMapping("/formRelUsuarios")
@@ -60,4 +54,19 @@ public class RelatorioUsuarioController {
 	}
 
 
+	@RequestMapping("/usuarios2")
+	public JasperReportsMultiFormatView emitirRelaUsuario(FiltroRelEntidadeBase filtros) throws ErroRelatorioPDFException{
+		
+		Map<String, Object> parametros = new HashMap<String, Object>();
+		parametros.put("arquivo_jasper","classpath*:rel_usuarios.jasper");
+		parametros.put("nome_arquivo_rel","relatorioUsuarios.pdf");						
+		parametros.put("NOME_REL", "Relatório de Usuários");
+		
+		Map<String,Object> queryParams = new HashMap<String,Object>();			
+		queryParams.put("parteNome", filtros.getParteNome());
+		parametros.put("QUERY_PARAMETERS", queryParams);
+		
+		return relatorioService.gerarRelatorioSpring(parametros);
+		
+	}
 }

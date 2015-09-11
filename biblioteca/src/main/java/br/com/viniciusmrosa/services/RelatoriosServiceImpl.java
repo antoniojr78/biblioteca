@@ -10,6 +10,8 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView;
+import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 
 import br.com.viniciusmrosa.exception.ErroRelatorioPDFException;
 import br.com.viniciusmrosa.report.TemplateRel;
@@ -30,11 +32,17 @@ public class RelatoriosServiceImpl implements RelatoriosService {
 	@Autowired
 	private SecurityUtils securityUtils;
 	
+	@Autowired
+	private HttpServletRequest  request;
+	
+
+	
 	private String arquivoJasper;
 	private String nomeArquivo;
-	private final static String KEY_ARQUIVO_JASPER = "arquivo_jasper";
-	private final static String KEY_NOME_ARQUIVO_REL = "nome_arquivo_rel";
-	private final static String KEY_USUARIO_LOGADO = "usuario_logado";
+	private final String KEY_ARQUIVO_JASPER = "arquivo_jasper";
+	private final String KEY_NOME_ARQUIVO_REL = "nome_arquivo_rel";
+	private final String KEY_USUARIO_LOGADO = "usuario_logado";
+	private final String KEY_IS_MASTER = "isMaster";
 	
 	final static Logger logger = Logger.getLogger(RelatoriosServiceImpl.class);
 	
@@ -53,21 +61,30 @@ public class RelatoriosServiceImpl implements RelatoriosService {
 			nomeArquivo = "Relatorio.pdf";
 			logger.warn("Parâmetro " + KEY_NOME_ARQUIVO_REL +  " não definido. Utilizando nome de aruqivo padrão");
 		}		
+		
 		parametros.put("ARQUIVO_REL", arquivoJasper);
 		parametros.put(JRParameter.REPORT_LOCALE, request.getLocale());
+		parametros.put(KEY_IS_MASTER, securityUtils.buscaUsuarioLogado().isMaster());	
 		parametros.put(KEY_USUARIO_LOGADO,securityUtils.buscaUsuarioLogado().getId());
+		
 		try {
 			java.io.InputStream jasperStream = this.getClass()
 					.getResourceAsStream(TemplateRel.TEMPLATE_PORTRAIT.getNomeArquivoTemplate());
 			JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
+			jasperStream.close();
 			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, dataSource.getConnection());
 			//this.relatorioGerado = jasperPrint.getPages().size() > 0;
 			//if (isRelatorioGerado()) {
 				response.setContentType("application/pdf");
 				response.setHeader("Content-disposition", "inline; filename="+nomeArquivo);
 
-				final OutputStream outStream = response.getOutputStream();
+				OutputStream outStream = response.getOutputStream();
 				JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
+				
+				//deve ser dar um flush/close para forçar uma nova outpustrem quando chamar um novo relatório
+				response.getOutputStream().flush();
+				response.getOutputStream().close();
+				
 			//}
 			
 		} catch (Exception e) {
@@ -75,6 +92,39 @@ public class RelatoriosServiceImpl implements RelatoriosService {
 			throw new ErroRelatorioPDFException(e.getMessage());
 		}
 	}
+
+	@Override
+	public JasperReportsMultiFormatView gerarRelatorioSpring(Map<String, Object> parametros) throws ErroRelatorioPDFException {
+		JasperReportsMultiFormatView pdfView= new JasperReportsMultiFormatView();
+		
+		// TODO Auto-generated method stub
+		arquivoJasper = (String) parametros.get(KEY_ARQUIVO_JASPER);
+		nomeArquivo = (String) parametros.get(KEY_NOME_ARQUIVO_REL);
+		
+		
+		if(null==arquivoJasper) throw new ErroRelatorioPDFException("Parâmetro " + KEY_ARQUIVO_JASPER +  " é obrigatório");
+		
+		if(null==nomeArquivo) {
+			nomeArquivo = "Relatorio.pdf";
+			logger.warn("Parâmetro " + KEY_NOME_ARQUIVO_REL +  " não definido. Utilizando nome de aruqivo padrão");
+		}		
+		
+		parametros.put("ARQUIVO_REL", arquivoJasper);
+		parametros.put(JRParameter.REPORT_LOCALE, request.getLocale());
+		parametros.put(KEY_IS_MASTER, securityUtils.buscaUsuarioLogado().isMaster());	
+		parametros.put(KEY_USUARIO_LOGADO,securityUtils.buscaUsuarioLogado().getId());
+		pdfView.setServletContext(request.getServletContext());
+		pdfView.setUrl("classpath:/reports/templates/template_portrait.jasper");
+		parametros.put("formato","pdf");
+		pdfView.setFormatKey("formato");
+		pdfView.setExporterParameters(parametros);
+		
+		return pdfView;
+		
+		
+	}
+
+
 	
 	
 }

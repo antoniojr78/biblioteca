@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rel_autores" language="groovy" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="20" bottomMargin="20" uuid="55289ce9-cf63-4133-a24e-725887d2f36c">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rel_autores" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="20" bottomMargin="20" uuid="55289ce9-cf63-4133-a24e-725887d2f36c">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="QUERY_PARAMETERS" class="java.util.Map" isForPrompting="false"/>
-	<parameter name="usuario_logado" class="java.lang.Long">
+	<parameter name="usuario_logado" class="java.lang.String">
 		<defaultValueExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get("usuario_logado")]]></defaultValueExpression>
 	</parameter>
 	<parameter name="parteNome" class="java.lang.String">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[$P{QUERY_PARAMETERS}.get("parteNome")]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[Select nome
 From Autor
-Where(usuario_id =  $P{usuario_logado})
+Where(usuario_id =  $P{usuario_logado} or $P{usuario_logado} is null )
 AND (nome like concat($P{parteNome},'%') OR $P{parteNome} IS NULL)]]>
 	</queryString>
 	<field name="nome" class="java.lang.String">
@@ -29,7 +29,7 @@ AND (nome like concat($P{parteNome},'%') OR $P{parteNome} IS NULL)]]>
 				<text><![CDATA[Nome]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="21" width="595" height="1" uuid="3a21a4c6-caf6-4fff-afb5-de56639edb13"/>
+				<reportElement x="0" y="21" width="555" height="1" uuid="3a21a4c6-caf6-4fff-afb5-de56639edb13"/>
 			</line>
 		</band>
 	</columnHeader>
