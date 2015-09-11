@@ -29,9 +29,9 @@
 			<tbody>
 			<c:forEach var="usuario" items="${usuarios}">
 				<tr>
-					
-					<td style="text-align:center" ><sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#usuario)"> <a href="<c:url value="/editUsuario/${usuario.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </sec:authorize> </td>
-					<td style="text-align:center"> <sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#usuario)"><span title="Excluir" id="icon-delete" class="glyphicon glyphicon-remove" style="color:red"></span> </sec:authorize> </td>
+					<sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#usuario)" var="podeAlterar"/> 
+					<td style="text-align:center" ><c:if test="${podeAlterar }"> <a href="<c:url value="/editUsuario/${usuario.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </c:if> </td>
+					<td style="text-align:center"><c:if test="${podeAlterar }"> <span title="Excluir" id="icon-delete" class="glyphicon glyphicon-remove" style="color:red"></span> </c:if> </td>
 					
 					<td>${usuario.id}</td>
 					<td>${usuario.login}</td>

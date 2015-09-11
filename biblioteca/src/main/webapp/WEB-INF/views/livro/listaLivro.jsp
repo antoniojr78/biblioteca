@@ -32,9 +32,9 @@
 			<tbody>
 			<c:forEach var="livro" items="${livros}">
 				<tr>
-					
-					<td style="text-align:center; width:10px;" ><sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#livro)"> <a href="<c:url value="/editLivro/${livro.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </sec:authorize> </td>
-					<td  style="text-align:center; width:10px;"> <sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#livro)"><span title="Excluir" data-toggle="confirmation" id="icon-delete" class="glyphicon glyphicon-remove" style="color:red"></span> </sec:authorize> </td>
+					<sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#livro)" var="podeAlterar" /> 
+					<td style="text-align:center; width:10px;" ><c:if test="${podeAlterar }"><a href="<c:url value="/editLivro/${livro.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </c:if> </td>
+					<td  style="text-align:center; width:10px;"> <c:if test="${podeAlterar }"><span title="Excluir" data-toggle="confirmation" id="icon-delete" class="glyphicon glyphicon-remove" style="color:red"></span> </c:if> </td>
 					
 					<td>${livro.id}</td>					
 					<td >${livro.isbn}</td>		

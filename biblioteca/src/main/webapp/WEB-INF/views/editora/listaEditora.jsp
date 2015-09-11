@@ -28,9 +28,9 @@
 			<tbody>
 			<c:forEach var="editora" items="${editoras}">
 				<tr>
-					
-					<td style="text-align:center; width:10px;" ><sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#editora)"> <a href="<c:url value="/editEditora/${editora.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </sec:authorize> </td>
-					<td  style="text-align:center; width:10px;"> <sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#editora)"><span title="Excluir" id="icon-delete" class="glyphicon glyphicon-remove" style="color:red"></span> </sec:authorize> </td>
+					<sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#editora)" var="podeAlterar" />
+					<td style="text-align:center; width:10px;" ><c:if test="${podeAlterar }"> <a href="<c:url value="/editEditora/${editora.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </c:if> </td>
+					<td  style="text-align:center; width:10px;"><c:if test="${podeAlterar }"><span title="Excluir" id="icon-delete" class="glyphicon glyphicon-remove" style="color:red"></span> </c:if> </td>
 					
 					<td>${editora.id}</td>					
 					<td style="width:90%">${editora.nome}</td>					

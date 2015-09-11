@@ -30,9 +30,9 @@
 			<tbody>
 			<c:forEach var="autor" items="${autores}">
 				<tr>
-					 
-					<td style="text-align:center; width:10px;" ><sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#autor)"> <a href="<c:url value="/editAutor/${autor.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </sec:authorize> </td>
-					<td style="text-align:center; width:10px;"> <sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#autor)"><span id="icon-delete" title="Excluir" class="glyphicon glyphicon-remove" style="color:red"></span> </sec:authorize> </td>
+					 <sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#autor)" var="podeAlterar" /> 
+					<td style="text-align:center; width:10px;" ><c:if test="${podeAlterar }"><a href="<c:url value="/editAutor/${autor.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </c:if> </td>
+					<td style="text-align:center; width:10px;"> <c:if test="${podeAlterar }"><span id="icon-delete" title="Excluir" class="glyphicon glyphicon-remove" style="color:red"></span> </c:if> </td>
 					
 					<td>${autor.id}</td>					
 					<td style="width:90%">${autor.nome}</td>					
