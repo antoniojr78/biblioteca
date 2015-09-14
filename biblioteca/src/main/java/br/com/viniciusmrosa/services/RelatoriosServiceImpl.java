@@ -10,6 +10,8 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView;
 import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 
@@ -94,12 +96,12 @@ public class RelatoriosServiceImpl implements RelatoriosService {
 	}
 
 	@Override
-	public JasperReportsMultiFormatView gerarRelatorioSpring(Map<String, Object> parametros) throws ErroRelatorioPDFException {
-		JasperReportsMultiFormatView pdfView= new JasperReportsMultiFormatView();
+	public ModelAndView gerarRelatorioSpring(ModelMap modelMap) throws ErroRelatorioPDFException {
+		
 		
 		// TODO Auto-generated method stub
-		arquivoJasper = (String) parametros.get(KEY_ARQUIVO_JASPER);
-		nomeArquivo = (String) parametros.get(KEY_NOME_ARQUIVO_REL);
+		arquivoJasper = (String) modelMap.get(KEY_ARQUIVO_JASPER);
+		nomeArquivo = (String) modelMap.get(KEY_NOME_ARQUIVO_REL);
 		
 		
 		if(null==arquivoJasper) throw new ErroRelatorioPDFException("Parâmetro " + KEY_ARQUIVO_JASPER +  " é obrigatório");
@@ -109,17 +111,16 @@ public class RelatoriosServiceImpl implements RelatoriosService {
 			logger.warn("Parâmetro " + KEY_NOME_ARQUIVO_REL +  " não definido. Utilizando nome de aruqivo padrão");
 		}		
 		
-		parametros.put("ARQUIVO_REL", arquivoJasper);
-		parametros.put(JRParameter.REPORT_LOCALE, request.getLocale());
-		parametros.put(KEY_IS_MASTER, securityUtils.buscaUsuarioLogado().isMaster());	
-		parametros.put(KEY_USUARIO_LOGADO,securityUtils.buscaUsuarioLogado().getId());
-		pdfView.setServletContext(request.getServletContext());
-		pdfView.setUrl("classpath:/reports/templates/template_portrait.jasper");
-		parametros.put("formato","pdf");
-		pdfView.setFormatKey("formato");
-		pdfView.setExporterParameters(parametros);
+		modelMap.put("ARQUIVO_REL", arquivoJasper);
+		modelMap.put("datasource", dataSource);
+		modelMap.put(JRParameter.REPORT_LOCALE, request.getLocale());
+		modelMap.put(KEY_IS_MASTER, securityUtils.buscaUsuarioLogado().isMaster());	
+		modelMap.put(KEY_USUARIO_LOGADO,securityUtils.buscaUsuarioLogado().getId());		
+		modelMap.put("format","pdf");
+				
+		ModelAndView reportView = new ModelAndView(TemplateRel.TEMPLATE_PORTRAIT.getNomeArquivoTemplate(),modelMap);
 		
-		return pdfView;
+		return reportView;
 		
 		
 	}
