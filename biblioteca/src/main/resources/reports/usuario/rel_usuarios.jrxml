@@ -17,8 +17,7 @@
 	<queryString>
 		<![CDATA[Select login,nome
 From Usuario
-Where(usuario_id = $P{usuario_logado} or id = $P{usuario_logado} or $P{isMaster} = true)
-AND (nome like concat($P{parteNome},'%') or $P{parteNome} is null)]]>
+Where (nome like concat($P{parteNome},'%') or $P{parteNome} is null)]]>
 	</queryString>
 	<field name="login" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>

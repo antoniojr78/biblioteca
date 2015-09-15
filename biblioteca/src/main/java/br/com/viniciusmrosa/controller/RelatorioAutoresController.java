@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,36 +36,21 @@ public class RelatorioAutoresController {
 	
 	
 	@RequestMapping("/autores")
-	@ResponseBody
-	public void emitirRelAutores(ModelAndView mav, FiltroRelEntidadeBase filtros, HttpServletRequest request,HttpServletResponse response) 
+	public ModelAndView emitirRelAutores(FiltroRelEntidadeBase filtros,ModelMap model) 
 			throws ErroRelatorioPDFException{
 		/**
 		 * Exception será tratada pelo ExceptionHandlerController
 		 */
-		Map<String, Object> parametros = new HashMap<String, Object>();
-		parametros.put("arquivo_jasper","/resources/reports/autor/rel_autores.jasper");
-		parametros.put("nome_arquivo_rel","relatorioAutores.pdf");						
-		parametros.put("NOME_REL", "Relatório de Autores");
+		
+		model.put("arquivo_jasper","/reports/autor/rel_autores.jasper");
+		model.put("nome_arquivo_rel","relatorioAutores.pdf");						
+		model.put("NOME_REL", "Relatório de Autores");
 		
 		Map<String,Object> queryParams = new HashMap<String,Object>();			
 		queryParams.put("parteNome", filtros.getParteNome());
-		parametros.put("QUERY_PARAMETERS", queryParams);
-		//try {
-			relatorioService.gerarRelatorio(request, response, parametros);
-		//	return null;
-		//} catch (ErroRelatorioPDFException e) {
-			// TODO Auto-generated catch block
-			
-		//	String url = request.getScheme()+ "://" + request.getLocalName() ;			
-		//	url += ":" + request.getServerPort();
-		//	url += request.getContextPath() +"/errogenerico";
-		//	System.out.println("URL: "+ url);
-		//	mav.addObject("msg",e.getMessage());
-		//	mav.setViewName("errogenerico");
-			
-			
-		//}
-		
-		
+		model.put("QUERY_PARAMETERS", queryParams);
+
+		return relatorioService.gerarRelatorioSpring(model);
+				
 	}
 }

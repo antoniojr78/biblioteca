@@ -38,24 +38,19 @@ public class RelatorioUsuarioController {
 	@Autowired
 	private DataSource dataSource;
 	
-	@Autowired
-	private HttpServletRequest request;
 	
-	@RequestMapping("/usuarios")
-	@ResponseBody
-	public void relUsuarios(HttpServletRequest request, HttpServletResponse response, FiltroRelEntidadeBase filtros) throws ErroRelatorioPDFException{
+	@RequestMapping("/usuarios")	
+	public ModelAndView relUsuarios(ModelMap model,FiltroRelEntidadeBase filtros) throws ErroRelatorioPDFException{
 		
-			
-			Map<String, Object> parametros = new HashMap<String, Object>();
-			parametros.put("arquivo_jasper","/resources/reports/usuario/rel_usuarios.jasper");
-			parametros.put("nome_arquivo_rel","relatorioUsuarios.pdf");						
-			parametros.put("NOME_REL", "Relatório de Usuários");
-			
-			Map<String,Object> queryParams = new HashMap<String,Object>();			
-			queryParams.put("parteNome", filtros.getParteNome());
-			parametros.put("QUERY_PARAMETERS", queryParams);
-			
-			relatorioService.gerarRelatorio(request, response, parametros);
+		model.put("arquivo_jasper","/reports/usuario/rel_usuarios.jasper");
+		model.put("nome_arquivo_rel","relatorioUsuarios.pdf");						
+		model.put("NOME_REL", "Relatório de Usuários");
+		
+		Map<String,Object> queryParams = new HashMap<String,Object>();			
+		queryParams.put("parteNome", filtros.getParteNome());
+		model.put("QUERY_PARAMETERS", queryParams);
+
+		return relatorioService.gerarRelatorioSpring(model);
 
 	}
 	

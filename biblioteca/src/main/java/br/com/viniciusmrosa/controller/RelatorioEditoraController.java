@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import br.com.viniciusmrosa.exception.ErroRelatorioPDFException;
 import br.com.viniciusmrosa.filtrosrel.FiltroRelEntidadeBase;
@@ -30,18 +32,18 @@ public class RelatorioEditoraController {
 	}
 	
 	@RequestMapping("/editoras")
-	public void emitirRelEditoras(HttpServletRequest request,HttpServletResponse response, FiltroRelEntidadeBase filtros) 
+	public ModelAndView emitirRelEditoras(ModelMap model, FiltroRelEntidadeBase filtros) 
 			throws ErroRelatorioPDFException{
 		
-		Map<String, Object> parametros = new HashMap<String, Object>();
-		parametros.put("arquivo_jasper","/resources/reports/editora/rel_editoras.jasper");
-		parametros.put("nome_arquivo_rel","relatorioEditoras.pdf");						
-		parametros.put("NOME_REL", "Relatório de Usuários");
+		
+		model.put("arquivo_jasper","/reports/editora/rel_editoras.jasper");
+		model.put("nome_arquivo_rel","relatorioEditoras.pdf");						
+		model.put("NOME_REL", "Relatório de Usuários");
 		
 		Map<String,Object> queryParams = new HashMap<String,Object>();			
 		queryParams.put("parteNome", filtros.getParteNome());
-		parametros.put("QUERY_PARAMETERS", queryParams);
-		relatorioService.gerarRelatorio(request, response, parametros);
+		model.put("QUERY_PARAMETERS", queryParams);
+		return relatorioService.gerarRelatorioSpring(model);
 	}
 	
 }

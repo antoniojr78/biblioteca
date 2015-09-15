@@ -5,7 +5,7 @@
 
 <h2 class="sub-header">Relatório Usuários</h2>
 <div class="col-sm-6">
-	<c:url value="/relatorios/usuarios2" var="linkAct" />
+	<c:url value="/relatorios/usuarios" var="linkAct" />
 
 	<div class="alert alert-info"
 		style='display:${msg==null?"none":"line"}' role="alert">${msg }

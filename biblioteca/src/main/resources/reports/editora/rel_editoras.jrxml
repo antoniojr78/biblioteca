@@ -14,8 +14,7 @@
 	<queryString>
 		<![CDATA[select nome
 from Editora
-Where(usuario_id = $P{usuario_logado} OR $P{usuario_logado} IS NULL )
-AND (nome like concat($P{parteNome},'%') or $P{parteNome} is null)]]>
+Where (nome like concat($P{parteNome},'%') or $P{parteNome} is null)]]>
 	</queryString>
 	<field name="nome" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
