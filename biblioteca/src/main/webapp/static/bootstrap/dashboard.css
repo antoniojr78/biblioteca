@@ -109,3 +109,8 @@ body {
 .Alertoculto {display:none;}
 
 #icon-delete{cursor:pointer ;}
+
+.radioFomatos>label{
+	
+	margin-left: 5px !important;
+}

@@ -4,7 +4,7 @@
 
 
 <h2 class="sub-header">Relatório Usuários</h2>
-<div class="col-sm-6">
+<div class="col-sm-12">
 	<c:url value="/relatorios/usuarios" var="linkAct" />
 
 	<div class="alert alert-info"
@@ -17,11 +17,17 @@
 			cssClass="alert alert-danger" />
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="email">Nome:</label>
-			<div class="col-sm-10">
+			<div class="col-sm-6">
 				<sf:input path="parteNome" type="text" class="form-control" id="parteNome"
 					placeholder="Insira o nome ou parte dele para pesquisar" />
 			</div>
 		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="email">Formatos:</label>
+			<div class="col-sm-6">
+				<sf:radiobuttons path="formato" items="${formatos}" element="div" cssClass="radioFomatos"/>
+			</div>
+		</div>		
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<!-- onclick="exibirRelatorio('${linkAct}',parteNome.value)" -->

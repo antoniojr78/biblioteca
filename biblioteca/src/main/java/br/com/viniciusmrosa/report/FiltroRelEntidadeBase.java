@@ -1,4 +1,4 @@
-package br.com.viniciusmrosa.filtrosrel;
+package br.com.viniciusmrosa.report;
 
 import java.util.Date;
 
@@ -7,6 +7,7 @@ public class FiltroRelEntidadeBase {
 	private String parteNome;
 	private Date   dataCriacao;
 	private String criadoPor;
+	private FormatoExport formato;
 	
 	public String getParteNome() {
 		return parteNome;
@@ -25,6 +26,12 @@ public class FiltroRelEntidadeBase {
 	}
 	public void setCriadoPor(String criadoPor) {
 		this.criadoPor = criadoPor;
+	}
+	public FormatoExport getFormato() {
+		return formato;
+	}
+	public void setFormato(FormatoExport formato) {
+		this.formato = formato;
 	}
 	
 	

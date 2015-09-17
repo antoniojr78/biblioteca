@@ -19,11 +19,15 @@ import br.com.viniciusmrosa.exception.ErroRelatorioPDFException;
 import br.com.viniciusmrosa.report.TemplateRel;
 import br.com.viniciusmrosa.security.SecurityUtils;
 import net.sf.jasperreports.engine.JRParameter;
+import net.sf.jasperreports.engine.JRPropertiesUtil;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.export.JRHtmlExporterConfiguration;
+import net.sf.jasperreports.engine.export.JRHtmlExporterParameter;
 import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.export.HtmlExporterConfiguration;
 
 @Service("relatorioService")
 public class RelatoriosServiceImpl implements RelatoriosService {
@@ -115,11 +119,10 @@ public class RelatoriosServiceImpl implements RelatoriosService {
 		modelMap.put("datasource", dataSource);
 		modelMap.put(JRParameter.REPORT_LOCALE, request.getLocale());
 		modelMap.put(KEY_IS_MASTER, securityUtils.buscaUsuarioLogado().isMaster());	
-		modelMap.put(KEY_USUARIO_LOGADO,securityUtils.buscaUsuarioLogado().getId());		
-		modelMap.put("format","pdf");
-				
+		modelMap.put(KEY_USUARIO_LOGADO,securityUtils.buscaUsuarioLogado().getId());
+		modelMap.put("net.sf.jasperreports.engine.export.JRHtmlExporterParameter.IMAGES_URI","static/images/reports/");
+
 		ModelAndView reportView = new ModelAndView(TemplateRel.TEMPLATE_PORTRAIT.getNomeArquivoTemplate(),modelMap);
-		
 		return reportView;
 		
 		

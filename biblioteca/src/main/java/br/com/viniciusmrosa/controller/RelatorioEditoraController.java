@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.viniciusmrosa.exception.ErroRelatorioPDFException;
-import br.com.viniciusmrosa.filtrosrel.FiltroRelEntidadeBase;
+import br.com.viniciusmrosa.report.FiltroRelEntidadeBase;
 import br.com.viniciusmrosa.services.RelatoriosService;
 
 @Controller

@@ -19,7 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView;
 
 import br.com.viniciusmrosa.exception.ErroRelatorioPDFException;
-import br.com.viniciusmrosa.filtrosrel.FiltroRelEntidadeBase;
+import br.com.viniciusmrosa.report.FiltroRelEntidadeBase;
+import br.com.viniciusmrosa.report.FormatoExport;
 import br.com.viniciusmrosa.services.RelatoriosService;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
@@ -45,7 +46,7 @@ public class RelatorioUsuarioController {
 		model.put("arquivo_jasper","/reports/usuario/rel_usuarios.jasper");
 		model.put("nome_arquivo_rel","relatorioUsuarios.pdf");						
 		model.put("NOME_REL", "Relatório de Usuários");
-		
+		model.put("format",filtros.getFormato().getFormat());
 		Map<String,Object> queryParams = new HashMap<String,Object>();			
 		queryParams.put("parteNome", filtros.getParteNome());
 		model.put("QUERY_PARAMETERS", queryParams);
@@ -58,23 +59,26 @@ public class RelatorioUsuarioController {
 	public String formRelUsuario(Model model){
 		
 		model.addAttribute("filros",new FiltroRelEntidadeBase());
+		model.addAttribute("formatos",FormatoExport.values());
+		
 		return "formRelUsuario";
 		
 	}
 
 
-	@RequestMapping("/usuarios2")
+	/*@RequestMapping("/usuarios2")
 	public ModelAndView emitirRelaUsuario(ModelMap model,FiltroRelEntidadeBase filtros) throws ErroRelatorioPDFException, SQLException{
 		
 		model.put("arquivo_jasper","/reports/usuario/rel_usuarios.jasper");
 		model.put("nome_arquivo_rel","relatorioUsuarios.pdf");						
 		model.put("NOME_REL", "Relatório de Usuários");
-		
+		//System.out.println("Formato:"+ filtros.getFormato().getFormat());
+		model.put("format",filtros.getFormato().getFormat());
 		Map<String,Object> queryParams = new HashMap<String,Object>();			
 		queryParams.put("parteNome", filtros.getParteNome());
 		model.put("QUERY_PARAMETERS", queryParams);
 
 		return relatorioService.gerarRelatorioSpring(model);
 
-	}
+	}*/
 }
