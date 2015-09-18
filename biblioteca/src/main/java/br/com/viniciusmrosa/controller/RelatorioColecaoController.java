@@ -37,7 +37,7 @@ public class RelatorioColecaoController {
 			throws ErroRelatorioPDFException{
 		
 		model.put("arquivo_jasper","/reports/colecao/rel_colecoes.jasper");
-		model.put("nome_arquivo_rel","relatorioColecoes.pdf");						
+		model.put("format",filtros.getFormato().getFormat());			
 		model.put("NOME_REL", "Relatório de Coleções");
 		
 		Map<String,Object> queryParams = new HashMap<String,Object>();			

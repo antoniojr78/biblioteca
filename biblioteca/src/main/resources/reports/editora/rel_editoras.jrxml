@@ -29,7 +29,7 @@ Where (nome like concat($P{parteNome},'%') or $P{parteNome} is null)]]>
 				<text><![CDATA[Nome]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="19" width="555" height="1" uuid="8a224e76-6aa3-4044-a343-3f94187775e6"/>
+				<reportElement x="0" y="21" width="555" height="1" uuid="8a224e76-6aa3-4044-a343-3f94187775e6"/>
 			</line>
 		</band>
 	</columnHeader>

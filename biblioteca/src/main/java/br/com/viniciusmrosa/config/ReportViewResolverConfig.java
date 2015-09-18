@@ -30,7 +30,12 @@ import net.sf.jasperreports.engine.export.JRHtmlExporterParameter;
 @Configuration
 public class ReportViewResolverConfig {
 
-
+	/**
+	 * 
+	 * @param context
+	 * @return JasperReportsViewResolver
+	 * View Resolver utilizado para renderizar o retorno dos relatórios feitos pelo jasper Reports
+	 */
 	@Bean
 	public JasperReportsViewResolver getJasperReportsViewResolver(WebApplicationContext context){
 		
@@ -41,10 +46,10 @@ public class ReportViewResolverConfig {
 		resolver.setReportDataKey("datasource");
 		resolver.setViewNames("template_*");
 		resolver.setViewClass(JasperReportsMultiFormatView.class);		
-		Map<String, Object> exporterParameters = new HashMap<>();
-		
-			
-		exporterParameters.put("net.sf.jasperreports.engine.export.JRHtmlExporterParameter.IMAGES_URI",context.getServletContext().getContextPath()+"/static/images/reports/");
+		Map<String, Object> exporterParameters = new HashMap<>();					
+	//	exporterParameters.put("net.sf.jasperreports.engine.export.JRHtmlExporterParameter.IMAGES_URI",context.getServletContext().getContextPath()+"/livro/capa/1");
+		exporterParameters.put("net.sf.jasperreports.engine.export.JRHtmlExporterParameter.IMAGES_URI",context.getServletContext().getContextPath()+"/relatorios/image?image=");
+		exporterParameters.put("net.sf.jasperreports.engine.export.JRHtmlExporterParameter.IS_USING_IMAGES_TO_ALIGN",Boolean.FALSE);		
 		resolver.setExporterParameters(exporterParameters);
 		resolver.setOrder(0);
 		return resolver;

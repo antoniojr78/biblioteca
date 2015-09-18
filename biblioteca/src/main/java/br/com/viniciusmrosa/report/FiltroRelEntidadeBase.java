@@ -7,7 +7,7 @@ public class FiltroRelEntidadeBase {
 	private String parteNome;
 	private Date   dataCriacao;
 	private String criadoPor;
-	private FormatoExport formato;
+	private FormatoExport formato = FormatoExport.PDF ;
 	
 	public String getParteNome() {
 		return parteNome;
@@ -34,6 +34,8 @@ public class FiltroRelEntidadeBase {
 		this.formato = formato;
 	}
 	
-	
+	public FormatoExport[] getFormatos(){
+		return FormatoExport.values();
+	}
 	
 }

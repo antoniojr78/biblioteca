@@ -1,10 +1,18 @@
 package br.com.viniciusmrosa.controller;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.validation.Valid;
 
+import org.hibernate.type.ImageType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -147,6 +155,22 @@ public class LivroController {
 		Livro livro = daoLivro.getById(id);
 		
 		return livro.getFoto();
+	}
+	
+	
+	@RequestMapping("/livro/capa2/{id}")	
+	@ResponseBody
+	public Image retornaCapa2(@PathVariable("id") Long id){
+		Livro livro = daoLivro.getById(id);
+		InputStream input = new ByteArrayInputStream(livro.getFoto());
+		BufferedImage image = new BufferedImage(200, 220, BufferedImage.TYPE_BYTE_BINARY);
+		try {
+			image = ImageIO.read(input);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return image;
 	}
 	
 	private Livro createNewLivro(){

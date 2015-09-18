@@ -78,7 +78,7 @@
                   <li><a href="<c:url value="/relatorios/formRelAutores"/>">Autores</a></li>
                   <li><a href="<c:url value="/relatorios/formRelColecoes"/>">Coleções</a></li>
                   <li><a href="<c:url value="/relatorios/formRelEditoras"/>">Editoras</a></li>                  
-                  <li><a href="#">Livros</a></li>
+                  <li><a href="<c:url value="/relatorios/formRelLivros"/>">Livros</a></li>
                   <li><a href="#">Livros Emprestados</a></li>
                   <li><a href="#">Lista de Desejo</a></li>                 
                   </ul>

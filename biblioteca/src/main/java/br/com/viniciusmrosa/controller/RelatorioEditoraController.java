@@ -36,10 +36,9 @@ public class RelatorioEditoraController {
 			throws ErroRelatorioPDFException{
 		
 		
-		model.put("arquivo_jasper","/reports/editora/rel_editoras.jasper");
-		model.put("nome_arquivo_rel","relatorioEditoras.pdf");						
-		model.put("NOME_REL", "Relatório de Usuários");
-		
+		model.put("arquivo_jasper","/reports/editora/rel_editoras.jasper");					
+		model.put("NOME_REL", "Relatório de Editoras");
+		model.put("format",filtros.getFormato().getFormat());
 		Map<String,Object> queryParams = new HashMap<String,Object>();			
 		queryParams.put("parteNome", filtros.getParteNome());
 		model.put("QUERY_PARAMETERS", queryParams);

@@ -43,8 +43,7 @@ public class RelatorioUsuarioController {
 	@RequestMapping("/usuarios")	
 	public ModelAndView relUsuarios(ModelMap model,FiltroRelEntidadeBase filtros) throws ErroRelatorioPDFException{
 		
-		model.put("arquivo_jasper","/reports/usuario/rel_usuarios.jasper");
-		model.put("nome_arquivo_rel","relatorioUsuarios.pdf");						
+		model.put("arquivo_jasper","/reports/usuario/rel_usuarios.jasper");				
 		model.put("NOME_REL", "Relatório de Usuários");
 		model.put("format",filtros.getFormato().getFormat());
 		Map<String,Object> queryParams = new HashMap<String,Object>();			
@@ -58,8 +57,7 @@ public class RelatorioUsuarioController {
 	@RequestMapping("/formRelUsuarios")
 	public String formRelUsuario(Model model){
 		
-		model.addAttribute("filros",new FiltroRelEntidadeBase());
-		model.addAttribute("formatos",FormatoExport.values());
+		model.addAttribute("filtros",new FiltroRelEntidadeBase());
 		
 		return "formRelUsuario";
 		

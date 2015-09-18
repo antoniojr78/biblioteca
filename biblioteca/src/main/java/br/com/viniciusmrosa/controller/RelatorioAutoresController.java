@@ -30,7 +30,7 @@ public class RelatorioAutoresController {
 	
 	@RequestMapping("/formRelAutores")
 	public String formRel(Model model){
-		model.addAttribute("filtros",new FiltroRelEntidadeBase());
+		model.addAttribute("filtros",new FiltroRelEntidadeBase());		
 		return "formRelAutores";
 	}
 	
@@ -42,10 +42,9 @@ public class RelatorioAutoresController {
 		 * Exception será tratada pelo ExceptionHandlerController
 		 */
 		
-		model.put("arquivo_jasper","/reports/autor/rel_autores.jasper");
-		model.put("nome_arquivo_rel","relatorioAutores.pdf");						
+		model.put("arquivo_jasper","/reports/autor/rel_autores.jasper");		
 		model.put("NOME_REL", "Relatório de Autores");
-		
+		model.put("format",filtros.getFormato().getFormat());
 		Map<String,Object> queryParams = new HashMap<String,Object>();			
 		queryParams.put("parteNome", filtros.getParteNome());
 		model.put("QUERY_PARAMETERS", queryParams);

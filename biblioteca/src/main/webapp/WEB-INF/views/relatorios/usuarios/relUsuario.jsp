@@ -11,7 +11,7 @@
 		style='display:${msg==null?"none":"line"}' role="alert">${msg }
 	</div>
 
-	<sf:form modelAttribute="filros" target="_blank" action="${linkAct}"
+	<sf:form modelAttribute="filtros" target="_blank" action="${linkAct}"
 		class="form-horizontal" role="form">
 		<sf:errors path="*" element="div" role="alert"
 			cssClass="alert alert-danger" />
@@ -23,9 +23,9 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-sm-2" for="email">Formatos:</label>
+			<label class="control-label col-sm-2" for="formatos">Formatos:</label>
 			<div class="col-sm-6">
-				<sf:radiobuttons path="formato" items="${formatos}" element="div" cssClass="radioFomatos"/>
+				<sf:radiobuttons path="formato" items="${filtros.formatos}" id="formatos" element="div" cssClass="radioFomatos"/>
 			</div>
 		</div>		
 		<div class="form-group">

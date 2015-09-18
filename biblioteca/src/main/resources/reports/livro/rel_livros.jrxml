@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rel_livros" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="20" bottomMargin="0" uuid="b79e1a35-a41a-4d9a-9451-489b795dceb5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     Livro.`foto` AS Livro_foto,
+     Livro.`isbn` AS Livro_isbn,
+     Livro.`sinopse` AS Livro_sinopse,
+     Livro.`titulo` AS Livro_titulo,
+     Autor.`nome` AS Autor_nome,
+     Colecao.`nome` AS Colecao_nome,
+     Editora.`nome` AS Editora_nome
+FROM
+     `Autor` Autor INNER JOIN `Livro` Livro ON Autor.`id` = Livro.`autor_id`
+     INNER JOIN `Colecao` Colecao ON Livro.`colecao_id` = Colecao.`id`
+     INNER JOIN `Editora` Editora ON Livro.`editora_id` = Editora.`id`
+]]>
+	</queryString>
+	<field name="Livro_foto" class="java.awt.Image"/>
+	<field name="Livro_isbn" class="java.lang.String"/>
+	<field name="Livro_sinopse" class="java.lang.String"/>
+	<field name="Livro_titulo" class="java.lang.String"/>
+	<field name="Autor_nome" class="java.lang.String"/>
+	<field name="Colecao_nome" class="java.lang.String"/>
+	<field name="Editora_nome" class="java.lang.String"/>
+	<detail>
+		<band height="227" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="355" height="24" uuid="8a363940-f8f4-4c98-8339-8e2ee6d65d35"/>
+				<textElement>
+					<font fontName="Times New Roman" size="18" isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Livro_titulo}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Right">
+				<reportElement x="355" y="5" width="200" height="220" uuid="3d3c17ae-938e-4c1e-a66e-b2f874200178"/>
+				<imageExpression><![CDATA[$F{Livro_foto}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="40" width="65" height="20" uuid="7ac5de1f-f2dc-46c3-9ee8-f87203ab866e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ISBN:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="66" y="40" width="235" height="20" uuid="dd76de35-5195-4f04-9dd9-c9af902a82db"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Livro_isbn}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="65" width="65" height="20" uuid="ffb075ff-0513-4fe0-bd54-0786015c2d97"/>
+				<textElement>
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Autor:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="66" y="65" width="235" height="20" uuid="32260360-37e3-496e-9e26-7ec3ceac9417"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Autor_nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="115" width="65" height="20" uuid="aa7c9127-deed-46d6-852d-873d035f6809"/>
+				<textElement>
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Coleção:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="66" y="115" width="235" height="20" uuid="4bc78e38-1630-4652-9db2-338457e3c4c3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Colecao_nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="90" width="65" height="20" uuid="9541cfad-1377-4f01-9a2f-8df587417b14"/>
+				<textElement>
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Editora:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="66" y="90" width="235" height="20" uuid="c06e2291-75af-45d9-8bb1-2f6b92f6e51e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Editora_nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="201" width="88" height="24" uuid="456a46f7-58b2-41fe-8910-c9dbd69b4eb1">
+					<printWhenExpression><![CDATA[!$F{Livro_sinopse}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sinopse]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="226" width="555" height="1" uuid="ee0f4117-1071-46fc-b715-9ab36e2c1834">
+					<printWhenExpression><![CDATA[!$F{Livro_sinopse}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+			</line>
+		</band>
+		<band height="20">
+			<printWhenExpression><![CDATA[!$F{Livro_sinopse}.isEmpty()]]></printWhenExpression>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="555" height="20" uuid="fd0bdef9-6eef-4df0-8198-dfadd3d71081"/>
+				<textElement markup="html">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Livro_sinopse}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<noData>
+		<band height="50">
+			<staticText>
+				<reportElement x="163" y="15" width="268" height="20" uuid="5db439de-77cb-4462-949f-7be2ebd7b94c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="16"/>
+				</textElement>
+				<text><![CDATA[Nenhum registro encontrado]]></text>
+			</staticText>
+		</band>
+	</noData>
+</jasperReport>
