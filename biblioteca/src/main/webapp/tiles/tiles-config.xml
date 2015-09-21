@@ -7,7 +7,8 @@
 		template="/WEB-INF/views/templates/dashboardboot.jsp">
 		<put-attribute name="titulo" value="Spring Fórum" />
 	</definition>
-
+	
+	<!-- Usuários -->
 	<definition name="cadUsuario" extends="main">
 		<put-attribute name="conteudo"
 			value="/WEB-INF/views/usuarios/cadUsuario.jsp" />
@@ -16,7 +17,6 @@
 		<put-attribute name="conteudo"
 			value="/WEB-INF/views/usuarios/editUsuario.jsp" />
 	</definition>
-
 
 	<definition name="listaUsuarios" extends="main">
 		<put-attribute name="conteudo"
@@ -28,8 +28,10 @@
 		<put-attribute name="conteudo" value="/WEB-INF/views/index.jsp" />
 	</definition>
 	<definition name="login" template="/WEB-INF/views/login.jsp" />
-
-
+	<!-- Parâmetros -->
+	<definition name="cadParametro" extends="main">
+		<put-attribute name="conteudo" value="/WEB-INF/views/parametros/cadParametros.jsp" />
+	</definition>
 	<!-- Autor -->
 	<definition name="cadAutor" extends="main">
 		<put-attribute name="conteudo" value="/WEB-INF/views/autor/cadAutor.jsp" />

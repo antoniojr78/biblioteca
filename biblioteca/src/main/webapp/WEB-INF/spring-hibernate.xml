@@ -42,6 +42,7 @@
 				<value>br.com.viniciusmrosa.modelo.Editora</value>
 				<value>br.com.viniciusmrosa.modelo.Livro</value>
 				<value>br.com.viniciusmrosa.modelo.BaseEntity</value>
+				<value>br.com.viniciusmrosa.modelo.ParametroSistema</value>
 			</array>
 		</property>
 
