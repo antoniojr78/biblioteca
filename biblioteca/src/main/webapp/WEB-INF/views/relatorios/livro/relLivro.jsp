@@ -5,7 +5,7 @@
 
 <h2 class="sub-header">Relatório Livros</h2>
 <div class="col-sm-12">
-	<c:url value="/relatorios/livros" var="linkAct" />
+	<c:url value="/servlet/relatorios/livros" var="linkAct" />
 
 	<div class="alert alert-info"
 		style='display:${msg==null?"none":"line"}' role="alert">${msg }

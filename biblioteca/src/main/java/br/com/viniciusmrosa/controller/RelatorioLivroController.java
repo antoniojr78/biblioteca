@@ -34,7 +34,7 @@ public class RelatorioLivroController {
 	
 		Map<String, String> imageMap = new HashMap<>();
 		imageMap.put("img_0_0_1", "minhaimagem.jpg");
-		model.put("NOME_REL", "Relatório de Livros");
+		model.put("NOME_REL", "Relatório de Livros");		
 		model.put("arquivo_jasper", "/reports/livro/rel_livros.jasper");
 		model.put("format", filtros.getFormato().getFormat());
 		Map<String, Object> query_params = new HashMap<>();

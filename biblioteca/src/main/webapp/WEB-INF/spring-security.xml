@@ -8,15 +8,15 @@
 	<http auto-config="true" use-expressions="true" >
 		<!-- <intercept-url pattern="/" access="ROLE_USER" /> -->
 		<form-login 
-			authentication-failure-url="/login"
-			login-page="/login" 
-			default-target-url="/apresentacao" 
+			authentication-failure-url="/servlet/login"
+			login-page="/servlet/login" 
+			default-target-url="/servlet/apresentacao" 
 			always-use-default-target="true"
 			/>
 		
-		<intercept-url pattern="/login" access ="isAnonymous()"/>
-		<intercept-url pattern="/**" access="isAuthenticated()"/>
-		<logout delete-cookies="JSESSIONID" />
+		<intercept-url pattern="/servlet/login" access ="isAnonymous()"/>
+		<intercept-url pattern="/servlet/**" access="isAuthenticated()"/>
+		<logout logout-success-url="/servlet/login" delete-cookies="JSESSIONID" />
 		<remember-me key="uniqueAndSecret" token-validity-seconds="120"/>
 	</http>
 	<bean:bean id="bAuthenticationProvider" 

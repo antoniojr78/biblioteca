@@ -28,7 +28,7 @@ import net.sf.jasperreports.engine.JRField;
 import net.sf.jasperreports.engine.JRParameter;
 
 
-@Controller("relatorios")
+@Controller()
 @RequestMapping("/relatorios")
 @Transactional(readOnly=true)
 public class RelatorioUsuarioController {
@@ -64,19 +64,4 @@ public class RelatorioUsuarioController {
 	}
 
 
-	/*@RequestMapping("/usuarios2")
-	public ModelAndView emitirRelaUsuario(ModelMap model,FiltroRelEntidadeBase filtros) throws ErroRelatorioPDFException, SQLException{
-		
-		model.put("arquivo_jasper","/reports/usuario/rel_usuarios.jasper");
-		model.put("nome_arquivo_rel","relatorioUsuarios.pdf");						
-		model.put("NOME_REL", "Relatório de Usuários");
-		//System.out.println("Formato:"+ filtros.getFormato().getFormat());
-		model.put("format",filtros.getFormato().getFormat());
-		Map<String,Object> queryParams = new HashMap<String,Object>();			
-		queryParams.put("parteNome", filtros.getParteNome());
-		model.put("QUERY_PARAMETERS", queryParams);
-
-		return relatorioService.gerarRelatorioSpring(model);
-
-	}*/
 }

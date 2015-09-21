@@ -24,6 +24,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView;
 import org.springframework.web.servlet.view.jasperreports.JasperReportsViewResolver;
 
+import br.com.viniciusmrosa.report.CustomJasperReportsMultiFormatView;
 import net.sf.jasperreports.engine.export.JRHtmlExporterConfiguration;
 import net.sf.jasperreports.engine.export.JRHtmlExporterParameter;
 
@@ -31,7 +32,6 @@ import net.sf.jasperreports.engine.export.JRHtmlExporterParameter;
 public class ReportViewResolverConfig {
 
 	/**
-	 * 
 	 * @param context
 	 * @return JasperReportsViewResolver
 	 * View Resolver utilizado para renderizar o retorno dos relatórios feitos pelo jasper Reports
@@ -45,9 +45,10 @@ public class ReportViewResolverConfig {
 		resolver.setSuffix(".jasper");
 		resolver.setReportDataKey("datasource");
 		resolver.setViewNames("template_*");
-		resolver.setViewClass(JasperReportsMultiFormatView.class);		
+		resolver.setViewClass(CustomJasperReportsMultiFormatView.class);		
 		Map<String, Object> exporterParameters = new HashMap<>();					
 	//	exporterParameters.put("net.sf.jasperreports.engine.export.JRHtmlExporterParameter.IMAGES_URI",context.getServletContext().getContextPath()+"/livro/capa/1");
+		exporterParameters.put("net.sf.jasperreports.engine.export.JRHtmlExporterParameter.IMAGES_MAP",new HashMap<>());
 		exporterParameters.put("net.sf.jasperreports.engine.export.JRHtmlExporterParameter.IMAGES_URI",context.getServletContext().getContextPath()+"/relatorios/image?image=");
 		exporterParameters.put("net.sf.jasperreports.engine.export.JRHtmlExporterParameter.IS_USING_IMAGES_TO_ALIGN",Boolean.FALSE);		
 		resolver.setExporterParameters(exporterParameters);

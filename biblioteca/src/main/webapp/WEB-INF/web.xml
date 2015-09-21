@@ -14,7 +14,7 @@
 
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>/servlet/*</url-pattern>
 	</servlet-mapping>
 
 	<context-param>
@@ -26,16 +26,16 @@
 	 </param-value>
 	</context-param>
 	
-	<servlet>
+	  <servlet>
 		<servlet-name>ImageServlet</servlet-name>
 		<servlet-class>net.sf.jasperreports.j2ee.servlets.ImageServlet</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
 		<servlet-name>ImageServlet</servlet-name>
-		<url-pattern>/relatorios/image/</url-pattern>
+		<url-pattern>/relatorios/*</url-pattern>
 	</servlet-mapping>
-	
+	 
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>

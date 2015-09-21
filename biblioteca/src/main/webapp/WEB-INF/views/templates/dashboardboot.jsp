@@ -52,7 +52,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<c:url value="/apresentacao"/>">Biblioteca</a>
+          <a class="navbar-brand" href="<c:url value="servlet/apresentacao"/>">Biblioteca</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">     
@@ -78,7 +78,7 @@
                   <li><a href="<c:url value="/relatorios/formRelAutores"/>">Autores</a></li>
                   <li><a href="<c:url value="/relatorios/formRelColecoes"/>">Coleções</a></li>
                   <li><a href="<c:url value="/relatorios/formRelEditoras"/>">Editoras</a></li>                  
-                  <li><a href="<c:url value="/relatorios/formRelLivros"/>">Livros</a></li>
+                  <li><a href="<c:url value="/servlet/relatorios/formRelLivros"/>">Livros</a></li>
                   <li><a href="#">Livros Emprestados</a></li>
                   <li><a href="#">Lista de Desejo</a></li>                 
                   </ul>
