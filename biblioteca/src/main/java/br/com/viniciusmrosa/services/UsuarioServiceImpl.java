@@ -14,11 +14,14 @@ import br.com.viniciusmrosa.exception.RegistroExistenteException;
 import br.com.viniciusmrosa.exception.RegistroNaoEncontradoException;
 import br.com.viniciusmrosa.modelo.Usuario;
 import br.com.viniciusmrosa.security.AlteracaoRegistroSecurityService;
+import br.com.viniciusmrosa.security.SecurityUtils;
 
 @Service(value = "usuarioService")
 public class UsuarioServiceImpl extends AbstractService implements
 		UsuarioService {
-
+	@Autowired
+	private SecurityUtils securityUtils;
+	
 	@Autowired
 	private DAOUsuario daoUsuario;
 
@@ -34,6 +37,8 @@ public class UsuarioServiceImpl extends AbstractService implements
 			throw new RegistroExistenteException("O login informado já existe");
 
 		u.setSenha(DigestUtils.sha512Hex(u.getSenha()));
+		if(!securityUtils.buscaUsuarioLogado().isMaster())
+			u.setMaster(false);
 		daoUsuario.salva(u);
 
 	}

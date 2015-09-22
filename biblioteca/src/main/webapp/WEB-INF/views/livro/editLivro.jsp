@@ -4,7 +4,7 @@
 
 <h2 class="sub-header">Edição de Livro</h2>
 <div class="col-sm-12">
-	<c:url value="/alterarLivro" var="linkAct" />
+	<c:url value="/servlet/alterarLivro" var="linkAct" />
 	<c:url value="/livro/capa/${livro.id}" var="linkCapa" />
 	<div class="alert alert-info"
 		style='display:${msg==null?"none":"line"}' role="alert">${msg }
