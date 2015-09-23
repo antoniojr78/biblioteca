@@ -42,7 +42,7 @@
 	  </div>
 	</div>
 
-
+	<c:set value="${sessionScope['parametrosGlobais'].SPRINGBASE}" var="springBase"/>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -52,20 +52,20 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<c:url value="servlet/apresentacao"/>">Biblioteca</a>
+          <a class="navbar-brand" href="<c:url value="${springBase }/apresentacao"/>">Biblioteca</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">     
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cadastros <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                  <li><a href="<c:url value="/listaUsuario"/>">Usuário</a></li>
+                  <li><a href="<c:url value="${springBase }/listaUsuario"/>">Usuário</a></li>
                   <li class="divider"></li>
-                  <li><a href="<c:url value="/listaAutores"/>">Autor</a></li>
-                  <li><a href="<c:url value="/listaColecao"/>">Coleção</a></li>
-                  <li><a href="<c:url value="/listaEditora"/>">Editora</a></li>
+                  <li><a href="<c:url value="${springBase }/listaAutores"/>">Autor</a></li>
+                  <li><a href="<c:url value="${springBase }/listaColecao"/>">Coleção</a></li>
+                  <li><a href="<c:url value="${springBase }/listaEditora"/>">Editora</a></li>
                   <li class="divider"></li>
-                  <li><a href="<c:url value="/listaLivro"/>">Livro</a></li>                 
+                  <li><a href="<c:url value="${springBase }/listaLivro"/>">Livro</a></li>                 
                   </ul>
                 </li>
             </ul>
@@ -74,11 +74,11 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Relatórios <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                  <li><a href="<c:url value="/relatorios/formRelUsuarios"/>">Usuários</a></li>                  
-                  <li><a href="<c:url value="/relatorios/formRelAutores"/>">Autores</a></li>
-                  <li><a href="<c:url value="/relatorios/formRelColecoes"/>">Coleções</a></li>
-                  <li><a href="<c:url value="/relatorios/formRelEditoras"/>">Editoras</a></li>                  
-                  <li><a href="<c:url value="/servlet/relatorios/formRelLivros"/>">Livros</a></li>
+                  <li><a href="<c:url value="${springBase }/relatorios/formRelUsuarios"/>">Usuários</a></li>                  
+                  <li><a href="<c:url value="${springBase }/relatorios/formRelAutores"/>">Autores</a></li>
+                  <li><a href="<c:url value="${springBase }/relatorios/formRelColecoes"/>">Coleções</a></li>
+                  <li><a href="<c:url value="${springBase }/relatorios/formRelEditoras"/>">Editoras</a></li>                  
+                  <li><a href="<c:url value="${springBase }/relatorios/formRelLivros"/>">Livros</a></li>
                   <li><a href="#">Livros Emprestados</a></li>
                   <li><a href="#">Lista de Desejo</a></li>                 
                   </ul>
@@ -88,7 +88,7 @@
             <input type="text" class="form-control" placeholder="Search...">
           </form>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="<c:url value="/j_spring_security_logout"/>"> <span class="glyphicon glyphicon-off " style="color:#9d9d9d" aria-hidden="true"></span></a></li>
+            <li><a href="<c:url value="${springBase }/j_spring_security_logout"/>"> <span class="glyphicon glyphicon-off " style="color:#9d9d9d" aria-hidden="true"></span></a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
           	<li style="color:#9d9d9d;margin-top:15px;"> 
@@ -123,7 +123,8 @@
         <script type="text/javascript" src="<c:url value="/static/bootstrap/js/bootbox.min.js"/>"></script>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <div id="globalAlert" class="alert alert-danger Alertoculto"></div>
-        	  
+        
+        	 <!--  Como usar map na sessão ==> ${sessionScope['nomeDoAtributodaSessao'].key} Ex.: ${sessionScope['parametrosGlobais'].kk} onde parametrosGlobais = map e kk = KEY-->
 		 	<tiles:insertAttribute name="conteudo"/>	
         <!--   <div class="row placeholders">
             <div class="col-xs-6 col-sm-3 placeholder">

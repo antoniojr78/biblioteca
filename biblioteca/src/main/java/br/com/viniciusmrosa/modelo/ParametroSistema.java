@@ -1,6 +1,7 @@
 package br.com.viniciusmrosa.modelo;
 
 import java.io.Serializable;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -48,6 +49,7 @@ public class ParametroSistema extends BaseEntity implements Serializable {
 	public void setNomeParam(String nomeParam) {
 		this.nomeParam = nomeParam;
 	}
+	
 	
 	
 }

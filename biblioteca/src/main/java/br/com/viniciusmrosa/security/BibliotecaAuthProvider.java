@@ -1,6 +1,9 @@
 package br.com.viniciusmrosa.security;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,14 +11,23 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import br.com.viniciusmrosa.dao.DAOParametros;
 import br.com.viniciusmrosa.dao.DAOUsuario;
+import br.com.viniciusmrosa.modelo.ParametroSistema;
+import br.com.viniciusmrosa.modelo.ParametrosCmd;
 import br.com.viniciusmrosa.modelo.Usuario;
 
 public class BibliotecaAuthProvider implements AuthenticationProvider{
 
 	@Autowired
 	private DAOUsuario daoUsuario;
+	
+	@Autowired
+	private DAOParametros daoParametros;
 	
 	@Override
 	public Authentication authenticate(Authentication auth)
@@ -36,6 +48,14 @@ public class BibliotecaAuthProvider implements AuthenticationProvider{
 		
 		BibliotecaAuthentication resultado = new BibliotecaAuthentication(usuario);
 		resultado.setAuthenticated(usuario != null);
+		Map<String, String> parametrosGlobais = new HashMap<String, String>();
+		
+		
+		
+		ParametrosCmd parametrosCmd = new ParametrosCmd(daoParametros.lista(0, 0));
+		
+		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+		request.getSession().setAttribute("parametrosGlobais", parametrosCmd.getAsMap());
 		return resultado;
 	}
 
