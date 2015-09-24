@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="<c:url value="/static/datatables/css/jquery.dataTables.min.css"/>" >	 
 <h2 class="sub-header">Coleções</h2>
 
-<a href="<c:url  value="/formColecao"/>">
+<a href="<c:url  value="${springBase }/formColecao"/>">
 <button type="button" class="btn btn-default btn-md" >
   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
 </button>
@@ -30,7 +30,7 @@
 				<tr>
 					<!-- /delColecao/${colecao.id} -->
 					<sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#colecao)" var="podeAlterar" /> 
-					<td style="text-align:center; width:10px;" ><c:if test="${podeAlterar }"><a href="<c:url value="/editColecao/${colecao.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </c:if> </td>
+					<td style="text-align:center; width:10px;" ><c:if test="${podeAlterar }"><a href="<c:url value="${springBase }/editColecao/${colecao.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </c:if> </td>
 					<td  style="text-align:center; width:10px;"><c:if test="${podeAlterar }"> <span title="Excluir" id="icon-delete" class="glyphicon glyphicon-remove" style="color:red"></span> </c:if></td>
 					
 					<td>${colecao.id}</td>					
@@ -45,7 +45,7 @@
 
 
 
-
+<c:url value="${springBase }/delColecao" var="linkDel"/>
 <script type="text/javascript" src="<c:url value="/static/datatables/js/jquery.dataTables.min.js"/>"></script> 
 <script type="text/javascript"> 
 
@@ -80,7 +80,7 @@
     	///////////
     	
     	$("table tbody tr #icon-delete").click(function() { 		
-			removePorId(2,table,'delColecao',this);
+			removePorId(2,table,'${linkDel}',this);
 		});
 		    	
     	////////////

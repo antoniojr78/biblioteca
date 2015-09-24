@@ -4,8 +4,8 @@
 
 <h2 class="sub-header">Edição de Coleção</h2>
 <div class="col-sm-6">
-	<c:url value="/alteraColecao" var="linkAct" />
-
+	<c:url value="${springBase }/alteraColecao" var="linkAct" />
+	
 	<div class="alert alert-info"
 		style='display:${msg==null?"none":"line"}' role="alert">${msg }
 	</div>
@@ -33,7 +33,7 @@
 				<button type="submit" class="btn btn-default" ${podeAlterar == true?'':'disabled'}  >
 					<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Salvar
 				</button> 
-				<a href="<c:url  value="/listaColecao"/>">
+				<a href="<c:url  value="${springBase }/listaColecao"/>">
 					<button type="button" class="btn btn-default btn-md">
 						<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Voltar
 					</button>

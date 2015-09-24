@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="<c:url value="/static/datatables/css/jquery.dataTables.min.css"/>" >	 
 <h2 class="sub-header">Autores</h2>
 
-<a href="<c:url  value="/cadAutor"/>">
+<a href="<c:url  value="${springBase }/cadAutor"/>">
 <button type="button" class="btn btn-default btn-md" >
   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
 </button>
@@ -31,7 +31,7 @@
 			<c:forEach var="autor" items="${autores}">
 				<tr>
 					 <sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#autor)" var="podeAlterar" /> 
-					<td style="text-align:center; width:10px;" ><c:if test="${podeAlterar }"><a href="<c:url value="/editAutor/${autor.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </c:if> </td>
+					<td style="text-align:center; width:10px;" ><c:if test="${podeAlterar }"><a href="<c:url value="${springBase }/editAutor/${autor.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </c:if> </td>
 					<td style="text-align:center; width:10px;"> <c:if test="${podeAlterar }"><span id="icon-delete" title="Excluir" class="glyphicon glyphicon-remove" style="color:red"></span> </c:if> </td>
 					
 					<td>${autor.id}</td>					
@@ -46,7 +46,7 @@
 
 
 
-
+<c:url value="${springBase }/delAutor" var="linkDel"/>
 <script type="text/javascript" src="<c:url value="/static/datatables/js/jquery.dataTables.min.js"/>"></script> 
 <script type="text/javascript"> 
 	$(document).ready(function() {
@@ -75,7 +75,7 @@
 		});
 		
 		$("table tbody tr #icon-delete").click(function() { 		
-			removePorId(2,table,'delAutor',this);
+			removePorId(2,table,'${linkDel }',this);
 		});
 	   
 	} );

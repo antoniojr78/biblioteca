@@ -42,6 +42,10 @@ public class ParametrosSistemaController {
 	}
 	
 	
-	
+	@RequestMapping("/pegarValParam")
+	@ResponseBody
+	public String pegaValParam(){
+		return "Meu valor";
+	}
 	
 }

@@ -116,7 +116,7 @@ public class UsuarioController {
 			model.addAttribute("msg",e.getMessage());
 			return "editUsuario";
 		}
-		return "redirect:/listaUsuario";
+		return "redirect:listaUsuario";
 	}
 	
 	@RequestMapping(value="/delUsuario",method=RequestMethod.POST)

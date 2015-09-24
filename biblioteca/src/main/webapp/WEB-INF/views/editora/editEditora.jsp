@@ -4,7 +4,7 @@
 
 <h2 class="sub-header">Edição de Editora</h2>
 <div class="col-sm-6">
-	<c:url value="/alteraEditora" var="linkAct" />
+	<c:url value="${springBase }/alteraEditora" var="linkAct" />
 
 	<div class="alert alert-info"
 		style='display:${msg==null?"none":"line"}' role="alert">${msg }
@@ -33,7 +33,7 @@
 				<button type="submit" class="btn btn-default" ${podeAlterar == true?'':'disabled'}  >
 					<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Salvar
 				</button> 
-				<a href="<c:url  value="/listaEditora"/>">
+				<a href="<c:url  value="${springBase }/listaEditora"/>">
 					<button type="button" class="btn btn-default btn-md">
 						<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Voltar
 					</button>

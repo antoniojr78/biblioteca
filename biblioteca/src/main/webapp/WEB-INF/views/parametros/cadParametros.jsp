@@ -5,7 +5,7 @@
 
 <h2 class="sub-header">Cadastro Parâmetros</h2>
 <div class="col-sm-6">
-	<c:url value="/servlet/salvarParametro" var="linkAct" />
+	<c:url value="${springBase}/salvarParametro" var="linkAct" />
 
 	<div class="alert alert-info"
 		style='display:${msg==null?"none":"line"}' role="alert">${msg }

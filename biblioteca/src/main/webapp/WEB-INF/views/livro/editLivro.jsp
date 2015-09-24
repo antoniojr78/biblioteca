@@ -4,8 +4,8 @@
 
 <h2 class="sub-header">Edição de Livro</h2>
 <div class="col-sm-12">
-	<c:url value="/servlet/alterarLivro" var="linkAct" />
-	<c:url value="/livro/capa/${livro.id}" var="linkCapa" />
+	<c:url value="${springBase}/alterarLivro" var="linkAct" />
+	<c:url value="${springBase}/livro/capa/${livro.id}" var="linkCapa" />
 	<div class="alert alert-info"
 		style='display:${msg==null?"none":"line"}' role="alert">${msg }
 	</div>
@@ -141,7 +141,7 @@
 					${podeAlterar == true?'':'disabled'}>
 					<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Salvar
 				</button>
-				<a href="<c:url  value="/listaLivro"/>">
+				<a href="<c:url  value="${springBase}/listaLivro"/>">
 					<button type="button" class="btn btn-default btn-md">
 						<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
 						Voltar

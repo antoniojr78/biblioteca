@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="<c:url value="/static/datatables/css/jquery.dataTables.min.css"/>" >	 
 <h2 class="sub-header">Usuários</h2>
 <!-- ${pageContext['request'].userPrincipal.details.master}  -->
-<a href="<c:url  value="/cadUsuario"/>">
+<a href="<c:url  value="${springBase}/cadUsuario"/>">
 <button type="button" class="btn btn-default btn-md" >
   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
 </button>
@@ -30,7 +30,7 @@
 			<c:forEach var="usuario" items="${usuarios}">
 				<tr>
 					<sec:authorize access="@AlteracaoRegistroSecurityService.podeAlterar(#usuario)" var="podeAlterar"/> 
-					<td style="text-align:center" ><c:if test="${podeAlterar }"> <a href="<c:url value="/editUsuario/${usuario.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </c:if> </td>
+					<td style="text-align:center" ><c:if test="${podeAlterar }"> <a href="<c:url value="${springBase}/editUsuario/${usuario.id}" />"><span title="Editar" class="glyphicon glyphicon-pencil" ></span></a> </c:if> </td>
 					<td style="text-align:center"><c:if test="${podeAlterar }"> <span title="Excluir" id="icon-delete" class="glyphicon glyphicon-remove" style="color:red"></span> </c:if> </td>
 					
 					<td>${usuario.id}</td>

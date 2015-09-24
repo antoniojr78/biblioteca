@@ -44,9 +44,10 @@
 		class="org.springframework.web.servlet.i18n.FixedLocaleResolver">
 		<property name="defaultLocale" value="en" />
 	</bean>
-	<!--@Deprecated  <bean id="applicationContextProvider" Estudar necessidade real de manter essa classe
+	<!-- Utilizado para resolver as mensagens na classe SpringUtils -->
+	 <bean id="applicationContextProvider"
                         class="br.com.viniciusmrosa.utils.ApplicationContextProvider"/>
-                         -->
+                        
 	<bean id="conversionService"
 		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 

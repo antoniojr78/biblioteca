@@ -41,8 +41,8 @@
 	    </div>
 	  </div>
 	</div>
-
-	<c:set value="${sessionScope['parametrosGlobais'].SPRINGBASE}" var="springBase"/>
+	
+	<c:set value="${sessionScope['parametrosGlobais'].SPRINGBASE}" var="springBase" scope="application"/>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -88,7 +88,7 @@
             <input type="text" class="form-control" placeholder="Search...">
           </form>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="<c:url value="${springBase }/j_spring_security_logout"/>"> <span class="glyphicon glyphicon-off " style="color:#9d9d9d" aria-hidden="true"></span></a></li>
+            <li><a href="<c:url value="/j_spring_security_logout"/>"> <span class="glyphicon glyphicon-off " style="color:#9d9d9d" aria-hidden="true"></span></a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
           	<li style="color:#9d9d9d;margin-top:15px;"> 
@@ -125,6 +125,7 @@
         <div id="globalAlert" class="alert alert-danger Alertoculto"></div>
         
         	 <!--  Como usar map na sessão ==> ${sessionScope['nomeDoAtributodaSessao'].key} Ex.: ${sessionScope['parametrosGlobais'].kk} onde parametrosGlobais = map e kk = KEY-->
+
 		 	<tiles:insertAttribute name="conteudo"/>	
         <!--   <div class="row placeholders">
             <div class="col-xs-6 col-sm-3 placeholder">
