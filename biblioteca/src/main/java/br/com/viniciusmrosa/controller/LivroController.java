@@ -135,7 +135,7 @@ public class LivroController {
 			mav.addObject("msg",e.getMessage());
 			return mav;
 		}
-		mav.setViewName("redirect:/listaLivro");
+		mav.setViewName("redirect:listaLivro");
 		return mav;
 	}
 	private void initCombosForm(ModelAndView mav){

@@ -115,9 +115,8 @@ public class RelatoriosServiceImpl implements RelatoriosService {
 			logger.warn("Parâmetro " + KEY_NOME_ARQUIVO_REL +  " não definido. Utilizando nome de aruqivo padrão");
 		}		
 		//Setando request na sessão para os relatórios em HTML exibirem as imagens corretamente
-		if(null != modelMap.get("format") && modelMap.get("format").equals("html"))
-			modelMap.put("requestObject", request);
 		
+		modelMap.put("requestObject", request);
 		modelMap.put("ARQUIVO_REL", arquivoJasper);
 		modelMap.put("datasource", dataSource);
 		modelMap.put(JRParameter.REPORT_LOCALE, request.getLocale());

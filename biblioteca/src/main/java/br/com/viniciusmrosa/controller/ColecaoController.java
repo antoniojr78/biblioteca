@@ -94,7 +94,7 @@ public class ColecaoController {
 			mav.addObject("msg",e.getMessage());
 			return mav;
 		}
-		mav.setViewName("redirect:/listaColecao");
+		mav.setViewName("redirect:listaColecao");
 		
 		return mav;
 	}

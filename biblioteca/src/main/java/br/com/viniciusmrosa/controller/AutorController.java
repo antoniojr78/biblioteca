@@ -88,7 +88,7 @@ public class AutorController {
 		} 
 		
 		
-		return "redirect:/listaAutores";		
+		return "redirect:listaAutores";		
 	}
 	
 	@RequestMapping(value="delAutor",method=RequestMethod.POST)

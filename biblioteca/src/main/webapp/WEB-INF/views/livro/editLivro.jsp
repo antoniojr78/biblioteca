@@ -18,7 +18,7 @@
 		<div class="row" >
 			<div class="col-sm-offset-2" >
 				<div class="col-xs-6 col-md-2" >
-					<a class="example-image-link thumbnail"   href="${linkCapa }" data-lightbox="capa"><img style="max-width:200px; max-height:220px; "  src="${linkCapa }" alt="Capa" /></a>
+					<a class="example-image-link thumbnail"   href="${linkCapa }" data-lightbox="capa"><img style="width:200px; height:220px; "  src="${linkCapa }" alt="Capa" /></a>
 					<!-- <a href="#" onclick="exibirCapaTamanhoReal('${linkCapa }');" class="thumbnail"> <img style="width:171px; height:180px;" src='${linkCapa }'/> </a> -->
 				</div>
 			</div>

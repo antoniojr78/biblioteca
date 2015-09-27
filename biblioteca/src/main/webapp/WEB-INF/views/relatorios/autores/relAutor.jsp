@@ -5,7 +5,7 @@
 
 <h2 class="sub-header">Relatório Autores</h2>
 <div class="col-sm-12">
-	<c:url value="/relatorios/autores" var="linkAct" />
+	<c:url value="${springBase }/relatorios/autores" var="linkAct" />
 
 	<div class="alert alert-info"
 		style='display:${msg==null?"none":"line"}' role="alert">${msg }

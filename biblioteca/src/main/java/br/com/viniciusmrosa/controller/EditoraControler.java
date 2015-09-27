@@ -89,7 +89,7 @@ public class EditoraControler {
 			return mav;
 		}
 		
-		mav.setViewName("redirect:/listaEditora");
+		mav.setViewName("redirect:listaEditora");
 		return mav;
 	}
 	

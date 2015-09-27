@@ -33,7 +33,7 @@
 	
 	<servlet-mapping>
 		<servlet-name>ImageServlet</servlet-name>
-		<url-pattern>/relatorios/*</url-pattern>
+		<url-pattern>/relatorios/images/*</url-pattern>
 	</servlet-mapping>
 	 
 	<listener>

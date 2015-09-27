@@ -5,7 +5,7 @@
 
 <h2 class="sub-header">Relatório Editoras</h2>
 <div class="col-sm-12">
-	<c:url value="/relatorios/editoras" var="linkAct" />
+	<c:url value="${springBase }/relatorios/editoras" var="linkAct" />
 
 	<div class="alert alert-info"
 		style='display:${msg==null?"none":"line"}' role="alert">${msg }

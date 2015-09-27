@@ -49,7 +49,7 @@ public class ReportViewResolverConfig {
 		Map<String, Object> exporterParameters = new HashMap<>();					
 	//	exporterParameters.put("net.sf.jasperreports.engine.export.JRHtmlExporterParameter.IMAGES_URI",context.getServletContext().getContextPath()+"/livro/capa/1");
 		exporterParameters.put("net.sf.jasperreports.engine.export.JRHtmlExporterParameter.IMAGES_MAP",new HashMap<>());
-		exporterParameters.put("net.sf.jasperreports.engine.export.JRHtmlExporterParameter.IMAGES_URI",context.getServletContext().getContextPath()+"/relatorios/image?image=");
+		exporterParameters.put("net.sf.jasperreports.engine.export.JRHtmlExporterParameter.IMAGES_URI",context.getServletContext().getContextPath()+"/relatorios/images/image?image=");
 		exporterParameters.put("net.sf.jasperreports.engine.export.JRHtmlExporterParameter.IS_USING_IMAGES_TO_ALIGN",Boolean.FALSE);		
 		resolver.setExporterParameters(exporterParameters);
 		resolver.setOrder(0);

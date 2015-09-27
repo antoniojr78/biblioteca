@@ -57,6 +57,9 @@ public class UsuarioServiceImpl extends AbstractService implements
 			usuarioAlteracao.setSenha(DigestUtils.sha512Hex(u.getSenha()));
 		}
 		daoUsuario.salva(usuarioAlteracao);
+		
+		//Substituir o nome pelo novo nome para refeletir a alteração no cabeçalho sem ter que fazer logout
+		securityUtils.buscaUsuarioLogado().setNome(usuarioAlteracao.getNome());
 	}
 
 	@Override
