@@ -27,6 +27,7 @@
 			<c:forEach items="${parametrosCmd.parametros }" varStatus="vs" var="p">
 				
 				<tr>
+					<sf:hidden path="parametros[${vs.index }].id"/>
 					<td><sf:input path="parametros[${vs.index }].codParam" readonly="true"/> </td>
 					<td><sf:input path="parametros[${vs.index }].nomeParam" readonly="true"/> </td>
 					<td><sf:input path="parametros[${vs.index }].valorParam"/> </td>
@@ -41,11 +42,6 @@
 				<button type="submit" class="btn btn-default">
 					<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Salvar
 				</button>
-				<a href="<c:url  value="/listaAutores"/>">
-					<button type="button" class="btn btn-default btn-md">
-						<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Voltar
-					</button>
-				</a>
 			</div>
 
 		</div>

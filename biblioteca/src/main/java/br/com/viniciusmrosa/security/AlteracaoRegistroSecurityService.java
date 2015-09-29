@@ -15,7 +15,7 @@ public class AlteracaoRegistroSecurityService {
 	public boolean podeAlterar(BaseEntity entidade){
 		
 		return isUsuarioLogado(entidade)
-				|| isDonoRegistro(entidade);
+				|| isDonoRegistro(entidade) || isMaster();
 				
 		
 	}
@@ -32,7 +32,7 @@ public class AlteracaoRegistroSecurityService {
 		
 	}
 	
-	public boolean isMaster(Usuario u){
+	public boolean isMaster(){
 		return securityUtils.buscaUsuarioLogado().isMaster();
 	}
 

@@ -28,4 +28,10 @@ public abstract class AbstractService  {
 		checaExistente(obj);
 		checaPermissoes(obj);
 	}
+	 protected void checaPermissaoMaster() throws PermissaoAlteracaoNegadaException{
+		 if(! alteracaoUsuarioSecurityService.isMaster()){
+			 throw new PermissaoAlteracaoNegadaException();
+		 }
+	 }
+	
 }
