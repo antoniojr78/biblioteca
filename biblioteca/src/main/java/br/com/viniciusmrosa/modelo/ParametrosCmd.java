@@ -5,7 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.constraints.NotNull;
+
 public class ParametrosCmd {
+	
+	//Criar interface para validaçao desses casos
+	@NotNull
 	private List<ParametroSistema> parametros;
 	private Map<String, String> mapaParametros = new HashMap<String, String>();
 	public ParametrosCmd(List<ParametroSistema> parms) {

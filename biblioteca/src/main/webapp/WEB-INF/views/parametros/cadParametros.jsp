@@ -13,6 +13,7 @@
 
 	<sf:form modelAttribute="parametrosCmd" action="${linkAct}"
 		class="form-horizontal" role="form">
+		
 		<sf:errors path="*" element="div" role="alert"
 			cssClass="alert alert-danger" />
 		<div class="form-group">

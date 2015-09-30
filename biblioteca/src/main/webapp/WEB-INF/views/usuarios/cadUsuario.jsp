@@ -29,7 +29,7 @@
 					placeholder="Nome" />
 			</div>
 		</div>
-		<sec:authorize access="@AlteracaoRegistroSecurityService.isMaster(#usuario)">
+		<sec:authorize access="@AlteracaoRegistroSecurityService.isMaster()">
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="master">Master?</label>
 			<div class="col-sm-10">
